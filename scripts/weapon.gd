@@ -10,16 +10,19 @@ class_name Weapon
 @export var tracer_scene: PackedScene
 @export var bullethole_scene: PackedScene
 
-func refill_magazine():
+func is_magazine_full() -> bool:
+    return max_ammo == current_ammo
+
+func refill_magazine() -> void:
     current_ammo = max_ammo
 
-func spend_bullet():
+func spend_bullet() -> bool:
     if current_ammo > 0:
         current_ammo -= 1
         return true
     return false
 
-func spawn_tracer(barrel_end: Node3D, to: Vector3 = Vector3.ZERO):
+func spawn_tracer(barrel_end: Node3D, to: Vector3 = Vector3.ZERO) -> void:
     var tracer: Node3D = tracer_scene.instantiate()
     barrel_end.add_child(tracer)
     tracer.global_transform = barrel_end.global_transform
@@ -29,7 +32,7 @@ func spawn_tracer(barrel_end: Node3D, to: Vector3 = Vector3.ZERO):
     else:
         tracer.scale.z = bullet_distance
 
-func spawn_bullethole(collided_with: CollisionObject3D, collision_position: Vector3, collision_normal: Vector3):
+func spawn_bullethole(collided_with: CollisionObject3D, collision_position: Vector3, collision_normal: Vector3) -> void:
     var bullethole_instance = bullethole_scene.instantiate()
     collided_with.add_child(bullethole_instance)
     bullethole_instance.global_position = collision_position

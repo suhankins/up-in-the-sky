@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://player.gd" id="1_oeowi"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="2_4uhfg"]
 [ext_resource type="PackedScene" uid="uid://cnufybkt8f4b0" path="res://models/player_agent/player_agent.tscn" id="2_rwq1e"]
-[ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://tracer.tscn" id="2_x40ji"]
+[ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="2_x40ji"]
 [ext_resource type="Texture2D" uid="uid://d2kch31n7115u" path="res://cursors/aim.png" id="3_bh5ls"]
-[ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://bullethole.tscn" id="3_t2te4"]
+[ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://models/effects/bullethole/bullethole.tscn" id="3_t2te4"]
 
 [sub_resource type="Resource" id="Resource_646gc"]
 script = ExtResource("2_4uhfg")

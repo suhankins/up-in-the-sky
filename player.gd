@@ -127,7 +127,7 @@ func handle_fire():
 	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
 
 func handle_reload():
-	if not Input.is_action_just_pressed('reload'):
+	if not Input.is_action_just_pressed('reload') or weapon.is_magazine_full():
 		return
 
 	if not reload_cooldown.is_stopped():

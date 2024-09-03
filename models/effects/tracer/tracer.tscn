@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://5mf2jfrxtlsr"]
 
-[ext_resource type="Shader" path="res://tracer.gdshader" id="1_tjolc"]
-[ext_resource type="Script" path="res://tracer.gd" id="2_2d03h"]
+[ext_resource type="Shader" path="res://models/effects/tracer/tracer.gdshader" id="1_tjolc"]
+[ext_resource type="Script" path="res://models/effects/tracer/tracer.gd" id="2_2d03h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_exqax"]
 render_priority = 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://br8bvepdmca2q"]
 
-[ext_resource type="Script" path="res://bullethole.gd" id="1_oxgdu"]
+[ext_resource type="Script" path="res://models/effects/bullethole/bullethole.gd" id="1_oxgdu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfgfr"]
 albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
