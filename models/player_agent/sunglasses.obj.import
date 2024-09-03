@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cqg8r4q804qvg"
+path="res://.godot/imported/sunglasses.obj-b3e560441d2deb0140bef7ef0448ba2b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sunglasses.obj-b3e560441d2deb0140bef7ef0448ba2b.mesh"]
+
+source_file="res://models/player_agent/sunglasses.obj"
+dest_files=["res://.godot/imported/sunglasses.obj-b3e560441d2deb0140bef7ef0448ba2b.mesh", "res://.godot/imported/sunglasses.obj-b3e560441d2deb0140bef7ef0448ba2b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

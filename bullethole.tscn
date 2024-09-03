@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://br8bvepdmca2q"]
+
+[ext_resource type="Script" path="res://bullethole.gd" id="1_oxgdu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfgfr"]
+albedo_color = Color(0.190762, 0.190762, 0.190762, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp3tx"]
+albedo_color = Color(0.122252, 0.122252, 0.122252, 1)
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1mllf"]
+material = SubResource("StandardMaterial3D_cp3tx")
+flip_faces = true
+size = Vector2(0.05, 0.05)
+orientation = 2
+
+[node name="BulletholeRoot" type="Node3D"]
+
+[node name="bullethole" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00262409)
+material_override = SubResource("StandardMaterial3D_hfgfr")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_1mllf")
+script = ExtResource("1_oxgdu")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://d00lh5qnb33ry"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_oeowi"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="2_4uhfg"]
+[ext_resource type="PackedScene" uid="uid://cnufybkt8f4b0" path="res://models/player_agent/player_agent.tscn" id="2_rwq1e"]
+[ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://tracer.tscn" id="2_x40ji"]
+[ext_resource type="Texture2D" uid="uid://d2kch31n7115u" path="res://cursors/aim.png" id="3_bh5ls"]
+[ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://bullethole.tscn" id="3_t2te4"]
+
+[sub_resource type="Resource" id="Resource_646gc"]
+script = ExtResource("2_4uhfg")
+rate_of_fire = 4.0
+spread = 0.8
+bullet_distance = 20.0
+reload_time = 1.0
+max_ammo = 7
+current_ammo = 7
+tracer_scene = ExtResource("2_x40ji")
+bullethole_scene = ExtResource("3_t2te4")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v57k5"]
+radius = 0.191284
+height = 0.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qy3o0"]
+radius = 0.191
+height = 0.55
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_oeowi")
+weapon = SubResource("Resource_646gc")
+
+[node name="StandingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CapsuleShape3D_v57k5")
+
+[node name="CrouchingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, 0)
+shape = SubResource("CapsuleShape3D_qy3o0")
+
+[node name="Model" parent="." instance=ExtResource("2_rwq1e")]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558143, 0)
+target_position = Vector3(0, 0, -1)
+debug_shape_custom_color = Color(1.58831e-06, 0.585292, 0.448657, 1)
+
+[node name="FireCooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.25
+one_shot = true
+
+[node name="Cursor" type="Sprite3D" parent="."]
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("3_bh5ls")
+
+[node name="ReloadCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoyoteFire" type="Timer" parent="."]
+one_shot = true
+
+[node name="StandingRaycastOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
+
+[node name="CrouchingRaycastOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444584, 0)
+
+[connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://5mf2jfrxtlsr"]
+
+[ext_resource type="Shader" path="res://tracer.gdshader" id="1_tjolc"]
+[ext_resource type="Script" path="res://tracer.gd" id="2_2d03h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exqax"]
+render_priority = 0
+shader = ExtResource("1_tjolc")
+shader_parameter/progress = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_76pyj"]
+material = SubResource("ShaderMaterial_exqax")
+size = Vector2(0.01, 1)
+
+[node name="TracerRoot" type="Node3D"]
+top_level = true
+
+[node name="Tracer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_76pyj")
+script = ExtResource("2_2d03h")
+
+[node name="Timer" type="Timer" parent="Tracer"]
+wait_time = 0.1
+one_shot = true
+autostart = true

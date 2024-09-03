@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://8ei7aro1m5v4"]
+
+[ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5q8tn"]
+radius = 0.191284
+height = 0.7
+
+[node name="TerroristNPC" type="CharacterBody3D"]
+
+[node name="Terrorist" parent="." instance=ExtResource("1_584io")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+debug_enabled = true
+
+[node name="StandingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("CapsuleShape3D_5q8tn")
