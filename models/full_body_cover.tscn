@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://0e1w707febfn"]
+
+[ext_resource type="Script" path="res://models/cover.gd" id="1_3owfk"]
+[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://models/debug_icon.tscn" id="2_ue5b7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1npx"]
+size = Vector3(0.1, 0.558, 0.1)
+
+[node name="FullBodyCover" type="Node3D" groups=["full_body_cover"]]
+script = ExtResource("1_3owfk")
+
+[node name="FullBodyCover" type="Area3D" parent="."]
+collision_layer = 2
+input_ray_pickable = false
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FullBodyCover"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274, 0)
+shape = SubResource("BoxShape3D_x1npx")
+
+[node name="DebugIcon" parent="FullBodyCover" instance=ExtResource("2_ue5b7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)

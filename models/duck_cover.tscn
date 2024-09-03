@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cru1p2queh6vo"]
+
+[ext_resource type="Script" path="res://models/cover.gd" id="1_udsdi"]
+[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://models/debug_icon.tscn" id="2_uemkk"]
+[ext_resource type="Texture2D" uid="uid://ba3jlang15ci4" path="res://debug_icons/duck_cover.png" id="3_brrgd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dcfqy"]
+size = Vector3(0.1, 0.445, 0.1)
+
+[node name="DuckCover" type="Node3D" groups=["half_body_cover"]]
+script = ExtResource("1_udsdi")
+
+[node name="DuckCoverCollision" type="Area3D" parent="."]
+collision_layer = 2
+input_ray_pickable = false
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DuckCoverCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223, 0)
+shape = SubResource("BoxShape3D_dcfqy")
+
+[node name="DebugIcon" parent="DuckCoverCollision" instance=ExtResource("2_uemkk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445, 0)
+texture = ExtResource("3_brrgd")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445, 0)

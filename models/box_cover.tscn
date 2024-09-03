@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://w50p88x4t1ct"]
+
+[ext_resource type="PackedScene" uid="uid://hmdwvwo0x1ch" path="res://models/placeholders/crate.glb" id="1_ptorm"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://models/duck_cover.tscn" id="2_6lyly"]
+
+[node name="BoxCover" type="Node3D"]
+
+[node name="crate2" parent="." instance=ExtResource("1_ptorm")]
+
+[node name="DuckCover" parent="." instance=ExtResource("2_6lyly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="DuckCover2" parent="." instance=ExtResource("2_6lyly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="DuckCover3" parent="." instance=ExtResource("2_6lyly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="DuckCover4" parent="." instance=ExtResource("2_6lyly")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
