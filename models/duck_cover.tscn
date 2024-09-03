@@ -7,8 +7,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dcfqy"]
 size = Vector3(0.1, 0.445, 0.1)
 
-[node name="DuckCover" type="Node3D" groups=["half_body_cover"]]
+[node name="DuckCover" type="Node3D" groups=["cover", "half_body_cover"]]
 script = ExtResource("1_udsdi")
+requires_crouching = true
+unsafe_distance = null
+outside_threshold = null
 
 [node name="DuckCoverCollision" type="Area3D" parent="."]
 collision_layer = 2
@@ -26,4 +29,5 @@ texture = ExtResource("3_brrgd")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445, 0)
-enabled = false
+collision_mask = 4
+hit_from_inside = true

@@ -1,11 +1,7 @@
-extends CharacterBody3D
+extends AnimatableCharacter
 class_name Player
 
 @export var camera: Camera3D
-
-@export var walk_speed = 2.0
-
-@export var crouch_speed = 0.5
 
 @export var weapon: Weapon
 
@@ -18,7 +14,6 @@ class_name Player
 @onready var coyote_fire_cooldown: Timer = $CoyoteFire
 @onready var reload_cooldown: Timer = $ReloadCooldown
 @onready var cursor: Sprite3D = $Cursor
-@onready var animation_tree: AnimationTree = $Model/AnimationTree
 @onready var barrel_end: Node3D = $Model/Torso/LeftArm/Gun/GunMesh/BarrelEnd
 
 @onready var standing_raycast_origin: Node3D = $StandingRaycastOrigin
@@ -33,7 +28,7 @@ func _ready() -> void:
 func _process(_delta: float):
 	look_at_cursor()
 	move_aim()
-	update_movement_animation()
+	animate_legs()
 	update_collision()
 
 func look_at_cursor():
@@ -136,23 +131,6 @@ func handle_reload():
 
 	reload_cooldown.start(weapon.reload_time)
 	play_reload_animation()
-
-func play_reload_animation():
-	animation_tree.set('parameters/reload/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func play_fire_animation():
-	animation_tree.set('parameters/fire_gun/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-func update_movement_animation():
-	var velocity_angle = velocity.signed_angle_to(Vector3(0, 0, -1), Vector3(0, -1, 0))
-	var difference = velocity_angle - self.rotation.y
-	var movement_speed_ratio = velocity.length() / (crouch_speed if is_crouching() else walk_speed)
-	var leg_vector = Vector2(sin(difference), cos(difference)) * movement_speed_ratio
-
-	animation_tree.set('parameters/walk_blend_space/blend_position', leg_vector)
-	animation_tree.set('parameters/crouch_blend_space/blend_position', leg_vector)
-	animation_tree.set("parameters/Transition/transition_request", 'crouching' if is_crouching() else 'standing')
-
 
 func _on_reload_cooldown_timeout() -> void:
 	weapon.refill_magazine()

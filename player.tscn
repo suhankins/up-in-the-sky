@@ -26,9 +26,13 @@ height = 0.7
 radius = 0.191
 height = 0.55
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["danger_to_npc", "player"]]
+collision_layer = 5
 script = ExtResource("1_oeowi")
 weapon = SubResource("Resource_646gc")
+animation_tree = NodePath("Model/AnimationTree")
+crouch_speed = 1.0
+walk_speed = 2.0
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
@@ -43,6 +47,7 @@ shape = SubResource("CapsuleShape3D_qy3o0")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558143, 0)
 target_position = Vector3(0, 0, -1)
+collision_mask = 9
 debug_shape_custom_color = Color(1.58831e-06, 0.585292, 0.448657, 1)
 
 [node name="FireCooldown" type="Timer" parent="."]

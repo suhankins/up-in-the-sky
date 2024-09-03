@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 full_body_cover=""
 player=""
 half_body_cover=""
+danger_to_npc=""
+cover=""
 
 [input]
 
@@ -62,6 +64,9 @@ crouch={
 [layer_names]
 
 3d_physics/layer_1="General collision"
+3d_physics/layer_2="CoverMarkers"
+3d_physics/layer_3="VisibilityBlockers"
+3d_physics/layer_4="Enemy hitboxes"
 
 [rendering]
 

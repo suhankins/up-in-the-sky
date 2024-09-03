@@ -6,8 +6,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_x1npx"]
 size = Vector3(0.1, 0.558, 0.1)
 
-[node name="FullBodyCover" type="Node3D" groups=["full_body_cover"]]
+[node name="FullBodyCover" type="Node3D" groups=["cover", "full_body_cover"]]
 script = ExtResource("1_3owfk")
+requires_crouching = null
+unsafe_distance = null
+outside_threshold = null
 
 [node name="FullBodyCover" type="Area3D" parent="."]
 collision_layer = 2
@@ -23,4 +26,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
-enabled = false
+collision_mask = 4
+hit_from_inside = true

@@ -1,20 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=5 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
+[ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5q8tn"]
 radius = 0.191284
 height = 0.7
 
-[node name="TerroristNPC" type="CharacterBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxadq"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="TerroristNPC" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree")]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1_pgwwp")
+animation_tree = NodePath("Terrorist/AnimationTree")
+crouch_speed = 0.75
+walk_speed = 1.5
 
 [node name="Terrorist" parent="." instance=ExtResource("1_584io")]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1
-target_desired_distance = 0.1
+target_desired_distance = 0.2
+radius = 1.0
+neighbor_distance = 3.0
+max_speed = 2.0
 debug_enabled = true
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 shape = SubResource("CapsuleShape3D_5q8tn")
+
+[node name="VisionRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
+target_position = Vector3(0, 0, -1)
+collision_mask = 4
+debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
+
+[node name="CoverDetection" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CoverDetection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_wxadq")
+
+[editable path="Terrorist"]

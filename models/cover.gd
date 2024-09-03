@@ -2,23 +2,32 @@ extends Node3D
 class_name Cover
 
 @onready var raycast: RayCast3D = $RayCast3D
+@onready var player: Player = get_tree().get_nodes_in_group('player')[0]
+
+@export var requires_crouching: bool = false
+@export var unsafe_distance: float = 1.5
+
+@export var outside_threshold: float = 0.05
+
+func _is_on_navmesh():
+	var closest_point = NavigationServer3D.map_get_closest_point(get_world_3d().navigation_map, global_position)
+	if VectorHelper.get_with_y(closest_point).distance_to(VectorHelper.get_with_y(global_position)) < outside_threshold:
+		return true
+	return false
 
 func _ready() -> void:
 	raycast.enabled = false
 	raycast.target_position = Vector3(0, -1, 0)
 	raycast.force_raycast_update()
 	if not raycast.get_collider():
+		print_debug('No floor found, deleting ', self.global_position)
+		self.queue_free()
+	await get_tree().process_frame
+	if not _is_on_navmesh():
+		print_debug('Outside of navmesh, deleting ', self.global_position)
 		self.queue_free()
 
-func safe_from_player():
-	var players = get_tree().get_nodes_in_group('player')
-	if players.size() == 0:
-		push_warning('No player present!')
-		return true
-	var player: Player = players[0]
-	raycast.target_position = raycast.to_local(player.standing_raycast_origin.global_position)
-	raycast.force_raycast_update()
-	var collider: CollisionObject3D = raycast.get_collider()
-	if collider == null:
-		return true
-	return not collider.is_in_group('player')
+func is_safe_from_player():
+	if requires_crouching and player.global_position.distance_to(self.global_position) < unsafe_distance:
+		return false
+	return not VisionHelper.sees_player(raycast, player)
