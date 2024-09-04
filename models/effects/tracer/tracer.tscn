@@ -14,13 +14,13 @@ size = Vector2(0.01, 1)
 
 [node name="TracerRoot" type="Node3D"]
 top_level = true
+script = ExtResource("2_2d03h")
 
 [node name="Tracer" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 mesh = SubResource("PlaneMesh_76pyj")
-script = ExtResource("2_2d03h")
 
-[node name="Timer" type="Timer" parent="Tracer"]
-wait_time = 0.1
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
 one_shot = true
 autostart = true
