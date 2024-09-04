@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_x1npx"]
 size = Vector3(0.1, 0.558, 0.1)
 
-[node name="FullBodyCover" type="Node3D" groups=["cover", "full_body_cover"]]
+[node name="FullBodyCover" type="Node3D" groups=["cover", "stand_cover"]]
 script = ExtResource("1_3owfk")
 requires_crouching = null
 unsafe_distance = null

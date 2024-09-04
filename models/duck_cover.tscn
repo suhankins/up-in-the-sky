@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_dcfqy"]
 size = Vector3(0.1, 0.445, 0.1)
 
-[node name="DuckCover" type="Node3D" groups=["cover", "half_body_cover"]]
+[node name="DuckCover" type="Node3D" groups=["cover", "duck_cover"]]
 script = ExtResource("1_udsdi")
 requires_crouching = true
 unsafe_distance = null

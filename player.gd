@@ -5,8 +5,8 @@ class_name Player
 
 @export var weapon: Weapon
 
-### "Coyote" fire timer
-### i.e. when you press fire right before fire timer is over
+## "Coyote" fire timer
+## i.e. when you press fire right before fire timer is over
 @export var coyote_fire_time: float = 0.1
 
 @onready var raycast: RayCast3D = $RayCast3D

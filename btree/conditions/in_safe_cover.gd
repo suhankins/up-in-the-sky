@@ -1,4 +1,4 @@
-extends ConditionLeaf
+class_name InSafeCover extends ConditionLeaf
 
 func tick(actor: Node, _blackboard) -> int:
     if actor.is_current_cover_safe():

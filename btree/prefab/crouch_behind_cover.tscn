@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21gndnmnydct"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_t3v0y"]
+[ext_resource type="Script" path="res://btree/conditions/in_duck_cover.gd" id="2_52mkp"]
+[ext_resource type="Script" path="res://btree/actions/crouch.gd" id="3_p3ws1"]
+
+[node name="CrouchBehindCover" type="Node"]
+script = ExtResource("1_t3v0y")
+
+[node name="InDuckCover" type="Node" parent="."]
+script = ExtResource("2_52mkp")
+
+[node name="Crouch" type="Node" parent="."]
+script = ExtResource("3_p3ws1")

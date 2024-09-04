@@ -25,11 +25,11 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [global_group]
 
-full_body_cover=""
 player=""
-half_body_cover=""
 danger_to_npc=""
 cover=""
+duck_cover=""
+stand_cover=""
 
 [input]
 

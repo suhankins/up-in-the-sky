@@ -6,6 +6,10 @@ class_name EnemyNPC
 @onready var player: Player = get_tree().get_nodes_in_group('player')[0]
 @onready var cover_detection: Area3D = $CoverDetection
 
+@export var should_crouch: bool = false
+## Reference to current navigation target
+@export var target: Node3D = null
+
 func sort_by_distance(a: Node3D, b: Node3D) -> bool:
 	return a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position)
 
@@ -18,9 +22,6 @@ func find_closest_safe_cover() -> Cover:
 	return null
 
 func get_current_cover() -> Cover:
-	# We can't be in cover if we are navigating somewhere
-	if not navigation_agent.is_navigation_finished():
-		return null
 	if not cover_detection.has_overlapping_areas():
 		return null
 	return cover_detection.get_overlapping_areas()[0].get_parent()
@@ -44,19 +45,23 @@ func move_to_target(delta: float) -> bool:
 	var destination = self.navigation_agent.get_next_path_position()
 	var local_destination = self.to_local(destination)
 	var distance = local_destination.length()
-	if distance < self.walk_speed * delta:
+	if distance < get_speed() * delta:
 		velocity = local_destination / delta
 		self.global_position = destination
 	else:
-		velocity = local_destination.normalized() * self.walk_speed
-		self.global_position += local_destination.normalized() * walk_speed * delta
+		velocity = local_destination.normalized() * get_speed()
+		self.global_position += local_destination.normalized() * get_speed() * delta
 	return false
+
+func get_speed():
+	return self.crouch_speed if is_crouching() else self.walk_speed
+
+func set_target(new_target: Node3D):
+	navigation_agent.target_position = new_target.global_position
+	self.target = new_target
 
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)
 
 func is_crouching() -> bool:
-	var current_cover = get_current_cover()
-	if not current_cover:
-		return false
-	return current_cover.requires_crouching
+	return should_crouch
