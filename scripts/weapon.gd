@@ -32,7 +32,9 @@ func spawn_tracer(barrel_end: Node3D, to: Vector3 = Vector3.ZERO) -> void:
     else:
         tracer.scale.z = bullet_distance
 
-func spawn_bullethole(collided_with: CollisionObject3D, collision_position: Vector3, collision_normal: Vector3) -> void:
+func spawn_bullethole(collided_with: Node, collision_position: Vector3, collision_normal: Vector3) -> void:
+    if collision_normal.dot(Vector3.UP) < 0.001:
+        return
     var bullethole_instance = bullethole_scene.instantiate()
     collided_with.add_child(bullethole_instance)
     bullethole_instance.global_position = collision_position
