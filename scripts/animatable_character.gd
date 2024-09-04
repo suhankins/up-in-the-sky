@@ -18,7 +18,10 @@ func play_fire_animation():
 func animate_legs():
 	var velocity_angle = velocity.signed_angle_to(Vector3(0, 0, -1), Vector3(0, -1, 0))
 	var difference = velocity_angle - rotation.y
-	var movement_speed_ratio = velocity.length() / (crouch_speed if is_crouching() else walk_speed)
+	var speed = crouch_speed if is_crouching() else walk_speed
+	if speed == 0.0:
+		push_error('Speed is 0.0! This will cause division by 0')
+	var movement_speed_ratio = velocity.length() / speed
 	var leg_vector = Vector2(sin(difference), cos(difference)) * movement_speed_ratio
 
 	animation_tree.set('parameters/walk_blend_space/blend_position', leg_vector)

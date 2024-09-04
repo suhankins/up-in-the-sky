@@ -281,5 +281,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.852427, 0.005, -0.628205)
 
 [node name="TerroristNPC" parent="." instance=ExtResource("6_e3um4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776261, 0, -2.84328)
-crouch_speed = null
-walk_speed = null

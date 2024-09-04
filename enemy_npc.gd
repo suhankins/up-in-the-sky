@@ -32,24 +32,30 @@ func is_current_cover_safe() -> bool:
 	return current_cover.is_safe_from_player()
 
 func _process(_delta: float) -> void:
-	if not is_current_cover_safe() and VisionHelper.sees_player(vision_raycast, player):
-		var closest_safe_cover = find_closest_safe_cover()
-		if closest_safe_cover:
-			navigation_agent.target_position = closest_safe_cover.global_position
+	pass
 
-func _physics_process(delta: float) -> void:
-	var destination = navigation_agent.get_next_path_position()
-	var local_destination = to_local(destination)
-	var distance = local_destination.length()
-	if distance < walk_speed * delta:
-		velocity = local_destination / delta
-		global_position = destination
-	else:
-		velocity = local_destination.normalized() * walk_speed
-		global_position += local_destination.normalized() * walk_speed * delta
+func _physics_process(_delta: float) -> void:
 	animate_legs()
 
-func is_crouching():
+func move_to_target(delta: float) -> bool:
+	if self.navigation_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		return true
+	var destination = self.navigation_agent.get_next_path_position()
+	var local_destination = self.to_local(destination)
+	var distance = local_destination.length()
+	if distance < self.walk_speed * delta:
+		velocity = local_destination / delta
+		self.global_position = destination
+	else:
+		velocity = local_destination.normalized() * self.walk_speed
+		self.global_position += local_destination.normalized() * walk_speed * delta
+	return false
+
+func sees_player() -> bool:
+	return VisionHelper.sees_player(vision_raycast, player)
+
+func is_crouching() -> bool:
 	var current_cover = get_current_cover()
 	if not current_cover:
 		return false

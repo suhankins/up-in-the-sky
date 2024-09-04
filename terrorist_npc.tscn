@@ -1,7 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=14 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_77uw5"]
+[ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="3_cj8u7"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_0yw21"]
+[ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="5_jlh2l"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="6_3aqmd"]
+[ext_resource type="Script" path="res://btree/conditions/in_safe_cover.gd" id="7_1uauc"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="7_57au3"]
+[ext_resource type="Script" path="res://btree/actions/set_target_to_closest_safe_cover.gd" id="9_6w7nk"]
+[ext_resource type="Script" path="res://btree/actions/walk_to_target.gd" id="10_1axfw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5q8tn"]
 radius = 0.191284
@@ -22,11 +31,10 @@ walk_speed = 1.5
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.1
-target_desired_distance = 0.2
+target_desired_distance = 0.1
 radius = 1.0
 neighbor_distance = 3.0
 max_speed = 2.0
-debug_enabled = true
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
@@ -47,4 +55,37 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("BoxShape3D_wxadq")
 
-[editable path="Terrorist"]
+[node name="NPCBlackboard" type="Node" parent="."]
+script = ExtResource("3_cj8u7")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("3_77uw5")
+blackboard = NodePath("../NPCBlackboard")
+actor = NodePath("..")
+
+[node name="TakeCover" type="Node" parent="BeehaveTree"]
+script = ExtResource("4_0yw21")
+
+[node name="SeesPlayer" type="Node" parent="BeehaveTree/TakeCover"]
+script = ExtResource("5_jlh2l")
+
+[node name="ShouldMoveToCover" type="Node" parent="BeehaveTree/TakeCover"]
+script = ExtResource("6_3aqmd")
+
+[node name="SitInCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover"]
+script = ExtResource("4_0yw21")
+
+[node name="InSafeCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/SitInCover"]
+script = ExtResource("7_1uauc")
+
+[node name="DoNothing" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/SitInCover"]
+script = ExtResource("7_57au3")
+
+[node name="MoveToCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover"]
+script = ExtResource("4_0yw21")
+
+[node name="SetTargetToClosestSafeCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover"]
+script = ExtResource("9_6w7nk")
+
+[node name="WalkToTarget" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover"]
+script = ExtResource("10_1axfw")
