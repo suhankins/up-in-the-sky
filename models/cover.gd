@@ -7,6 +7,7 @@ class_name Cover
 @export var requires_crouching: bool = false
 @export var unsafe_distance: float = 1.5
 
+## Max distance between position and closest navmesh point
 @export var outside_threshold: float = 0.05
 
 func _is_on_navmesh():
@@ -17,11 +18,6 @@ func _is_on_navmesh():
 
 func _ready() -> void:
 	raycast.enabled = false
-	raycast.target_position = Vector3(0, -1, 0)
-	raycast.force_raycast_update()
-	if not raycast.get_collider():
-		print_debug('No floor found, deleting ', self.global_position)
-		self.queue_free()
 	await get_tree().process_frame
 	if not _is_on_navmesh():
 		print_debug('Outside of navmesh, deleting ', self.global_position)
