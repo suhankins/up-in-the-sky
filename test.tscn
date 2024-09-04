@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="1_tu4uc"]
 [ext_resource type="PackedScene" uid="uid://dxkwhtduv5k7c" path="res://models/placeholders/floor-square.glb" id="2_3k181"]
-[ext_resource type="Script" path="res://smooth_camera.gd" id="2_o5oel"]
+[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="2_to58p"]
 [ext_resource type="PackedScene" uid="uid://c217pd647vj7x" path="res://models/placeholders/wall.glb" id="3_pixgi"]
 [ext_resource type="PackedScene" uid="uid://w50p88x4t1ct" path="res://models/box_cover.tscn" id="5_vlem1"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="6_e3um4"]
@@ -25,17 +25,10 @@ directional_shadow_mode = 0
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_tu4uc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21193, 0.00500011, -0.271486)
-camera = NodePath("../Camera Origin/Camera")
+camera = NodePath("../SmoothCamera/Camera")
 
-[node name="Camera Origin" type="Node3D" parent="." node_paths=PackedStringArray("targets")]
-script = ExtResource("2_o5oel")
+[node name="SmoothCamera" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("2_to58p")]
 targets = [NodePath("../Player")]
-
-[node name="Camera" type="Camera3D" parent="Camera Origin"]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3, 4.5, 3)
-keep_aspect = 0
-projection = 1
-size = 8.99969
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ry6yb")
@@ -257,27 +250,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88887, 0.00500011, -4.85721
 
 [node name="FullBodyCover" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79071, 0.005, -1.28558)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover2" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24374, 0.005, -1.28558)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover3" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.715516, 0.005, -1.28558)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover4" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.852427, 0.005, -1.28558)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover5" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79071, 0.005, -0.628205)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover6" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24374, 0.005, -0.628205)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover7" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.715516, 0.005, -0.628205)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover8" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.852427, 0.005, -0.628205)
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="TerroristNPC" parent="." instance=ExtResource("6_e3um4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776261, 0, -2.84328)

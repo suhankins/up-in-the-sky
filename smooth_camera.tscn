@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkj0os4paghqg"]
+
+[ext_resource type="Script" path="res://smooth_camera.gd" id="1_udu41"]
+
+[node name="SmoothCamera" type="Node3D" node_paths=PackedStringArray("targets")]
+script = ExtResource("1_udu41")
+targets = [NodePath("")]
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3, 4.5, 3)
+keep_aspect = 0
+projection = 1
+size = 8.99969
