@@ -6,9 +6,15 @@ class_name EnemyNPC
 @onready var player: Player = get_tree().get_nodes_in_group('player')[0]
 @onready var cover_detection: Area3D = $CoverDetection
 
+@onready var standing_collision: CollisionShape3D = $StandingCollision
+@onready var crouching_collision: CollisionShape3D = $CrouchingCollision
+
 @export var should_crouch: bool = false
 ## Reference to current navigation target
 @export var target: Node3D = null
+
+func _ready() -> void:
+	navigation_agent.target_desired_distance = 0.05
 
 func sort_by_distance(a: Node3D, b: Node3D) -> bool:
 	return a.global_position.distance_to(global_position) < b.global_position.distance_to(global_position)
@@ -33,10 +39,14 @@ func is_current_cover_safe() -> bool:
 	return current_cover.is_safe_from_player()
 
 func _process(_delta: float) -> void:
-	pass
+	update_collision()
 
 func _physics_process(_delta: float) -> void:
 	animate_legs()
+
+func update_collision() -> void:
+	standing_collision.disabled = is_crouching()
+	crouching_collision.disabled = not is_crouching()
 
 func move_to_target(delta: float) -> bool:
 	if self.navigation_agent.is_navigation_finished():
