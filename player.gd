@@ -9,7 +9,7 @@ class_name Player
 ## i.e. when you press fire right before fire timer is over
 @export var coyote_fire_time: float = 0.1
 
-@onready var raycast: RayCast3D = $RayCast3D
+@onready var shooting_raycast: RayCast3D = $ShootingRaycast
 @onready var fire_cooldown: Timer = $FireCooldown
 @onready var coyote_fire_cooldown: Timer = $CoyoteFire
 @onready var reload_cooldown: Timer = $ReloadCooldown
@@ -23,7 +23,7 @@ class_name Player
 @onready var crouching_collision: CollisionShape3D = $CrouchingCollision
 
 func _ready() -> void:
-	raycast.target_position = Vector3(0, 0, -1) * weapon.bullet_distance
+	shooting_raycast.target_position = Vector3(0, 0, -1) * weapon.bullet_distance
 
 func _process(_delta: float):
 	look_at_cursor()
@@ -38,7 +38,7 @@ func look_at_cursor():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_position(mouse_pos, 0)
 	var to = from + camera.project_ray_normal(mouse_pos) * 1000
-	var cursor_position = Plane(Vector3(0, 1, 0), raycast.global_position.y).intersects_ray(from, to)
+	var cursor_position = Plane(Vector3(0, 1, 0), shooting_raycast.global_position.y).intersects_ray(from, to)
 
 	self.look_at(cursor_position)
 	self.rotation.x = 0
@@ -49,13 +49,13 @@ func update_collision():
 	crouching_collision.disabled = not is_crouching()
 
 func move_aim():
-	raycast.position = (crouching_raycast_origin if is_crouching() else standing_raycast_origin).position
-	if not raycast.get_collider():
+	shooting_raycast.position = (crouching_raycast_origin if is_crouching() else standing_raycast_origin).position
+	if not shooting_raycast.get_collider():
 		cursor.hide()
 		return
 	
 	cursor.show()
-	cursor.global_position = raycast.get_collision_point()
+	cursor.global_position = shooting_raycast.get_collision_point()
 
 func is_crouching():
 	return Input.is_action_pressed('crouch')
@@ -102,22 +102,22 @@ func handle_fire():
 
 	play_fire_animation()
 
-	raycast.target_position.x = randf_range(-weapon.spread, weapon.spread)
-	raycast.target_position.y = randf_range(-weapon.spread, weapon.spread)
+	shooting_raycast.target_position.x = randf_range(-weapon.spread, weapon.spread)
+	shooting_raycast.target_position.y = randf_range(-weapon.spread, weapon.spread)
 
-	raycast.force_raycast_update()
+	shooting_raycast.force_raycast_update()
 
-	raycast.target_position.x = 0
-	raycast.target_position.y = 0
+	shooting_raycast.target_position.x = 0
+	shooting_raycast.target_position.y = 0
 
-	var collided_with: CollisionObject3D = raycast.get_collider()
+	var collided_with: CollisionObject3D = shooting_raycast.get_collider()
 
 	if not collided_with:
 		weapon.spawn_tracer(barrel_end)
 		return
 
-	var collision_position: Vector3 = raycast.get_collision_point()
-	var collision_normal: Vector3 = raycast.get_collision_normal()
+	var collision_position: Vector3 = shooting_raycast.get_collision_point()
+	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
 	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)

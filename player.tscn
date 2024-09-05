@@ -44,7 +44,7 @@ shape = SubResource("CapsuleShape3D_qy3o0")
 
 [node name="Model" parent="." instance=ExtResource("2_rwq1e")]
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="ShootingRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558143, 0)
 target_position = Vector3(0, 0, -1)
 collision_mask = 9

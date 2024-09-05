@@ -30,6 +30,7 @@ danger_to_npc=""
 cover=""
 duck_cover=""
 stand_cover=""
+enemy=""
 
 [input]
 

@@ -67,8 +67,11 @@ func get_speed():
 	return self.crouch_speed if is_crouching() else self.walk_speed
 
 func set_target(new_target: Node3D):
-	navigation_agent.target_position = new_target.global_position
+	set_target_position(new_target.global_position)
 	self.target = new_target
+
+func set_target_position(target_position: Vector3):
+	navigation_agent.target_position = target_position
 
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)

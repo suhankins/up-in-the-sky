@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=26 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -8,15 +8,20 @@
 [ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="5_jlh2l"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="6_3aqmd"]
 [ext_resource type="Script" path="res://btree/conditions/in_safe_cover.gd" id="7_1uauc"]
+[ext_resource type="Script" path="res://btree/actions/set_last_player_position.gd" id="8_reuof"]
 [ext_resource type="Script" path="res://btree/actions/set_target_to_closest_safe_cover.gd" id="9_6w7nk"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="9_htldf"]
-[ext_resource type="Script" path="res://btree/actions/walk_to_target.gd" id="10_1axfw"]
+[ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="10_1axfw"]
 [ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="10_ibyqr"]
 [ext_resource type="Script" path="res://btree/actions/crouch.gd" id="11_bef8f"]
 [ext_resource type="Script" path="res://btree/conditions/in_cover.gd" id="13_1fkf2"]
 [ext_resource type="Script" path="res://btree/conditions/is_target_duck_cover.gd" id="14_u338l"]
 [ext_resource type="Script" path="res://btree/conditions/is_walk_to_target_close.gd" id="15_ggbiy"]
 [ext_resource type="Script" path="res://btree/actions/stand_up.gd" id="16_hy5ip"]
+[ext_resource type="Script" path="res://btree/conditions/knows_last_player_position.gd" id="18_83nmg"]
+[ext_resource type="Script" path="res://btree/actions/set_target_to_last_player_position.gd" id="19_gxhwh"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="20_x0tb3"]
+[ext_resource type="Script" path="res://btree/actions/reset_last_player_position.gd" id="21_2r0ib"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qo6oi"]
 radius = 0.175
@@ -29,7 +34,7 @@ height = 0.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_wxadq"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="TerroristNPC" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree")]
+[node name="TerroristNPC" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["enemy"]]
 collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_pgwwp")
@@ -57,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
 enabled = false
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
+hit_from_inside = true
 debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
 
 [node name="CoverDetection" type="Area3D" parent="."]
@@ -76,54 +82,84 @@ script = ExtResource("3_77uw5")
 blackboard = NodePath("../NPCBlackboard")
 actor = NodePath("..")
 
-[node name="TakeCover" type="Node" parent="BeehaveTree"]
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("6_3aqmd")
+
+[node name="TakeCover" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("4_0yw21")
 
-[node name="SeesPlayer" type="Node" parent="BeehaveTree/TakeCover"]
+[node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
 script = ExtResource("5_jlh2l")
 
-[node name="ShouldMoveToCover" type="Node" parent="BeehaveTree/TakeCover"]
+[node name="SetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
+script = ExtResource("8_reuof")
+
+[node name="ShouldMoveToCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
 script = ExtResource("6_3aqmd")
 
-[node name="StayInCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover"]
+[node name="StayInCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover"]
 script = ExtResource("4_0yw21")
 
-[node name="InSafeCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/StayInCover"]
+[node name="InSafeCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover"]
 script = ExtResource("7_1uauc")
 
-[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/StayInCover"]
+[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover"]
 script = ExtResource("9_htldf")
 
-[node name="CrouchBehindCover" parent="BeehaveTree/TakeCover/ShouldMoveToCover/StayInCover/AlwaysSucceedDecorator" instance=ExtResource("10_ibyqr")]
+[node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover/AlwaysSucceedDecorator" instance=ExtResource("10_ibyqr")]
 
-[node name="MoveToCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover"]
+[node name="MoveToCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover"]
 script = ExtResource("4_0yw21")
 
-[node name="SetTargetToClosestSafeCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover"]
+[node name="SetTargetToClosestSafeCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
 script = ExtResource("9_6w7nk")
 
-[node name="MovementModeSelector" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover"]
+[node name="MovementModeSelector" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
 script = ExtResource("6_3aqmd")
 
-[node name="CrouchMode" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
+[node name="CrouchMode" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
 script = ExtResource("4_0yw21")
 
-[node name="InCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
+[node name="InCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
 script = ExtResource("13_1fkf2")
 
-[node name="IsTargetDuckCover" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
+[node name="IsTargetDuckCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
 script = ExtResource("14_u338l")
 
-[node name="IsTargetClose" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
+[node name="IsTargetClose" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
 script = ExtResource("15_ggbiy")
 
-[node name="Crouch" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
+[node name="Crouch" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
 script = ExtResource("11_bef8f")
 
-[node name="StandUp" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
+[node name="StandUp" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
 script = ExtResource("16_hy5ip")
 
-[node name="WalkToTarget" type="Node" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover"]
+[node name="WalkToTarget" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
 script = ExtResource("10_1axfw")
 
-[node name="CrouchBehindCover" parent="BeehaveTree/TakeCover/ShouldMoveToCover/MoveToCover" instance=ExtResource("10_ibyqr")]
+[node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover" instance=ExtResource("10_ibyqr")]
+
+[node name="ApproachLastKnownPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("4_0yw21")
+
+[node name="KnowsLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("18_83nmg")
+
+[node name="SetTargetToLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("19_gxhwh")
+
+[node name="StandUp" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("16_hy5ip")
+
+[node name="WalkToTarget" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("10_1axfw")
+
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("20_x0tb3")
+
+[node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition/InverterDecorator"]
+script = ExtResource("5_jlh2l")
+
+[node name="ResetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
+script = ExtResource("21_2r0ib")
