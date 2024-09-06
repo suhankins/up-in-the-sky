@@ -16,7 +16,7 @@ func play_fire_animation():
 	animation_tree.set('parameters/fire_gun/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func animate_legs():
-	var velocity_angle = velocity.signed_angle_to(Vector3(0, 0, -1), Vector3(0, -1, 0))
+	var velocity_angle = VectorHelper.vector_angle(velocity)
 	var difference = velocity_angle - rotation.y
 	var speed = crouch_speed if is_crouching() else walk_speed
 	if speed == 0.0:

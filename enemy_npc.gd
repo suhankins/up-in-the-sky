@@ -9,9 +9,17 @@ class_name EnemyNPC
 @onready var standing_collision: CollisionShape3D = $StandingCollision
 @onready var crouching_collision: CollisionShape3D = $CrouchingCollision
 
-@export var should_crouch: bool = false
-## Reference to current navigation target
-@export var target: Node3D = null
+@onready var fire_cooldown: Timer = $FireCooldown
+@onready var reload_cooldown: Timer = $ReloadCooldown
+
+var should_crouch: bool = false
+## Reference to current navigation move_target
+var move_target: Node3D = null
+
+var aim_target: AimTarget = null
+
+@export var weapon: Weapon
+@export var barrel_end: Node3D
 
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
@@ -40,9 +48,17 @@ func is_current_cover_safe() -> bool:
 
 func _process(_delta: float) -> void:
 	update_collision()
+	update_rotation()
 
 func _physics_process(_delta: float) -> void:
 	animate_legs()
+
+func update_rotation():
+	if aim_target:
+		self.look_at(VectorHelper.get_with_y(aim_target.get_position_to_shoot_at(), self.global_position.y))
+		return
+	if velocity.length_squared() > 0.0:
+		self.rotation.y = VectorHelper.vector_angle(velocity)
 
 func update_collision() -> void:
 	standing_collision.disabled = is_crouching()
@@ -53,28 +69,80 @@ func move_to_target(delta: float) -> bool:
 		velocity = Vector3.ZERO
 		return true
 	var destination = self.navigation_agent.get_next_path_position()
-	var local_destination = self.to_local(destination)
-	var distance = local_destination.length()
+	var distance = global_position.distance_to(destination)
 	if distance < get_speed() * delta:
-		velocity = local_destination / delta
 		self.global_position = destination
 	else:
-		velocity = local_destination.normalized() * get_speed()
-		self.global_position += local_destination.normalized() * get_speed() * delta
+		var direction = VectorHelper.get_with_y(destination - global_position).normalized()
+		velocity = direction * get_speed()
+		self.global_position += direction * get_speed() * delta
 	return false
 
-func get_speed():
+func get_speed() -> float:
 	return self.crouch_speed if is_crouching() else self.walk_speed
 
-func set_target(new_target: Node3D):
-	set_target_position(new_target.global_position)
-	self.target = new_target
+func set_move_target(new_target: Node3D) -> void:
+	set_move_target_position(new_target.global_position)
+	self.move_target = new_target
 
-func set_target_position(target_position: Vector3):
+func set_move_target_position(target_position: Vector3) -> void:
 	navigation_agent.target_position = target_position
+
+func set_aim_target_position(vector: Vector3) -> void:
+	self.aim_target = AimTarget.aim_target_from_vector(vector)
+
+func set_aim_target_to_player() -> void:
+	self.aim_target = AimTarget.aim_target_from_player(player)
+
+func reset_aim_target() -> void:
+	self.aim_target = null
+
+func reload() -> int:
+	if self.reload_cooldown.is_stopped():
+		if weapon.is_magazine_full():
+			return BeehaveNode.SUCCESS
+		else:
+			self.play_reload_animation()
+			self.reload_cooldown.start(weapon.reload_time)
+	return BeehaveNode.RUNNING
+
+func shoot() -> int:
+	if not aim_target:
+		push_error("No aim target to shoot at!")
+
+	if not fire_cooldown.is_stopped():
+		return BeehaveNode.RUNNING
+
+	if not weapon.spend_bullet():
+		# TODO: Dry fire sound
+		return BeehaveNode.FAILURE
+
+	fire_cooldown.start(1.0 / weapon.rate_of_fire)
+
+	play_fire_animation()
+
+	vision_raycast.target_position = weapon.apply_spread_to_target(vision_raycast.to_local(aim_target.get_position_to_shoot_at()), aim_target.get_spread_modifier()) * 20.0
+	vision_raycast.force_raycast_update()
+
+	var collided_with: CollisionObject3D = vision_raycast.get_collider()
+
+	if not collided_with:
+		weapon.spawn_tracer(barrel_end)
+		return BeehaveNode.SUCCESS
+
+	var collision_position: Vector3 = vision_raycast.get_collision_point()
+	var collision_normal: Vector3 = vision_raycast.get_collision_normal()
+
+	weapon.spawn_tracer(barrel_end, collision_position)
+	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
+
+	return BeehaveNode.SUCCESS
 
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)
 
 func is_crouching() -> bool:
 	return should_crouch
+
+func _on_reload_cooldown_timeout() -> void:
+	self.weapon.refill_magazine()

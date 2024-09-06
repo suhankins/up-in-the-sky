@@ -1,27 +1,38 @@
-[gd_scene load_steps=26 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=27 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
+[ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://models/effects/bullethole/bullethole.tscn" id="2_dn7nm"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_1d61s"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_77uw5"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="3_cj8u7"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_0yw21"]
-[ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="5_jlh2l"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="6_3aqmd"]
-[ext_resource type="Script" path="res://btree/conditions/in_safe_cover.gd" id="7_1uauc"]
-[ext_resource type="Script" path="res://btree/actions/set_last_player_position.gd" id="8_reuof"]
-[ext_resource type="Script" path="res://btree/actions/set_target_to_closest_safe_cover.gd" id="9_6w7nk"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="9_htldf"]
-[ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="10_1axfw"]
-[ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="10_ibyqr"]
-[ext_resource type="Script" path="res://btree/actions/crouch.gd" id="11_bef8f"]
-[ext_resource type="Script" path="res://btree/conditions/in_cover.gd" id="13_1fkf2"]
-[ext_resource type="Script" path="res://btree/conditions/is_target_duck_cover.gd" id="14_u338l"]
-[ext_resource type="Script" path="res://btree/conditions/is_walk_to_target_close.gd" id="15_ggbiy"]
-[ext_resource type="Script" path="res://btree/actions/stand_up.gd" id="16_hy5ip"]
-[ext_resource type="Script" path="res://btree/conditions/knows_last_player_position.gd" id="18_83nmg"]
-[ext_resource type="Script" path="res://btree/actions/set_target_to_last_player_position.gd" id="19_gxhwh"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="20_x0tb3"]
-[ext_resource type="Script" path="res://btree/actions/reset_last_player_position.gd" id="21_2r0ib"]
+[ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="4_7i6b4"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="8_hvx6b"]
+[ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="9_fjsai"]
+[ext_resource type="Script" path="res://btree/actions/set_aim_target_to_player.gd" id="10_62ldk"]
+[ext_resource type="Script" path="res://btree/actions/stand_up.gd" id="10_r0j61"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/until_fail.gd" id="11_e4qb0"]
+[ext_resource type="Script" path="res://btree/actions/shoot.gd" id="12_p77lt"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="13_1tojv"]
+[ext_resource type="Script" path="res://btree/actions/reset_aim_target.gd" id="14_jisep"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="15_5pw4c"]
+[ext_resource type="Script" path="res://btree/actions/reload.gd" id="16_72em8"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="16_v5y75"]
+[ext_resource type="Script" path="res://btree/conditions/in_safe_cover.gd" id="17_71o6s"]
+[ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_safe_cover.gd" id="18_c3lg6"]
+[ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="19_o8l1l"]
+[ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="21_0efy1"]
+
+[sub_resource type="Resource" id="Resource_sns8g"]
+script = ExtResource("3_1d61s")
+rate_of_fire = 8.0
+spread = 0.1
+bullet_distance = 20.0
+reload_time = 1.5
+max_ammo = 16
+current_ammo = 16
+tracer_scene = ExtResource("4_7i6b4")
+bullethole_scene = ExtResource("2_dn7nm")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qo6oi"]
 radius = 0.175
@@ -34,10 +45,12 @@ height = 0.7
 [sub_resource type="BoxShape3D" id="BoxShape3D_wxadq"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[node name="TerroristNPC" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["enemy"]]
+[node name="TerroristNPC" type="CharacterBody3D" node_paths=PackedStringArray("barrel_end", "animation_tree") groups=["enemy"]]
 collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_pgwwp")
+weapon = SubResource("Resource_sns8g")
+barrel_end = NodePath("Terrorist/Torso/RightArm/Gun/BarrelEnd")
 animation_tree = NodePath("Terrorist/AnimationTree")
 crouch_speed = 0.75
 walk_speed = 1.5
@@ -59,7 +72,6 @@ shape = SubResource("CapsuleShape3D_5q8tn")
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
-enabled = false
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
 hit_from_inside = true
@@ -82,84 +94,70 @@ script = ExtResource("3_77uw5")
 blackboard = NodePath("../NPCBlackboard")
 actor = NodePath("..")
 
-[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
-script = ExtResource("6_3aqmd")
+[node name="SequenceComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("8_hvx6b")
 
-[node name="TakeCover" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("4_0yw21")
+[node name="SeesPlayer" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("9_fjsai")
 
-[node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
-script = ExtResource("5_jlh2l")
+[node name="SetAimTargetToPlayer" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("10_62ldk")
 
-[node name="SetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
-script = ExtResource("8_reuof")
+[node name="StandUp" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("10_r0j61")
 
-[node name="ShouldMoveToCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover"]
-script = ExtResource("6_3aqmd")
+[node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("11_e4qb0")
 
-[node name="StayInCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover"]
-script = ExtResource("4_0yw21")
+[node name="Shoot" type="Node" parent="BeehaveTree/SequenceComposite/UntilFailDecorator"]
+script = ExtResource("12_p77lt")
 
-[node name="InSafeCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover"]
-script = ExtResource("7_1uauc")
+[node name="ResetAimTarget" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("14_jisep")
 
-[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover"]
-script = ExtResource("9_htldf")
+[node name="SelectorComposite" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("15_5pw4c")
 
-[node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/StayInCover/AlwaysSucceedDecorator" instance=ExtResource("10_ibyqr")]
+[node name="SequenceComposite2" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite"]
+script = ExtResource("8_hvx6b")
 
-[node name="MoveToCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover"]
-script = ExtResource("4_0yw21")
+[node name="InverterDecorator" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("16_v5y75")
 
-[node name="SetTargetToClosestSafeCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
-script = ExtResource("9_6w7nk")
+[node name="InSafeCover" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2/InverterDecorator"]
+script = ExtResource("17_71o6s")
 
-[node name="MovementModeSelector" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
-script = ExtResource("6_3aqmd")
+[node name="SetMoveTargetToClosestSafeCover" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("18_c3lg6")
 
-[node name="CrouchMode" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
-script = ExtResource("4_0yw21")
+[node name="MoveToTarget" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("19_o8l1l")
 
-[node name="InCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
-script = ExtResource("13_1fkf2")
+[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2"]
+script = ExtResource("13_1tojv")
 
-[node name="IsTargetDuckCover" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
-script = ExtResource("14_u338l")
+[node name="CrouchBehindCover" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite2/AlwaysSucceedDecorator" instance=ExtResource("21_0efy1")]
 
-[node name="IsTargetClose" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
-script = ExtResource("15_ggbiy")
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite"]
+script = ExtResource("8_hvx6b")
 
-[node name="Crouch" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector/CrouchMode"]
-script = ExtResource("11_bef8f")
+[node name="InSafeCover" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite"]
+script = ExtResource("17_71o6s")
 
-[node name="StandUp" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover/MovementModeSelector"]
-script = ExtResource("16_hy5ip")
+[node name="AlwaysSucceedDecorator" type="Node" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite"]
+script = ExtResource("13_1tojv")
 
-[node name="WalkToTarget" type="Node" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover"]
-script = ExtResource("10_1axfw")
+[node name="CrouchBehindCover" parent="BeehaveTree/SequenceComposite/SelectorComposite/SequenceComposite/AlwaysSucceedDecorator" instance=ExtResource("21_0efy1")]
 
-[node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/TakeCover/ShouldMoveToCover/MoveToCover" instance=ExtResource("10_ibyqr")]
+[node name="Reload" type="Node" parent="BeehaveTree/SequenceComposite"]
+script = ExtResource("16_72em8")
 
-[node name="ApproachLastKnownPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("4_0yw21")
+[node name="ReloadCooldown" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
 
-[node name="KnowsLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("18_83nmg")
+[node name="FireCooldown" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
 
-[node name="SetTargetToLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("19_gxhwh")
-
-[node name="StandUp" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("16_hy5ip")
-
-[node name="WalkToTarget" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("10_1axfw")
-
-[node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("20_x0tb3")
-
-[node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition/InverterDecorator"]
-script = ExtResource("5_jlh2l")
-
-[node name="ResetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/ApproachLastKnownPlayerPosition"]
-script = ExtResource("21_2r0ib")
+[connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
