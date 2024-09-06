@@ -10,9 +10,11 @@ class_name Player
 @export var coyote_fire_time: float = 0.1
 
 @onready var shooting_raycast: RayCast3D = $ShootingRaycast
-@onready var fire_cooldown: Timer = $FireCooldown
+
 @onready var coyote_fire_cooldown: Timer = $CoyoteFire
+@onready var fire_cooldown: Timer = $FireCooldown
 @onready var reload_cooldown: Timer = $ReloadCooldown
+
 @onready var cursor: Sprite3D = $Cursor
 @onready var barrel_end: Node3D = $Model/Torso/LeftArm/Gun/GunMesh/BarrelEnd
 
@@ -23,7 +25,12 @@ class_name Player
 @onready var crouching_collision: CollisionShape3D = $CrouchingCollision
 
 func _ready() -> void:
+	self.reset_shooting_raycast()
+
+func reset_shooting_raycast():
 	shooting_raycast.target_position = Vector3(0, 0, -1) * weapon.bullet_distance
+	shooting_raycast.target_position.x = 0
+	shooting_raycast.target_position.y = 0
 
 func _process(_delta: float):
 	look_at_cursor()
@@ -65,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	handle_movement()
-	handle_fire()
+	handle_shoot()
 	handle_reload()
 
 	move_and_slide()
@@ -85,7 +92,7 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
-func handle_fire():
+func handle_shoot():
 	if not Input.is_action_just_pressed('fire') and coyote_fire_cooldown.is_stopped():
 		return
 
@@ -102,13 +109,11 @@ func handle_fire():
 
 	play_fire_animation()
 
-	shooting_raycast.target_position.x = randf_range(-weapon.spread, weapon.spread)
-	shooting_raycast.target_position.y = randf_range(-weapon.spread, weapon.spread)
+	shooting_raycast.target_position = weapon.apply_spread_to_target(shooting_raycast.target_position, get_spread_modifier())
 
 	shooting_raycast.force_raycast_update()
 
-	shooting_raycast.target_position.x = 0
-	shooting_raycast.target_position.y = 0
+	self.reset_shooting_raycast()
 
 	var collided_with: CollisionObject3D = shooting_raycast.get_collider()
 
@@ -121,6 +126,12 @@ func handle_fire():
 
 	weapon.spawn_tracer(barrel_end, collision_position)
 	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
+
+func get_spread_modifier() -> float:
+	var modifier = 1.0
+	if self.is_crouching():
+		modifier *= 0.8
+	return modifier
 
 func handle_reload():
 	if not Input.is_action_just_pressed('reload') or weapon.is_magazine_full():
