@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0qgs3owxsivo"]
 
 [ext_resource type="Texture2D" uid="uid://dvve3r0l3myh8" path="res://debug_icons/full_body_cover.png" id="1_3x7yb"]
-[ext_resource type="Script" path="res://models/debug_icon.gd" id="2_mutor"]
+[ext_resource type="Script" path="res://debug_icons/debug_icon.gd" id="2_mutor"]
 
 [node name="DebugIcon" type="Sprite3D"]
 pixel_size = 0.002

@@ -5,6 +5,9 @@ class_name Player
 
 @export var weapon: Weapon
 
+@export var crouch_speed: float = 1.0
+@export var walk_speed: float = 2.0
+
 ## "Coyote" fire timer
 ## i.e. when you press fire right before fire timer is over
 @export var coyote_fire_time: float = 0.1
@@ -100,7 +103,7 @@ func handle_movement():
 
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	var direction = Vector3(input_dir.x, 0, input_dir.y).rotated(Vector3(0, 1, 0), camera.rotation.y).normalized()
-	var speed = crouch_speed if is_crouching() else walk_speed
+	var speed = self.get_speed()
 
 	if direction:
 		velocity.x = direction.x * speed
@@ -176,3 +179,6 @@ func handle_reload():
 
 func _on_reload_cooldown_timeout() -> void:
 	weapon.refill_magazine()
+
+func get_speed() -> float:
+	return self.crouch_speed if is_crouching() else self.walk_speed

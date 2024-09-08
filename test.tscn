@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://da0dveyfis5tg"]
+[gd_scene load_steps=14 format=3 uid="uid://da0dveyfis5tg"]
 
 [ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="1_tu4uc"]
 [ext_resource type="PackedScene" uid="uid://dxkwhtduv5k7c" path="res://models/placeholders/floor-square.glb" id="2_3k181"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://w50p88x4t1ct" path="res://models/box_cover.tscn" id="5_vlem1"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="6_e3um4"]
 [ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://models/full_body_cover.tscn" id="7_q6vhh"]
+[ext_resource type="PackedScene" uid="uid://twf8ivriie2b" path="res://models/patrol_point.tscn" id="8_36mex"]
+[ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="9_8e4y4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_snk0t"]
 sky_top_color = Color(0.541777, 0.611843, 0.70942, 1)
@@ -293,8 +295,27 @@ safe_angle = null
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.852427, 0.005, -0.628205)
 safe_angle = null
 
-[node name="TerroristNPC2" parent="." instance=ExtResource("6_e3um4")]
+[node name="TerroristNPC2" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("6_e3um4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00819, 2.38419e-07, -5.5085)
+patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+blackboard = NodePath("../NPCBlackboard")
 
-[node name="TerroristNPC" parent="." instance=ExtResource("6_e3um4")]
+[node name="TerroristNPC" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("6_e3um4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.776261, 0, -2.84328)
+patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+blackboard = NodePath("../NPCBlackboard")
+
+[node name="PatrolPoint" parent="." instance=ExtResource("8_36mex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99522, 0.00500011, -4.10624)
+
+[node name="PatrolPoint2" parent="." instance=ExtResource("8_36mex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00677, 0.00500011, -1.36446)
+
+[node name="PatrolPoint3" parent="." instance=ExtResource("8_36mex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0530338, 0.00500011, -1.5522)
+
+[node name="PatrolPoint4" parent="." instance=ExtResource("8_36mex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0353808, 0.00500011, -4.21208)
+
+[node name="NPCBlackboard" type="Node" parent="."]
+script = ExtResource("9_8e4y4")

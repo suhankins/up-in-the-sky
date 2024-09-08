@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cru1p2queh6vo"]
 
 [ext_resource type="Script" path="res://models/cover.gd" id="1_udsdi"]
-[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://models/debug_icon.tscn" id="2_uemkk"]
+[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://debug_icons/debug_icon.tscn" id="2_uemkk"]
 [ext_resource type="Texture2D" uid="uid://ba3jlang15ci4" path="res://debug_icons/duck_cover.png" id="3_brrgd"]
 [ext_resource type="Texture2D" uid="uid://bfb1b43t3tigv" path="res://debug_icons/arrow.png" id="4_y8nnw"]
 

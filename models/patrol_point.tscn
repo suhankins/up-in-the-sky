@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://twf8ivriie2b"]
+
+[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://debug_icons/debug_icon.tscn" id="1_puxss"]
+[ext_resource type="Texture2D" uid="uid://bhb0n6x4tl65t" path="res://debug_icons/patrol.png" id="2_vlyab"]
+
+[node name="PatrolPoint" type="Node3D"]
+
+[node name="DebugIcon" parent="." instance=ExtResource("1_puxss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+texture = ExtResource("2_vlyab")

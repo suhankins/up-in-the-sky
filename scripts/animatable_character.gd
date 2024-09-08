@@ -2,8 +2,6 @@ extends CharacterBody3D
 class_name AnimatableCharacter
 
 @export var animation_tree: AnimationTree
-@export var crouch_speed: float
-@export var walk_speed: float
 
 func is_crouching() -> bool:
 	push_error('Not implemented')
@@ -15,10 +13,14 @@ func play_reload_animation():
 func play_fire_animation():
 	animation_tree.set('parameters/fire_gun/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
+func get_speed() -> float:
+	push_error('Not implemented!')
+	return 0
+
 func animate_legs():
 	var velocity_angle = VectorHelper.vector_angle(velocity)
 	var difference = velocity_angle - rotation.y
-	var speed = crouch_speed if is_crouching() else walk_speed
+	var speed = self.get_speed()
 	if speed == 0.0:
 		push_error('Speed is 0.0! This will cause division by 0')
 	var movement_speed_ratio = velocity.length() / speed
