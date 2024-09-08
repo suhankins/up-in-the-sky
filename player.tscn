@@ -61,18 +61,21 @@ process_callback = 0
 wait_time = 0.25
 one_shot = true
 
-[node name="Cursor" type="Sprite3D" parent="."]
-billboard = 1
-double_sided = false
-no_depth_test = true
-texture_filter = 0
-texture = ExtResource("3_bh5ls")
+[node name="RegenCooldown" type="Timer" parent="."]
+one_shot = true
 
 [node name="ReloadCooldown" type="Timer" parent="."]
 one_shot = true
 
 [node name="CoyoteFire" type="Timer" parent="."]
 one_shot = true
+
+[node name="Cursor" type="Sprite3D" parent="."]
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 0
+texture = ExtResource("3_bh5ls")
 
 [node name="StandingRaycastOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)

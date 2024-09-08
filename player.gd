@@ -9,8 +9,14 @@ class_name Player
 ## i.e. when you press fire right before fire timer is over
 @export var coyote_fire_time: float = 0.1
 
-@export var health: float = 5.0
+@export var max_health: float = 5.0
+@export var health: float = max_health
+# Points per second
+@export var regen_health: float = 2.0
 signal health_changed(current_health)
+
+@export var regeneration_time: float = 2.0
+@onready var regeneration_cooldown: Timer = $RegenCooldown
 
 @onready var shooting_raycast: RayCast3D = $ShootingRaycast
 
@@ -35,11 +41,19 @@ func reset_shooting_raycast():
 	shooting_raycast.target_position.x = 0
 	shooting_raycast.target_position.y = 0
 
-func _process(_delta: float):
+func _process(delta: float):
 	look_at_cursor()
 	move_aim()
 	animate_legs()
 	update_collision()
+	update_regeneration(delta)
+
+func update_regeneration(delta: float) -> void:
+	if regeneration_cooldown.is_stopped() and health <= max_health:
+		health += delta * regen_health
+		if health > max_health:
+			health = max_health
+		health_changed.emit(health)
 
 func look_at_cursor():
 	if not camera:
@@ -136,6 +150,7 @@ func handle_shoot():
 func take_damage(damage_taken: float):
 	self.health -= damage_taken
 	health_changed.emit(self.health)
+	regeneration_cooldown.start(regeneration_time)
 	if self.health <= 0:
 		self.die()
 
