@@ -6,6 +6,7 @@ class_name Cover
 
 @export var requires_crouching: bool = false
 @export var unsafe_distance: float = 1.5
+@export var safe_angle: float = -0.8
 
 ## Max distance between position and closest navmesh point
 @export var outside_threshold: float = 0.05
@@ -25,5 +26,10 @@ func _ready() -> void:
 
 func is_safe_from_player():
 	if requires_crouching and player.global_position.distance_to(self.global_position) < unsafe_distance:
+		return false
+	var cover_to_player_direction = VectorHelper.get_with_y(self.global_position).direction_to(VectorHelper.get_with_y(player.global_position))
+	var direction = Vector3(sin(self.global_rotation.y), 0, cos(self.global_rotation.y))
+	var dot_product = cover_to_player_direction.dot(direction)
+	if dot_product > safe_angle:
 		return false
 	return not VisionHelper.sees_player(raycast, player)
