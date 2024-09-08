@@ -21,6 +21,8 @@ var aim_target: AimTarget = null
 @export var weapon: Weapon
 @export var barrel_end: Node3D
 
+@export var health: float = 3
+
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
 
@@ -134,9 +136,21 @@ func shoot() -> int:
 	var collision_normal: Vector3 = vision_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
+	if collided_with.is_in_group('player'):
+		collided_with.take_damage(weapon.damage)
+	else:
+		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
 
 	return BeehaveNode.SUCCESS
+
+func take_damage(damage_taken: float):
+	health -= damage_taken
+	if health <= 0:
+		self.die()
+
+func die():
+	# TODO: Animation and other things
+	self.queue_free()
 
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)

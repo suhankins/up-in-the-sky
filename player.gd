@@ -9,6 +9,9 @@ class_name Player
 ## i.e. when you press fire right before fire timer is over
 @export var coyote_fire_time: float = 0.1
 
+@export var health: float = 5.0
+signal health_changed(current_health)
+
 @onready var shooting_raycast: RayCast3D = $ShootingRaycast
 
 @onready var coyote_fire_cooldown: Timer = $CoyoteFire
@@ -125,7 +128,20 @@ func handle_shoot():
 	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
+	if collided_with.is_in_group('enemy'):
+		collided_with.take_damage(weapon.damage)
+	else:
+		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
+
+func take_damage(damage_taken: float):
+	self.health -= damage_taken
+	health_changed.emit(self.health)
+	if self.health <= 0:
+		self.die()
+
+func die():
+	# TODO: Animations, UI, etc.
+	get_tree().reload_current_scene()
 
 func get_spread_modifier() -> float:
 	var modifier = 1.0

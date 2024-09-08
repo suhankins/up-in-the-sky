@@ -1,6 +1,8 @@
 extends Resource
 class_name Weapon
 
+signal ammo_changed(current_ammo, max_ammo)
+
 ## Shots per second
 @export var rate_of_fire: float = 4.0
 ## Spread in radians
@@ -9,6 +11,7 @@ class_name Weapon
 @export var reload_time: float = 1.0
 @export var max_ammo: int = 7
 @export var current_ammo: int = 7
+@export var damage: float = 1.0
 @export var tracer_scene: PackedScene
 @export var bullethole_scene: PackedScene
 
@@ -17,10 +20,12 @@ func is_magazine_full() -> bool:
 
 func refill_magazine() -> void:
 	current_ammo = max_ammo
+	ammo_changed.emit(current_ammo, max_ammo)
 
 func spend_bullet() -> bool:
 	if current_ammo > 0:
 		current_ammo -= 1
+		ammo_changed.emit(current_ammo, max_ammo)
 		return true
 	return false
 

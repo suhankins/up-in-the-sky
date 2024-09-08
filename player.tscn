@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d00lh5qnb33ry"]
+[gd_scene load_steps=13 format=3 uid="uid://d00lh5qnb33ry"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oeowi"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="2_4uhfg"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="2_x40ji"]
 [ext_resource type="Texture2D" uid="uid://d2kch31n7115u" path="res://cursors/aim.png" id="3_bh5ls"]
 [ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://models/effects/bullethole/bullethole.tscn" id="3_t2te4"]
+[ext_resource type="Script" path="res://ammo_ui.gd" id="7_fvplb"]
+[ext_resource type="Script" path="res://health_ui.gd" id="7_k8cib"]
 
-[sub_resource type="Resource" id="Resource_646gc"]
+[sub_resource type="Resource" id="Resource_gam4c"]
 script = ExtResource("2_4uhfg")
 rate_of_fire = 4.0
 spread = 0.05
@@ -15,6 +17,7 @@ bullet_distance = 20.0
 reload_time = 1.0
 max_ammo = 7
 current_ammo = 7
+damage = 1.0
 tracer_scene = ExtResource("2_x40ji")
 bullethole_scene = ExtResource("3_t2te4")
 
@@ -26,10 +29,13 @@ height = 0.7
 radius = 0.191
 height = 0.55
 
+[sub_resource type="LabelSettings" id="LabelSettings_vifbl"]
+font_size = 32
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["danger_to_npc", "player"]]
 collision_layer = 5
 script = ExtResource("1_oeowi")
-weapon = SubResource("Resource_646gc")
+weapon = SubResource("Resource_gam4c")
 animation_tree = NodePath("Model/AnimationTree")
 crouch_speed = 1.0
 walk_speed = 2.0
@@ -73,5 +79,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
 
 [node name="CrouchingRaycastOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444584, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ammo" type="Label" parent="UI" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -147.0
+offset_top = -76.0
+offset_right = -27.0
+offset_bottom = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Ammo: "
+label_settings = SubResource("LabelSettings_vifbl")
+script = ExtResource("7_fvplb")
+player = NodePath("../..")
+
+[node name="Health" type="Label" parent="UI" node_paths=PackedStringArray("player")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -67.0
+offset_right = 141.0
+offset_bottom = -22.0
+grow_vertical = 0
+text = "Health: "
+label_settings = SubResource("LabelSettings_vifbl")
+script = ExtResource("7_k8cib")
+player = NodePath("../..")
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
