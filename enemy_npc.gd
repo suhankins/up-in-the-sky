@@ -126,7 +126,7 @@ func shoot() -> int:
 	vision_raycast.target_position = weapon.apply_spread_to_target(vision_raycast.to_local(aim_target.get_position_to_shoot_at()), aim_target.get_spread_modifier()) * 20.0
 	vision_raycast.force_raycast_update()
 
-	var collided_with: CollisionObject3D = vision_raycast.get_collider()
+	var collided_with = vision_raycast.get_collider()
 
 	if not collided_with:
 		weapon.spawn_tracer(barrel_end)

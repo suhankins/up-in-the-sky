@@ -132,7 +132,7 @@ func handle_shoot():
 
 	self.reset_shooting_raycast()
 
-	var collided_with: CollisionObject3D = shooting_raycast.get_collider()
+	var collided_with = shooting_raycast.get_collider()
 
 	if not collided_with:
 		weapon.spawn_tracer(barrel_end)
