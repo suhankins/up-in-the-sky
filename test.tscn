@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://da0dveyfis5tg"]
+[gd_scene load_steps=16 format=3 uid="uid://da0dveyfis5tg"]
 
 [ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="1_tu4uc"]
 [ext_resource type="PackedScene" uid="uid://dxkwhtduv5k7c" path="res://models/placeholders/floor-square.glb" id="2_3k181"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c217pd647vj7x" path="res://models/placeholders/wall.glb" id="3_pixgi"]
 [ext_resource type="PackedScene" uid="uid://w50p88x4t1ct" path="res://models/box_cover.tscn" id="5_vlem1"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="6_e3um4"]
-[ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://models/full_body_cover.tscn" id="7_q6vhh"]
-[ext_resource type="PackedScene" uid="uid://twf8ivriie2b" path="res://models/patrol_point.tscn" id="8_36mex"]
+[ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://ai_points/full_body_cover.tscn" id="7_q6vhh"]
+[ext_resource type="PackedScene" uid="uid://twf8ivriie2b" path="res://ai_points/patrol_point.tscn" id="8_36mex"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="9_8e4y4"]
+[ext_resource type="PackedScene" uid="uid://dpahxmdk1u5af" path="res://ai_points/flank_point.tscn" id="10_bekwh"]
+[ext_resource type="PackedScene" uid="uid://p7ajyx361158" path="res://ai_points/flank_area.tscn" id="11_r0rrw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_snk0t"]
 sky_top_color = Color(0.541777, 0.611843, 0.70942, 1)
@@ -265,35 +267,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88887, 0.00500011, -4.85721
 
 [node name="FullBodyCover" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.79071, 0.005, -1.28558)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover2" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.24374, 0.005, -1.28558)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover3" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.715516, 0.005, -1.28558)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover4" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.852427, 0.005, -1.28558)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover5" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.79071, 0.005, -0.628205)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover6" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24374, 0.005, -0.628205)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover7" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.715516, 0.005, -0.628205)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="FullBodyCover8" parent="NavigationRegion3D" instance=ExtResource("7_q6vhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.852427, 0.005, -0.628205)
-safe_angle = null
+requires_crouching = false
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="TerroristNPC2" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("6_e3um4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00819, 2.38419e-07, -5.5085)
@@ -319,3 +337,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0353808, 0.00500011, -4.21
 
 [node name="NPCBlackboard" type="Node" parent="."]
 script = ExtResource("9_8e4y4")
+
+[node name="FlankPoint" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("10_bekwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96832, 0.00500011, -0.50475)
+flank_area = NodePath("../FlankArea")
+
+[node name="FlankArea" parent="." instance=ExtResource("11_r0rrw")]
+transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 2.50417, 0.118637, 0.00500011, 0.217191)
+
+[node name="FlankPoint2" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("10_bekwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0166016, 0.00500011, -0.50475)
+flank_area = NodePath("../FlankArea2")
+
+[node name="FlankArea2" parent="." instance=ExtResource("11_r0rrw")]
+transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 2.50417, 3.03468, 0.00985861, 0.214708)

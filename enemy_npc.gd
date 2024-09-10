@@ -41,10 +41,22 @@ func _ready() -> void:
 	if not blackboard:
 		push_error("No blackboard set!")
 	behavior_tree.blackboard = blackboard
+	await get_tree().process_frame
+	var list_of_npcs = blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).duplicate()
+	list_of_npcs.append(self)
+	blackboard.set_value(NPCBlackboard.LIST_OF_NPCS, list_of_npcs)
 
 func get_sort_by_distance(to: Vector3 = self.global_position):
 	return func sort_by_distance(a: Node3D, b: Node3D):
 		return a.global_position.distance_to(to) < b.global_position.distance_to(to)
+
+func find_closest_viable_flank() -> NumberAndNode3DTuple:
+	var flanks = get_tree().get_nodes_in_group('flanks')
+	flanks.sort_custom(get_sort_by_distance())
+	for flank in flanks:
+		if flank.is_valid_flank_for_player_position(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION)):
+			return NumberAndNode3DTuple.new(self.global_position.distance_squared_to(flank.global_position), flank)
+	return NumberAndNode3DTuple.new(INF, null)
 
 func find_closest_patrol_point() -> Node3D:
 	if patrol_points.size() == 0:
@@ -66,7 +78,7 @@ func find_closest_safe_cover() -> Cover:
 	var covers = get_tree().get_nodes_in_group('cover')
 	covers.sort_custom(get_sort_by_distance())
 	for cover: Cover in covers:
-		if cover.is_safe_from_player():
+		if cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION)):
 			return cover
 	return null
 
@@ -79,7 +91,7 @@ func is_current_cover_safe() -> bool:
 	var current_cover = get_current_cover()
 	if not current_cover:
 		return false
-	return current_cover.is_safe_from_player()
+	return current_cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION))
 
 func _process(_delta: float) -> void:
 	update_collision()
@@ -194,6 +206,10 @@ func take_damage(damage_taken: float):
 
 func die():
 	# TODO: Animation and other things
+	blackboard.set_value(
+		NPCBlackboard.LIST_OF_NPCS,
+		blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).filter(func(npc): return npc != self)
+	)
 	self.queue_free()
 
 func sees_player() -> bool:

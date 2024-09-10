@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://p7ajyx361158"]
+
+[ext_resource type="Shader" path="res://ai_points/debug.gdshader" id="1_0gs0s"]
+[ext_resource type="Script" path="res://ai_points/debug_hide.gd" id="2_g5hv2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3u2t"]
+render_priority = 0
+shader = ExtResource("1_0gs0s")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nnv65"]
+material = SubResource("ShaderMaterial_p3u2t")
+size = Vector2(1, 1)
+
+[node name="FlankArea" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_nnv65")
+script = ExtResource("2_g5hv2")

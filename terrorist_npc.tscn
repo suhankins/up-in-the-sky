@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=38 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -27,6 +27,12 @@
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_safe_cover.gd" id="18_c3lg6"]
 [ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="19_o8l1l"]
 [ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="21_0efy1"]
+[ext_resource type="Script" path="res://btree/conditions/in_cover.gd" id="28_h7qoy"]
+[ext_resource type="Script" path="res://btree/conditions/is_closest_npc_to_viable_flank.gd" id="29_ch1rj"]
+[ext_resource type="Script" path="res://btree/actions/set_aim_target_to_last_player_position.gd" id="30_km2yp"]
+[ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_viable_flank.gd" id="31_ftrn5"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="32_7y0bb"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="32_dod2y"]
 
 [sub_resource type="Resource" id="Resource_sns8g"]
 script = ExtResource("3_1d61s")
@@ -92,7 +98,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@104460")
+blackboard = NodePath("@Node@31033")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -169,11 +175,41 @@ script = ExtResource("17_yuj68")
 [node name="SetMoveTargetToNextPatrolPoint" type="Node" parent="BeehaveTree/SelectorComposite/PatrolSequence"]
 script = ExtResource("12_n0la1")
 
+[node name="FlankSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("8_hvx6b")
+
+[node name="IsAlerted" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("11_o4d57")
+
+[node name="IsClosestNpcToViableFlank" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("29_ch1rj")
+
+[node name="SetAimTargetToLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("30_km2yp")
+
+[node name="SetMoveTargetToClosestViableFlank" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("31_ftrn5")
+
+[node name="MoveToTarget" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("19_o8l1l")
+
+[node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("11_e4qb0")
+
+[node name="Shoot" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence/UntilFailDecorator"]
+script = ExtResource("12_p77lt")
+
 [node name="AlertedDoesntSeePlayer" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("8_hvx6b")
 
 [node name="IsAlerted" type="Node" parent="BeehaveTree/SelectorComposite/AlertedDoesntSeePlayer"]
 script = ExtResource("11_o4d57")
+
+[node name="InverterDecorator2" type="Node" parent="BeehaveTree/SelectorComposite/AlertedDoesntSeePlayer"]
+script = ExtResource("16_v5y75")
+
+[node name="InCover" type="Node" parent="BeehaveTree/SelectorComposite/AlertedDoesntSeePlayer/InverterDecorator2"]
+script = ExtResource("28_h7qoy")
 
 [node name="InverterDecorator" type="Node" parent="BeehaveTree/SelectorComposite/AlertedDoesntSeePlayer"]
 script = ExtResource("16_v5y75")
@@ -188,6 +224,12 @@ script = ExtResource("18_c3lg6")
 script = ExtResource("19_o8l1l")
 
 [node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/AlertedDoesntSeePlayer" instance=ExtResource("21_0efy1")]
+
+[node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("32_7y0bb")
+
+[node name="DoNothing" type="Node" parent="BeehaveTree/SelectorComposite/AlwaysFailDecorator"]
+script = ExtResource("32_dod2y")
 
 [node name="ReloadCooldown" type="Timer" parent="."]
 process_callback = 0

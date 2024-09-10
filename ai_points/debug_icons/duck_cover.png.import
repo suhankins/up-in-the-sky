@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhb0n6x4tl65t"
-path.s3tc="res://.godot/imported/patrol.png-ebae046f64102d50ab13c051c801be15.s3tc.ctex"
+uid="uid://ba3jlang15ci4"
+path.s3tc="res://.godot/imported/duck_cover.png-c03d69b5231f8500a7d3b5788c6aaad3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://debug_icons/patrol.png"
-dest_files=["res://.godot/imported/patrol.png-ebae046f64102d50ab13c051c801be15.s3tc.ctex"]
+source_file="res://ai_points/debug_icons/duck_cover.png"
+dest_files=["res://.godot/imported/duck_cover.png-c03d69b5231f8500a7d3b5788c6aaad3.s3tc.ctex"]
 
 [params]
 

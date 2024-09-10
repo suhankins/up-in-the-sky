@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="1_87tfb"]
 [ext_resource type="PackedScene" uid="uid://hmdwvwo0x1ch" path="res://models/placeholders/crate.glb" id="1_7384l"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="2_kn6qr"]
-[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://models/duck_cover.tscn" id="2_ko0rh"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_ko0rh"]
 [ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="2_vqsno"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="6_t4wnh"]
 
@@ -58,7 +58,8 @@ targets = [NodePath("../Player")]
 
 [node name="DuckCover" parent="." instance=ExtResource("2_ko0rh")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.54185, 0, 0)
-safe_angle = null
+unsafe_distance = 1.5
+outside_threshold = 0.05
 
 [node name="TerroristNPC" parent="." instance=ExtResource("2_kn6qr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39997, 0, -1)

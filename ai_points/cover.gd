@@ -2,7 +2,6 @@ extends Node3D
 class_name Cover
 
 @onready var raycast: RayCast3D = $RayCast3D
-@onready var player: Player = get_tree().get_nodes_in_group('player')[0]
 
 @export var requires_crouching: bool = false
 @export var unsafe_distance: float = 1.5
@@ -24,12 +23,12 @@ func _ready() -> void:
 		print_debug('Outside of navmesh, deleting ', self.global_position)
 		self.queue_free()
 
-func is_safe_from_player():
-	if requires_crouching and player.global_position.distance_to(self.global_position) < unsafe_distance:
+func is_safe_from_vector(vector: Vector3):
+	if requires_crouching and vector.distance_to(self.global_position) < unsafe_distance:
 		return false
-	var cover_to_player_direction = VectorHelper.get_with_y(self.global_position).direction_to(VectorHelper.get_with_y(player.global_position))
+	var cover_to_player_direction = VectorHelper.get_with_y(self.global_position).direction_to(VectorHelper.get_with_y(vector))
 	var direction = Vector3(sin(self.global_rotation.y), 0, cos(self.global_rotation.y))
 	var dot_product = cover_to_player_direction.dot(direction)
 	if dot_product > safe_angle:
 		return false
-	return not VisionHelper.sees_player(raycast, player)
+	return not VisionHelper.sees_player_at_vector(raycast, VectorHelper.get_with_y(vector, 0.5))
