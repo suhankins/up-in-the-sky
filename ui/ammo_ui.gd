@@ -1,4 +1,4 @@
-extends Control
+class_name AmmoUI extends Control
 
 @export var player: Player
 
@@ -6,7 +6,8 @@ extends Control
 @onready var bullets: Array[Node] = $Magazine/Bullets.get_children()
 
 
-func _ready() -> void:
+func assign_player(new_player: Player) -> void:
+	self.player = new_player
 	player.weapon.bullet_spent.connect(_on_player_weapon_bullet_spent)
 	player.weapon.reload_started.connect(_on_player_weapon_reload_started)
 

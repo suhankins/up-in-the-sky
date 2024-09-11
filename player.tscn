@@ -77,14 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
 [node name="CrouchingRaycastOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444584, 0)
 
-[node name="UI" parent="." instance=ExtResource("7_f8nwl")]
-
-[node name="Health" parent="UI" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../..")
-
-[node name="AmmoControl" parent="UI" index="1" node_paths=PackedStringArray("player")]
-player = NodePath("../..")
+[node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_f8nwl")]
+player = NodePath("..")
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]
-
-[editable path="UI"]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dl77xd224bg2"]
+[gd_scene load_steps=14 format=3 uid="uid://dl77xd224bg2"]
 
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_0dyie"]
 [ext_resource type="Script" path="res://ui/ammo_ui.gd" id="1_6yj7b"]
 [ext_resource type="Texture2D" uid="uid://dku0hvp0kpni4" path="res://ui/pistol_magazine.png" id="2_00kwn"]
 [ext_resource type="Script" path="res://ui/health_ui.gd" id="2_rjq4d"]
 [ext_resource type="Texture2D" uid="uid://50jrp33jouuh" path="res://ui/bullet.png" id="3_mgako"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_vifbl"]
-font_size = 32
+[ext_resource type="Texture2D" uid="uid://bs4m06njimm8u" path="res://ui/health_bar_background.png" id="5_0w5xt"]
+[ext_resource type="Shader" path="res://ui/health_bar.gdshader" id="5_v7uin"]
+[ext_resource type="Texture2D" uid="uid://eqvkkatapnx7" path="res://ui/health_bar_foreground.png" id="6_hp1tp"]
 
 [sub_resource type="Animation" id="Animation_kns8y"]
 resource_name = "move_bullets_up"
@@ -86,6 +87,10 @@ _data = {
 "reload": SubResource("Animation_12m5s")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxwp6"]
+shader = ExtResource("5_v7uin")
+shader_parameter/health = 0.0
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -93,20 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Health" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 21.0
-offset_top = -67.0
-offset_right = 141.0
-offset_bottom = -22.0
-grow_vertical = 0
-text = "Health: "
-label_settings = SubResource("LabelSettings_vifbl")
-script = ExtResource("2_rjq4d")
+script = ExtResource("1_0dyie")
 
 [node name="AmmoControl" type="Control" parent="."]
 layout_mode = 1
@@ -251,6 +243,37 @@ offset_right = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
+
+[node name="HealthControl" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+scale = Vector2(1.92, 1.92)
+script = ExtResource("2_rjq4d")
+
+[node name="HealthBackground" type="TextureRect" parent="HealthControl"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.95
+anchor_bottom = 2.95
+offset_top = -118.0
+offset_right = 40.0
+offset_bottom = -78.0
+texture = ExtResource("5_0w5xt")
+stretch_mode = 4
+
+[node name="HealthForeground" type="TextureRect" parent="HealthControl"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_rxwp6")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.95
+anchor_bottom = 2.95
+offset_top = -118.0
+offset_right = 78.0
+texture = ExtResource("6_hp1tp")
 
 [connection signal="animation_finished" from="AmmoControl/AnimationPlayer" to="AmmoControl" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AmmoControl/AnimationPlayer" to="AmmoControl" method="_on_animation_player_animation_started"]

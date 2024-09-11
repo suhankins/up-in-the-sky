@@ -357,11 +357,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0166016, 0.00500011, -1.686
 flank_area = NodePath("../FlankArea3")
 
 [node name="FlankArea3" parent="." instance=ExtResource("11_r0rrw")]
-transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 1.47894, 3.03468, 0.00985861, -1.66757)
+transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 1.47894, 3.03468, 0.00985861, -1.85563)
 
 [node name="FlankPoint4" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("10_bekwh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97521, 0.00500011, -1.68618)
 flank_area = NodePath("../FlankArea4")
 
 [node name="FlankArea4" parent="." instance=ExtResource("11_r0rrw")]
-transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 1.47894, 0.129498, 0.00985861, -1.66757)
+transform = Transform3D(3.03059, 0, 0, 0, 1, 0, 0, 0, 1.47894, 0.129498, 0.00985861, -1.83833)

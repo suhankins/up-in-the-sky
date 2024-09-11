@@ -16,7 +16,7 @@ class_name Player
 @export var health: float = max_health
 # Points per second
 @export var regen_health: float = 2.0
-signal health_changed(current_health)
+signal health_changed(current_health: float, max_health: float)
 
 @export var regeneration_time: float = 2.0
 @onready var regeneration_cooldown: Timer = $RegenCooldown
@@ -56,7 +56,7 @@ func update_regeneration(delta: float) -> void:
 		health += delta * regen_health
 		if health > max_health:
 			health = max_health
-		health_changed.emit(health)
+		health_changed.emit(health, max_health)
 
 func look_at_cursor():
 	if not camera:
@@ -152,7 +152,7 @@ func handle_shoot():
 
 func take_damage(damage_taken: float):
 	self.health -= damage_taken
-	health_changed.emit(self.health)
+	health_changed.emit(self.health, max_health)
 	regeneration_cooldown.start(regeneration_time)
 	if self.health <= 0:
 		self.die()
