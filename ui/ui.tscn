@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl77xd224bg2"]
+[gd_scene load_steps=17 format=3 uid="uid://dl77xd224bg2"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_0dyie"]
 [ext_resource type="Script" path="res://ui/ammo_ui.gd" id="1_6yj7b"]
 [ext_resource type="Texture2D" uid="uid://dku0hvp0kpni4" path="res://ui/pistol_magazine.png" id="2_00kwn"]
 [ext_resource type="Script" path="res://ui/health_ui.gd" id="2_rjq4d"]
+[ext_resource type="Shader" path="res://ui/ammo_bar.gdshader" id="3_edu4c"]
 [ext_resource type="Texture2D" uid="uid://50jrp33jouuh" path="res://ui/bullet.png" id="3_mgako"]
 [ext_resource type="Texture2D" uid="uid://djc0arytcij8a" path="res://ui/pistol_magazine_background.png" id="3_soam5"]
 [ext_resource type="Texture2D" uid="uid://bs4m06njimm8u" path="res://ui/health_bar_background.png" id="5_0w5xt"]
@@ -88,6 +89,10 @@ _data = {
 "reload": SubResource("Animation_12m5s")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qn78i"]
+shader = ExtResource("3_edu4c")
+shader_parameter/ammo = 0.1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxwp6"]
 shader = ExtResource("5_v7uin")
 shader_parameter/health = 0.0
@@ -121,7 +126,7 @@ libraries = {
 "": SubResource("AnimationLibrary_p64gc")
 }
 
-[node name="Magazine2" type="TextureRect" parent="AmmoControl"]
+[node name="MagazineBackground" type="TextureRect" parent="AmmoControl"]
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -138,6 +143,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Magazine" type="TextureRect" parent="AmmoControl"]
 texture_filter = 1
 texture_repeat = 1
+material = SubResource("ShaderMaterial_qn78i")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0

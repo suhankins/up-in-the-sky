@@ -4,6 +4,7 @@ class_name AmmoUI extends Control
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var bullets: Array[Node] = $Magazine/Bullets.get_children()
+@onready var magazine_foreground: TextureRect = $Magazine
 
 
 func assign_player(new_player: Player) -> void:
@@ -22,6 +23,7 @@ func _on_player_weapon_reload_started():
 
 
 func _update_bullet_visiblity(current_ammo: int = 0, max_ammo: int = 0):
+	magazine_foreground.material.set_shader_parameter("ammo", float(current_ammo) / float(max_ammo))
 	var bullets_to_hide = max_ammo - current_ammo
 	for index in bullets.size():
 		bullets[index].visible = index >= bullets_to_hide
