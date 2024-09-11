@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_gam4c"]
 script = ExtResource("2_4uhfg")
 rate_of_fire = 4.0
-spread = 0.05
+spread = 0.025
 bullet_distance = 20.0
 reload_time = 1.0
 max_ammo = 7
