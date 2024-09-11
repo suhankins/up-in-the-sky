@@ -175,6 +175,7 @@ func handle_reload():
 		return
 
 	reload_cooldown.start(weapon.reload_time)
+	weapon.start_reload()
 	play_reload_animation()
 
 func _on_reload_cooldown_timeout() -> void:

@@ -1,7 +1,8 @@
 extends Resource
 class_name Weapon
 
-signal ammo_changed(current_ammo, max_ammo)
+signal bullet_spent(current_ammo: int, max_ammo: int)
+signal reload_started()
 
 ## Shots per second
 @export var rate_of_fire: float = 4.0
@@ -17,15 +18,17 @@ signal ammo_changed(current_ammo, max_ammo)
 
 func is_magazine_full() -> bool:
 	return max_ammo == current_ammo
+	
+func start_reload() -> void:
+	reload_started.emit()
 
 func refill_magazine() -> void:
 	current_ammo = max_ammo
-	ammo_changed.emit(current_ammo, max_ammo)
 
 func spend_bullet() -> bool:
 	if current_ammo > 0:
 		current_ammo -= 1
-		ammo_changed.emit(current_ammo, max_ammo)
+		bullet_spent.emit(current_ammo, max_ammo)
 		return true
 	return false
 
