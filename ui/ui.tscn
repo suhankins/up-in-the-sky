@@ -1,13 +1,29 @@
-[gd_scene load_steps=14 format=3 uid="uid://dl77xd224bg2"]
+[gd_scene load_steps=15 format=3 uid="uid://dl77xd224bg2"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_0dyie"]
 [ext_resource type="Script" path="res://ui/ammo_ui.gd" id="1_6yj7b"]
 [ext_resource type="Texture2D" uid="uid://dku0hvp0kpni4" path="res://ui/pistol_magazine.png" id="2_00kwn"]
 [ext_resource type="Script" path="res://ui/health_ui.gd" id="2_rjq4d"]
 [ext_resource type="Texture2D" uid="uid://50jrp33jouuh" path="res://ui/bullet.png" id="3_mgako"]
+[ext_resource type="Texture2D" uid="uid://djc0arytcij8a" path="res://ui/pistol_magazine_background.png" id="3_soam5"]
 [ext_resource type="Texture2D" uid="uid://bs4m06njimm8u" path="res://ui/health_bar_background.png" id="5_0w5xt"]
 [ext_resource type="Shader" path="res://ui/health_bar.gdshader" id="5_v7uin"]
 [ext_resource type="Texture2D" uid="uid://eqvkkatapnx7" path="res://ui/health_bar_foreground.png" id="6_hp1tp"]
+
+[sub_resource type="Animation" id="Animation_0lklx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bullets:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_kns8y"]
 resource_name = "move_bullets_up"
@@ -23,22 +39,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-2, 19), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_0lklx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bullets:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-1, 10), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_12m5s"]
@@ -106,12 +107,11 @@ anchor_left = 0.977431
 anchor_top = 0.978395
 anchor_right = 0.977431
 anchor_bottom = 0.978395
-offset_left = -1152.0
-offset_top = -648.0
-offset_right = -1112.0
-offset_bottom = -608.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = -81.0005
+offset_top = -205.0
+offset_right = -81.0005
+offset_bottom = -205.0
+scale = Vector2(2, 2)
 script = ExtResource("1_6yj7b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AmmoControl"]
@@ -120,6 +120,20 @@ root_node = NodePath("../Magazine")
 libraries = {
 "": SubResource("AnimationLibrary_p64gc")
 }
+
+[node name="Magazine2" type="TextureRect" parent="AmmoControl"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+texture = ExtResource("3_soam5")
+metadata/_edit_use_anchors_ = true
 
 [node name="Magazine" type="TextureRect" parent="AmmoControl"]
 texture_filter = 1
@@ -130,10 +144,6 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1017.0
-offset_top = 416.0
-offset_right = 1103.0
-offset_bottom = 599.0
 texture = ExtResource("2_00kwn")
 metadata/_edit_use_anchors_ = true
 
@@ -143,7 +153,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -21.0
-offset_bottom = -136.0
+offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -153,10 +163,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 145.0
-offset_right = -3.0
-offset_bottom = 114.0
+offset_left = 6.34147
+offset_top = 78.2927
+offset_right = 8.34147
+offset_bottom = 87.2927
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -167,10 +177,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 126.0
-offset_right = -1.0
-offset_bottom = 95.0
+offset_left = 6.95128
+offset_top = 67.3171
+offset_right = 8.95129
+offset_bottom = 76.3171
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -181,10 +191,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = 107.0
-offset_right = 1.0
-offset_bottom = 76.0
+offset_left = 8.17079
+offset_top = 56.3414
+offset_right = 10.1708
+offset_bottom = 65.3414
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -195,10 +205,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 88.0
-offset_right = 3.0
-offset_bottom = 57.0
+offset_left = 9.39029
+offset_top = 45.3659
+offset_right = 11.3903
+offset_bottom = 54.3659
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -209,10 +219,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 69.0
-offset_right = 5.0
-offset_bottom = 38.0
+offset_left = 10.0
+offset_top = 34.3902
+offset_right = 12.0
+offset_bottom = 43.3902
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -223,10 +233,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 50.0
-offset_right = 7.0
-offset_bottom = 19.0
+offset_left = 11.2196
+offset_top = 23.4146
+offset_right = 13.2196
+offset_bottom = 32.4146
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
@@ -237,15 +247,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = 31.0
-offset_right = 9.0
+offset_left = 12.4391
+offset_top = 12.439
+offset_right = 14.4391
+offset_bottom = 21.439
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_mgako")
 
 [node name="HealthControl" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 28.0
