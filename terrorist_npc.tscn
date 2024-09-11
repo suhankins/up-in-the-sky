@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=40 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -33,6 +33,7 @@
 [ext_resource type="Script" path="res://btree/actions/set_aim_target_to_last_player_position.gd" id="30_km2yp"]
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_viable_flank.gd" id="31_ftrn5"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="32_7y0bb"]
+[ext_resource type="Script" path="res://btree/actions/reset_last_player_position.gd" id="32_34mky"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="32_dod2y"]
 
 [sub_resource type="Resource" id="Resource_sns8g"]
@@ -99,7 +100,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@20365")
+blackboard = NodePath("@Node@188983")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -200,11 +201,14 @@ script = ExtResource("31_ftrn5")
 [node name="MoveToTarget" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
 script = ExtResource("19_o8l1l")
 
-[node name="UntilFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
-script = ExtResource("11_e4qb0")
+[node name="InverterDecorator2" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("16_v5y75")
 
-[node name="Shoot" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence/UntilFailDecorator"]
-script = ExtResource("12_p77lt")
+[node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence/InverterDecorator2"]
+script = ExtResource("9_fjsai")
+
+[node name="ResetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/FlankSequence"]
+script = ExtResource("32_34mky")
 
 [node name="AlertedDoesntSeePlayer" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("8_hvx6b")
