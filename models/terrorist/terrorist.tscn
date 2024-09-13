@@ -823,7 +823,7 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_qhtgj")
 blend_point_4/pos = Vector2(0, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_q5xqj"]
-graph_offset = Vector2(201.84, 152.203)
+graph_offset = Vector2(494.84, 362.203)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_j7fnb")
 nodes/Add2/position = Vector2(720, 320)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_cx6vc")
@@ -975,7 +975,7 @@ parameters/crouch_blend_space/blend_position = Vector2(0, 0)
 parameters/fire_gun/active = false
 parameters/fire_gun/internal_active = false
 parameters/fire_gun/request = 0
-parameters/footstep_blend_space/blend_position = 1.0
+parameters/footstep_blend_space/blend_position = -0.00370371
 parameters/reload/active = false
 parameters/reload/internal_active = false
 parameters/reload/request = 0
@@ -989,8 +989,9 @@ unit_size = 4.0
 
 [node name="ReloadingAudioPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+volume_db = -2.0
 unit_size = 2.0
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
-volume_db = -45.0
-unit_size = 4.0
+volume_db = -15.0
+unit_size = 1.0
