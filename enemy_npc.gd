@@ -31,6 +31,7 @@ var aim_target: AimTarget = null
 @export var barrel_end: Node3D
 
 @export var health: float = 3
+var dead: bool = false
 
 @export var patrol_points: Array[Node3D] = []
 
@@ -45,6 +46,18 @@ func _ready() -> void:
 	var list_of_npcs = blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).duplicate()
 	list_of_npcs.append(self)
 	blackboard.set_value(NPCBlackboard.LIST_OF_NPCS, list_of_npcs)
+
+func _process(_delta: float) -> void:
+	if dead:
+		return
+	update_collision()
+	update_rotation()
+
+func _physics_process(_delta: float) -> void:
+	if dead:
+		return
+	animate_legs()
+	update_animation_alert_state()
 
 func get_sort_by_distance(to: Vector3 = self.global_position):
 	return func sort_by_distance(a: Node3D, b: Node3D):
@@ -92,14 +105,6 @@ func is_current_cover_safe() -> bool:
 	if not current_cover:
 		return false
 	return current_cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION))
-
-func _process(_delta: float) -> void:
-	update_collision()
-	update_rotation()
-
-func _physics_process(_delta: float) -> void:
-	animate_legs()
-	update_animation_alert_state()
 
 func update_animation_alert_state():
 	animation_tree.set("parameters/alert_state/transition_request", 'alert' if blackboard.get_value(NPCBlackboard.ALERTED) else 'patrol')
@@ -166,7 +171,7 @@ func reload() -> int:
 
 func shoot() -> int:
 	if not aim_target:
-		push_error("No aim target to shoot at!")
+		return BeehaveNode.FAILURE
 
 	if not fire_cooldown.is_stopped():
 		return BeehaveNode.RUNNING
@@ -201,16 +206,21 @@ func shoot() -> int:
 
 func take_damage(damage_taken: float):
 	health -= damage_taken
-	if health <= 0:
+	if health <= 0 and not dead:
 		self.die()
 
 func die():
-	# TODO: Animation and other things
 	blackboard.set_value(
 		NPCBlackboard.LIST_OF_NPCS,
 		blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).filter(func(npc): return npc != self)
 	)
-	self.queue_free()
+	self.dead = true
+	behavior_tree.queue_free()
+	animation_tree.set('parameters/die/blend_amount', 1.0)
+	aim_target = null
+	crouching_collision.queue_free()
+	standing_collision.queue_free()
+	navigation_agent.queue_free()
 
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)
