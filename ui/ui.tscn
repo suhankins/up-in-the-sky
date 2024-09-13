@@ -267,6 +267,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 28.0
+grow_vertical = 0
 scale = Vector2(1.92, 1.92)
 script = ExtResource("2_rjq4d")
 
@@ -276,9 +277,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 2.95
 anchor_bottom = 2.95
-offset_top = -118.0
-offset_right = 40.0
-offset_bottom = -78.0
+offset_top = -136.0
+offset_right = 90.0
 texture = ExtResource("5_0w5xt")
 stretch_mode = 4
 
@@ -289,8 +289,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 2.95
 anchor_bottom = 2.95
-offset_top = -118.0
-offset_right = 78.0
+offset_top = -136.0
+offset_right = 90.0
 texture = ExtResource("6_hp1tp")
 
 [connection signal="animation_finished" from="AmmoControl/AnimationPlayer" to="AmmoControl" method="_on_animation_player_animation_finished"]
