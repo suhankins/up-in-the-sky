@@ -1,11 +1,11 @@
-[gd_scene load_steps=57 format=3 uid="uid://cnufybkt8f4b0"]
+[gd_scene load_steps=58 format=3 uid="uid://cnufybkt8f4b0"]
 
-[ext_resource type="Material" uid="uid://dvg88q8hor4ei" path="res://models/player_agent/shirt.tres" id="1_33us3"]
-[ext_resource type="ArrayMesh" uid="uid://ccjijdgi8klfd" path="res://models/player_agent/tie.obj" id="1_ko013"]
+[ext_resource type="Material" uid="uid://dvg88q8hor4ei" path="res://models/player_agent/jacket.tres" id="1_33us3"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_6lrif"]
 [ext_resource type="ArrayMesh" uid="uid://cqg8r4q804qvg" path="res://models/player_agent/sunglasses.obj" id="3_mbv8j"]
 [ext_resource type="ArrayMesh" uid="uid://8lprjqn2pu1b" path="res://models/player_agent/pistol.obj" id="3_pijjd"]
 [ext_resource type="Texture2D" uid="uid://qpnigvcuxecn" path="res://muzzle.png" id="4_ou8id"]
+[ext_resource type="PackedScene" uid="uid://u41n1vsbsu2y" path="res://models/player_agent/tie.gltf" id="6_7o8kx"]
 [ext_resource type="Material" uid="uid://d1fdvf7a4g3ol" path="res://models/player_agent/pants.tres" id="7_noemk"]
 [ext_resource type="AudioStream" uid="uid://davqpefhllypk" path="res://sfx/pistol/pulling_mag/pulling_mag.wav" id="8_3ip4b"]
 [ext_resource type="Animation" uid="uid://b4n4qdm8qfaah" path="res://animations/footsteps.res" id="8_qvkr7"]
@@ -21,12 +21,16 @@
 [ext_resource type="Animation" uid="uid://dkpyydh66n6e8" path="res://animations/walk_left.res" id="18_10ffk"]
 [ext_resource type="Animation" uid="uid://m5o8w4k7cqwx" path="res://animations/walk_right.res" id="19_smiue"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjte4"]
-albedo_color = Color(0.158472, 0.158472, 0.158472, 1)
+[sub_resource type="BoxMesh" id="BoxMesh_x7nqx"]
+size = Vector3(0.1, 0.25, 0.09)
 
-[sub_resource type="BoxMesh" id="BoxMesh_sv1r0"]
-material = SubResource("StandardMaterial3D_rjte4")
-size = Vector3(0.22, 0.25, 0.1)
+[sub_resource type="BoxMesh" id="BoxMesh_dqbs8"]
+material = ExtResource("1_33us3")
+size = Vector3(0.22, 0.25, 0.01)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i45kh"]
+material = ExtResource("1_33us3")
+size = Vector3(0.06, 0.25, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rau2r"]
 material = ExtResource("1_33us3")
@@ -473,7 +477,6 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_qhtgj")
 blend_point_4/pos = Vector2(0, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bnsdf"]
-graph_offset = Vector2(-57, 466)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_5o6ea")
 nodes/Add2/position = Vector2(520, 260)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_xdm78")
@@ -504,14 +507,21 @@ node_connections = [&"Add2", 0, &"reload", &"Add2", 1, &"Transition", &"Add2 2",
 [node name="Torso" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="TorsoMesh" type="MeshInstance3D" parent="Torso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
-material_override = ExtResource("1_33us3")
-mesh = SubResource("BoxMesh_sv1r0")
+[node name="ShirtMesh" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124, 0)
+mesh = SubResource("BoxMesh_x7nqx")
 
-[node name="Tie" type="MeshInstance3D" parent="Torso/TorsoMesh"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.0118646, -0.176, -0.0346294)
-mesh = ExtResource("1_ko013")
+[node name="JacketBack" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0.05)
+mesh = SubResource("BoxMesh_dqbs8")
+
+[node name="JacketRight" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.125, 0)
+mesh = SubResource("BoxMesh_i45kh")
+
+[node name="JacketLeft" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.125, 0)
+mesh = SubResource("BoxMesh_i45kh")
 
 [node name="LeftArm" type="Node3D" parent="Torso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0.2, 0)
@@ -571,6 +581,9 @@ mesh = SubResource("BoxMesh_7tem4")
 [node name="GlassesMesh" type="MeshInstance3D" parent="Torso/Head"]
 transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.00957336, -0.0406234, -0.0145807)
 mesh = ExtResource("3_mbv8j")
+
+[node name="tie" parent="Torso" instance=ExtResource("6_7o8kx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.027, -0.021)
 
 [node name="LeftLeg" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, 0.3, 0)
