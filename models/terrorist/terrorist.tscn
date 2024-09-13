@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cacsynjusl76n"]
+[gd_scene load_steps=67 format=3 uid="uid://cacsynjusl76n"]
 
 [ext_resource type="Material" uid="uid://jvy2bok6mmpo" path="res://models/terrorist/shirt.tres" id="1_5yia2"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_2mfnx"]
@@ -7,6 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://ntqsfvhiek4y" path="res://models/terrorist/beanie.gltf" id="5_ema88"]
 [ext_resource type="PackedScene" uid="uid://qqknv0euyrcq" path="res://models/terrorist/bandana.gltf" id="6_gyf8f"]
 [ext_resource type="PackedScene" uid="uid://dxygjyd2ksps" path="res://models/terrorist/vest.gltf" id="7_bkvih"]
+[ext_resource type="AudioStream" uid="uid://d3ehwk35lk4mx" path="res://sfx/rifle/shot/shot.wav" id="8_e2f03"]
+[ext_resource type="AudioStream" uid="uid://brici4v1j1254" path="res://sfx/rifle/pulling_mag/pulling_mag.wav" id="8_kw0qn"]
+[ext_resource type="AudioStream" uid="uid://kw1magvy6rc8" path="res://sfx/rifle/inserting_mag/inserting_mag.wav" id="9_dj3qn"]
+[ext_resource type="Animation" uid="uid://b4n4qdm8qfaah" path="res://animations/footsteps.res" id="10_togte"]
+[ext_resource type="Animation" uid="uid://b7m8nlix1ofu7" path="res://animations/no_footsteps.res" id="11_rla0a"]
+[ext_resource type="Animation" uid="uid://bbvok3sryjn5j" path="res://animations/walk_crouch_forward.res" id="12_kxqyo"]
+[ext_resource type="Animation" uid="uid://dpohujdc5d0qb" path="res://animations/walk_crouch_idle.res" id="13_t4g3r"]
+[ext_resource type="Animation" uid="uid://bpthr6upsbew8" path="res://animations/walk_crouch_left.res" id="14_ena04"]
+[ext_resource type="Animation" uid="uid://bn0nvn720086p" path="res://animations/walk_crouch_right.res" id="15_pa21s"]
+[ext_resource type="Animation" uid="uid://sfkbbua2pgie" path="res://animations/walk_forward.res" id="16_asi8n"]
+[ext_resource type="Animation" uid="uid://cu4noq0atcikk" path="res://animations/walk_idle.res" id="17_gq4b4"]
+[ext_resource type="Animation" uid="uid://dkpyydh66n6e8" path="res://animations/walk_left.res" id="18_e7ri3"]
+[ext_resource type="Animation" uid="uid://m5o8w4k7cqwx" path="res://animations/walk_right.res" id="19_1el4e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sv1r0"]
 material = ExtResource("1_5yia2")
@@ -214,149 +227,6 @@ tracks/13/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_20nye"]
-resource_name = "hands_pistol_fire"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Torso/LeftArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 0.170755, 1),
-"update": 0,
-"values": [Vector3(1.55334, -0.523599, 0), Vector3(1.74533, -0.523599, 0), Vector3(1.55334, -0.523599, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Torso/RightArm:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 0.210224, 1),
-"update": 0,
-"values": [Vector3(1.5708, 0.593412, 0), Vector3(1.67552, 0.593412, 0), Vector3(1.5708, 0.593412, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Torso/RightArm/Gun:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.00349066, 0.020944, -0.523599), Vector3(0.00349066, 0.020944, -0.523599)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Torso/RightArm/Gun/BarrelEnd/MuzzleflashSprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Torso/RightArm/Gun/BarrelEnd/MuzzleFlashLight:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_whxwx"]
-resource_name = "hands_pistol_idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Torso/LeftArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1.51572),
-"update": 0,
-"values": [Vector3(1.55334, -0.523599, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Torso/RightArm/Gun:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.00349066, 0.020944, -0.523599)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Torso/RightArm:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5708, 0.593412, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_t118k"]
-resource_name = "hands_pistol_reload"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Torso/LeftArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.833333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1.55334, -0.523599, 0), Vector3(1.55334, -0.610865, 0), Vector3(1.55334, -0.610865, 0), Vector3(1.55334, -0.523599, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Torso/RightArm:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.5, 0.7, 0.833333),
-"transitions": PackedFloat32Array(2.73208, 2.73208, 0.5, 1, 1),
-"update": 0,
-"values": [Vector3(1.5708, 0.593412, 0), Vector3(1.39626, 0.698132, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(1.5708, 0.593412, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Torso/RightArm:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.15, 0.2, 0), Vector3(0.15, 0.2, 0), Vector3(0.15, 0.2, 0), Vector3(0.15, 0.22, 0), Vector3(0.15, 0.2, 0), Vector3(0.15, 0.2, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_k8vfl"]
 resource_name = "hands_rifle_fire"
 length = 0.1
@@ -456,6 +326,20 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.10682, -0.0596678), Vector3(0.07, 0.107, -0.06), Vector3(0, 0.10682, -0.0596678)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ShootingAudioPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_fl86a"]
@@ -757,6 +641,25 @@ tracks/7/keys = {
 "update": 1,
 "values": [false, false]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ReloadingAudioPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.255351,
+"start_offset": 0.0,
+"stream": ExtResource("8_kw0qn")
+}, {
+"end_offset": 0.391354,
+"start_offset": 0.0,
+"stream": ExtResource("9_dj3qn")
+}],
+"times": PackedFloat32Array(0.0333333, 0.533333)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="Animation" id="Animation_e3hmv"]
 resource_name = "look_around"
@@ -774,500 +677,29 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.349066, 0), Vector3(0, -0.349066, 0), Vector3(0, 0.349066, 0), Vector3(0, 0.349066, 0), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_2rdmi"]
-resource_name = "walk_backwards"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftLeg:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.523599, 0, 0), Vector3(0, 0, 0), Vector3(-0.523599, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.523599, 0, 0), Vector3(0, 0, 0), Vector3(0.523599, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qjg3w"]
-resource_name = "walk_crouch_forward"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RightLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.392292, 0.392292, 1),
-"update": 0,
-"values": [Vector3(0.06, 0.2, -0.07), Vector3(0.06, 0.3, -0.12), Vector3(0.06, 0.2, -0.07)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.392292, 0.392292, 1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, -0.12), Vector3(-0.06, 0.2, -0.07), Vector3(-0.06, 0.3, -0.12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.392292, 0.392292, 1),
-"update": 0,
-"values": [Vector3(-0.174533, 0, 0), Vector3(-1.0472, 0, 0), Vector3(-0.174533, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(0.392292, 0.392292, 1),
-"update": 0,
-"values": [Vector3(-1.0472, 0, 0), Vector3(-0.174533, 0, 0), Vector3(-1.0472, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Torso:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.5, 0.766667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.2, 0), Vector3(0, 0.225, 0), Vector3(0, 0.2, 0), Vector3(0, 0.225, 0), Vector3(0, 0.2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pcgfp"]
-resource_name = "walk_crouch_idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RightLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.06, 0.2, -0.07)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, -0.12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.174533, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.0472, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Torso:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_sbe3d"]
-resource_name = "walk_crouch_left"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RightLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1),
-"transitions": PackedFloat32Array(1, 0.870551, 0.870551, 1, 1),
-"update": 0,
-"values": [Vector3(0.06, 0.2, -0.07), Vector3(0.06, 0.25, -0.07), Vector3(0.08, 0.229, -0.07), Vector3(0.06, 0.2, -0.07), Vector3(0.06, 0.2, -0.07)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, -0.12), Vector3(-0.08, 0.3, -0.12), Vector3(-0.06, 0.3, -0.12), Vector3(-0.06, 0.3, -0.12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.174533, 0, 0), Vector3(-0.174533, 0, -0.523599), Vector3(-0.174533, 0, 0), Vector3(-0.174533, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1),
-"transitions": PackedFloat32Array(1, 0.870551, 0.870551, 1, 1),
-"update": 0,
-"values": [Vector3(-1.0472, 0, 0), Vector3(-0.872665, 0, 0), Vector3(-0.947714, 0.698132, 0), Vector3(-1.0472, 0, 0), Vector3(-1.0472, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Torso:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.2, 0), Vector3(0, 0.25, 0), Vector3(0, 0.2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_5coit"]
-resource_name = "walk_crouch_right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RightLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 1),
-"transitions": PackedFloat32Array(1, 1.8025, 1.8025),
-"update": 0,
-"values": [Vector3(0.06, 0.2, -0.07), Vector3(0.1, 0.2, -0.07), Vector3(0.06, 0.2, -0.07)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, -0.12), Vector3(-0.06, 0.3, -0.08), Vector3(-0.06, 0.25, -0.08), Vector3(-0.06, 0.3, -0.12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.7, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.174533, 0, 0), Vector3(-0.174533, 0, 0), Vector3(-0.174533, 0, -0.523599), Vector3(-0.174533, 0, 0.174533), Vector3(-0.174533, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.366667, 1),
-"transitions": PackedFloat32Array(1, 1.8025, 1.8025),
-"update": 0,
-"values": [Vector3(-1.0472, 0, 0), Vector3(-1.0472, 0.349066, 0), Vector3(-1.0472, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Torso:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.2, 0), Vector3(0, 0.2, 0), Vector3(0, 0.22, 0), Vector3(0, 0.2, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_guwrt"]
-resource_name = "walk_forward"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftLeg:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.523599, 0, 0), Vector3(0, 0, 0), Vector3(-0.523599, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-0.523599, 0, 0), Vector3(0, 0, 0), Vector3(0.523599, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_77w7l"]
-resource_name = "walk_idle"
-length = 0.001
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftLeg:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightLeg:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.06, 0.3, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xdy23"]
-resource_name = "walk_left"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftLeg:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.436332), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.436332), Vector3(0, 0, -0.261799), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, 0), Vector3(-0.1, 0.3, 0), Vector3(-0.06, 0.3, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.06, 0.3, 0), Vector3(0.06, 0.3, 0), Vector3(0.02, 0.3, 0), Vector3(0.06, 0.3, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ncut3"]
-resource_name = "walk_right"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("LeftLeg:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.436332), Vector3(0, 0, 0.261799), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RightLeg:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.436332), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeftLeg:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.06, 0.3, 0), Vector3(-0.06, 0.3, 0), Vector3(-0.02, 0.3, 0), Vector3(-0.06, 0.3, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RightLeg:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.06, 0.3, 0), Vector3(0.1, 0.3, 0), Vector3(0.06, 0.3, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0r2bx"]
 _data = {
 "RESET": SubResource("Animation_f0bf8"),
-"hands_pistol_fire": SubResource("Animation_20nye"),
-"hands_pistol_idle": SubResource("Animation_whxwx"),
-"hands_pistol_reload": SubResource("Animation_t118k"),
+"footsteps": ExtResource("10_togte"),
 "hands_rifle_fire": SubResource("Animation_k8vfl"),
 "hands_rifle_idle": SubResource("Animation_fl86a"),
 "hands_rifle_patrol": SubResource("Animation_m5tc5"),
 "hands_rifle_reload": SubResource("Animation_4amtc"),
 "look_around": SubResource("Animation_e3hmv"),
-"walk_backwards": SubResource("Animation_2rdmi"),
-"walk_crouch_forward": SubResource("Animation_qjg3w"),
-"walk_crouch_idle": SubResource("Animation_pcgfp"),
-"walk_crouch_left": SubResource("Animation_sbe3d"),
-"walk_crouch_right": SubResource("Animation_5coit"),
-"walk_forward": SubResource("Animation_guwrt"),
-"walk_idle": SubResource("Animation_77w7l"),
-"walk_left": SubResource("Animation_xdy23"),
-"walk_right": SubResource("Animation_ncut3")
+"no_footsteps": ExtResource("11_rla0a"),
+"walk_crouch_forward": ExtResource("12_kxqyo"),
+"walk_crouch_idle": ExtResource("13_t4g3r"),
+"walk_crouch_left": ExtResource("14_ena04"),
+"walk_crouch_right": ExtResource("15_pa21s"),
+"walk_forward": ExtResource("16_asi8n"),
+"walk_idle": ExtResource("17_gq4b4"),
+"walk_left": ExtResource("18_e7ri3"),
+"walk_right": ExtResource("19_1el4e")
 }
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_cx6vc"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_j7fnb"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_5eckd"]
 filter_enabled = true
@@ -1334,6 +766,18 @@ blend_point_4/pos = Vector2(0, -1)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vsos5"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2g7q7"]
+animation = &"no_footsteps"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poto2"]
+animation = &"footsteps"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_36147"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2g7q7")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_poto2")
+blend_point_1/pos = 1.0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tx4wr"]
 animation = &"hands_rifle_patrol"
 
@@ -1348,10 +792,6 @@ animation = &"hands_rifle_reload"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jtq2v"]
 animation = &"look_around"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_y31pd"]
-filter_enabled = true
-filters = ["Torso/Head:rotation"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_223mg"]
 
@@ -1383,7 +823,11 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_qhtgj")
 blend_point_4/pos = Vector2(0, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_q5xqj"]
-graph_offset = Vector2(77.2832, 204.137)
+graph_offset = Vector2(201.84, 152.203)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_j7fnb")
+nodes/Add2/position = Vector2(720, 320)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_cx6vc")
+"nodes/Add2 2/position" = Vector2(1020, 300)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_5eckd")
 nodes/Blend2/position = Vector2(480, 340)
 nodes/Transition/node = SubResource("AnimationNodeTransition_p1pxw")
@@ -1394,6 +838,8 @@ nodes/crouch_blend_space/node = SubResource("AnimationNodeBlendSpace2D_x3s3u")
 nodes/crouch_blend_space/position = Vector2(-240, 700)
 nodes/fire_gun/node = SubResource("AnimationNodeOneShot_vsos5")
 nodes/fire_gun/position = Vector2(-240, -180)
+nodes/footstep_blend_space/node = SubResource("AnimationNodeBlendSpace1D_36147")
+nodes/footstep_blend_space/position = Vector2(760, 560)
 "nodes/hands patrol/node" = SubResource("AnimationNodeAnimation_tx4wr")
 "nodes/hands patrol/position" = Vector2(20, 200)
 nodes/hands_fire/node = SubResource("AnimationNodeAnimation_h75vl")
@@ -1404,14 +850,12 @@ nodes/hands_reload/node = SubResource("AnimationNodeAnimation_gcygt")
 nodes/hands_reload/position = Vector2(-240, 100)
 "nodes/look around 2/node" = SubResource("AnimationNodeAnimation_jtq2v")
 "nodes/look around 2/position" = Vector2(540, 600)
-nodes/look_around/node = SubResource("AnimationNodeOneShot_y31pd")
-nodes/look_around/position = Vector2(800, 320)
-nodes/output/position = Vector2(1100, 360)
+nodes/output/position = Vector2(1260, 340)
 nodes/reload/node = SubResource("AnimationNodeOneShot_223mg")
 nodes/reload/position = Vector2(20, -120)
 nodes/walk_blend_space/node = SubResource("AnimationNodeBlendSpace2D_5gdit")
 nodes/walk_blend_space/position = Vector2(-240, 480)
-node_connections = [&"Blend2", 0, &"alert_state", &"Blend2", 1, &"Transition", &"Transition", 0, &"walk_blend_space", &"Transition", 1, &"crouch_blend_space", &"alert_state", 0, &"reload", &"alert_state", 1, &"hands patrol", &"fire_gun", 0, &"hands_idle", &"fire_gun", 1, &"hands_fire", &"look_around", 0, &"Blend2", &"look_around", 1, &"look around 2", &"output", 0, &"look_around", &"reload", 0, &"fire_gun", &"reload", 1, &"hands_reload"]
+node_connections = [&"Add2", 0, &"Blend2", &"Add2", 1, &"look around 2", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"footstep_blend_space", &"Blend2", 0, &"alert_state", &"Blend2", 1, &"Transition", &"Transition", 0, &"walk_blend_space", &"Transition", 1, &"crouch_blend_space", &"alert_state", 0, &"reload", &"alert_state", 1, &"hands patrol", &"fire_gun", 0, &"hands_idle", &"fire_gun", 1, &"hands_fire", &"output", 0, &"Add2 2", &"reload", 0, &"fire_gun", &"reload", 1, &"hands_reload"]
 
 [node name="Terrorist" type="Node3D"]
 
@@ -1510,6 +954,7 @@ mesh = SubResource("BoxMesh_uiysm")
 skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
 "": SubResource("AnimationLibrary_0r2bx")
 }
@@ -1517,6 +962,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_q5xqj")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Add2/add_amount = 1.0
+"parameters/Add2 2/add_amount" = 1.0
 parameters/Blend2/blend_amount = 1.0
 parameters/Transition/current_state = "standing"
 parameters/Transition/transition_request = ""
@@ -1528,10 +975,22 @@ parameters/crouch_blend_space/blend_position = Vector2(0, 0)
 parameters/fire_gun/active = false
 parameters/fire_gun/internal_active = false
 parameters/fire_gun/request = 0
-parameters/look_around/active = false
-parameters/look_around/internal_active = false
-parameters/look_around/request = 0
+parameters/footstep_blend_space/blend_position = 1.0
 parameters/reload/active = false
 parameters/reload/internal_active = false
 parameters/reload/request = 0
 parameters/walk_blend_space/blend_position = Vector2(0, 1)
+
+[node name="ShootingAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+stream = ExtResource("8_e2f03")
+volume_db = -2.0
+unit_size = 4.0
+
+[node name="ReloadingAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+unit_size = 2.0
+
+[node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+volume_db = -45.0
+unit_size = 4.0

@@ -29,3 +29,4 @@ func animate_legs():
 	animation_tree.set('parameters/walk_blend_space/blend_position', leg_vector)
 	animation_tree.set('parameters/crouch_blend_space/blend_position', leg_vector)
 	animation_tree.set("parameters/Transition/transition_request", 'crouching' if is_crouching() else 'standing')
+	animation_tree.set("parameters/footstep_blend_space/blend_position", movement_speed_ratio)
