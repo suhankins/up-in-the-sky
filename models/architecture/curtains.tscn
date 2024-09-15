@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy82ijo7jg1u0"]
+
+[ext_resource type="ArrayMesh" uid="uid://blk12gnrgaajo" path="res://models/architecture/curtain_Plane.res" id="1_cj5wj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofl5a"]
+albedo_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_afoyx"]
+material = SubResource("StandardMaterial3D_ofl5a")
+size = Vector3(1, 0.075, 0.075)
+
+[node name="Curtains" type="Node3D"]
+
+[node name="SoftBody3D" type="SoftBody3D" parent="."]
+transform = Transform3D(9.55343e-16, 2.18557e-08, 0.7, 0.5, -2.18557e-08, 1.27027e-22, 2.18557e-08, 0.5, -3.0598e-08, 0, 0.648134, -0.0177176)
+mesh = ExtResource("1_cj5wj")
+collision_layer = 4
+simulation_precision = 3
+pinned_points = [1, 69, 21, 49, 7, 63, 43, 15, 3]
+attachments/0/point_index = 1
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 69
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 21
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 49
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 7
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 63
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 43
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 15
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 3
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1655, 0)
+mesh = SubResource("BoxMesh_afoyx")
