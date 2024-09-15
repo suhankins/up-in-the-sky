@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://imxa5lf8mfxt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgbj6"]
+shading_mode = 0
+albedo_color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5sat"]
+material = SubResource("StandardMaterial3D_hgbj6")
+size = Vector3(1, 1.401, 1)
+
+[node name="DarkCube" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.701, 0)
+mesh = SubResource("BoxMesh_t5sat")

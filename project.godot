@@ -78,6 +78,7 @@ crouch={
 3d_physics/layer_2="CoverMarkers"
 3d_physics/layer_3="VisibilityBlockers"
 3d_physics/layer_4="Enemy hitboxes"
+3d_physics/layer_5="Non-blocking but pushable objects"
 
 [rendering]
 

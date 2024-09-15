@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://biove6a0nl0m5"]
+
+[ext_resource type="PackedScene" uid="uid://dt0m03xjara0e" path="res://models/architecture/wall_window.gltf" id="1_o3mn2"]
+[ext_resource type="ArrayMesh" uid="uid://dpw5rk5dow85b" path="res://models/architecture/wall_window_glass.tres" id="2_3ryxo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lvyun"]
+size = Vector3(1, 0.1, 1.4)
+
+[node name="WallWindow" type="Node3D"]
+
+[node name="wall_window" parent="." instance=ExtResource("1_o3mn2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="Layer_2" parent="wall_window/Node" index="1"]
+cast_shadow = 0
+mesh = ExtResource("2_3ryxo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.7, 0.5)
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_lvyun")
+
+[editable path="wall_window"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=41 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="3_1d61s"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_77uw5"]
 [ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="4_7i6b4"]
+[ext_resource type="PackedScene" uid="uid://361lrfpepd2u" path="res://models/effects/bullet_softbody_pusher.tscn" id="4_pnsh8"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="7_x6ayr"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="8_hvx6b"]
 [ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="9_fjsai"]
@@ -47,6 +48,7 @@ current_ammo = 16
 damage = 0.5
 tracer_scene = ExtResource("4_7i6b4")
 bullethole_scene = ExtResource("2_dn7nm")
+softbody_pusher_scene = ExtResource("4_pnsh8")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qo6oi"]
 radius = 0.175
@@ -89,6 +91,20 @@ collision_mask = 4
 hit_from_inside = true
 debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
 
+[node name="ShootingRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+hit_from_inside = true
+debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
+
+[node name="PushingRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
+enabled = false
+target_position = Vector3(0, 0, -1)
+collision_mask = 16
+debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
+
 [node name="CoverDetection" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -100,7 +116,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@91510")
+blackboard = NodePath("@Node@59954")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]

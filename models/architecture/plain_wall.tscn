@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://de0uem2jk67iw"]
+
+[ext_resource type="PackedScene" uid="uid://dbpavwvysoerw" path="res://models/architecture/plain_wall.gltf" id="1_twuyu"]
+
+[node name="PlainWall" type="Node3D"]
+
+[node name="plain_wall" parent="." instance=ExtResource("1_twuyu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

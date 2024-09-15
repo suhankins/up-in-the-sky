@@ -2,9 +2,12 @@ extends AnimatableCharacter
 class_name EnemyNPC
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var vision_raycast: RayCast3D = $VisionRaycast
 @onready var player: Player = get_tree().get_nodes_in_group('player')[0]
 @onready var cover_detection: Area3D = $CoverDetection
+
+@onready var vision_raycast: RayCast3D = $VisionRaycast
+@onready var shooting_raycast: RayCast3D = $ShootingRaycast
+@onready var pushing_raycast: RayCast3D = $PushingRaycast
 
 @onready var standing_collision: CollisionShape3D = $StandingCollision
 @onready var crouching_collision: CollisionShape3D = $CrouchingCollision
@@ -39,8 +42,7 @@ var dead: bool = false
 
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
-	if not blackboard:
-		push_error("No blackboard set!")
+	assert(blackboard != null, "No blackboard set")
 	behavior_tree.blackboard = blackboard
 	await get_tree().process_frame
 	var list_of_npcs = blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).duplicate()
@@ -184,25 +186,43 @@ func shoot() -> int:
 
 	play_fire_animation()
 
-	vision_raycast.target_position = weapon.apply_spread_to_target(vision_raycast.to_local(aim_target.get_position_to_shoot_at()), aim_target.get_spread_modifier()) * 20.0
-	vision_raycast.force_raycast_update()
+	shooting_raycast.target_position = weapon.apply_spread_to_target(shooting_raycast.to_local(aim_target.get_position_to_shoot_at()), aim_target.get_spread_modifier()) * 20.0
+	pushing_raycast.target_position = shooting_raycast.target_position
+	shooting_raycast.force_raycast_update()
+	pushing_raycast.force_raycast_update()
 
-	var collided_with = vision_raycast.get_collider()
+	handle_pushing_raycast()
+	return handle_shooting_raycast()
+
+
+func handle_shooting_raycast() -> int:
+	var collided_with = shooting_raycast.get_collider()
 
 	if not collided_with:
 		weapon.spawn_tracer(barrel_end)
 		return BeehaveNode.SUCCESS
 
-	var collision_position: Vector3 = vision_raycast.get_collision_point()
-	var collision_normal: Vector3 = vision_raycast.get_collision_normal()
+	var collision_position: Vector3 = shooting_raycast.get_collision_point()
+	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
 	if collided_with.is_in_group('player'):
 		collided_with.take_damage(weapon.damage)
-	else:
+	elif collided_with is StaticBody3D:
 		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
 
 	return BeehaveNode.SUCCESS
+
+
+func handle_pushing_raycast():
+	var collided_with = pushing_raycast.get_collider()
+
+	if not collided_with:
+		return
+
+	if collided_with is SoftBody3D:
+		weapon.spawn_softbody_pusher(collided_with, pushing_raycast.get_collision_point(), self)
+
 
 func take_damage(damage_taken: float):
 	health -= damage_taken

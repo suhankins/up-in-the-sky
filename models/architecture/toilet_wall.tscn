@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr4w4xrdhysoa"]
+
+[ext_resource type="PackedScene" uid="uid://dd7xm5niux77e" path="res://models/architecture/toilet_wall.gltf" id="1_k46pn"]
+
+[node name="ToiletWall" type="Node3D"]
+
+[node name="toilet_wall" parent="." instance=ExtResource("1_k46pn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

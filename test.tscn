@@ -18,12 +18,12 @@ sky_horizon_color = Color(0.731523, 0.766686, 0.81461, 1)
 ground_bottom_color = Color(0.384314, 0.454902, 0.54902, 1)
 ground_horizon_color = Color(0.731523, 0.766686, 0.81461, 1)
 
-[sub_resource type="Sky" id="Sky_84a41"]
+[sub_resource type="Sky" id="Sky_r74p0"]
 sky_material = SubResource("ProceduralSkyMaterial_snk0t")
 
 [sub_resource type="Environment" id="Environment_uafjj"]
 background_mode = 2
-sky = SubResource("Sky_84a41")
+sky = SubResource("Sky_r74p0")
 tonemap_mode = 2
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ry6yb"]
