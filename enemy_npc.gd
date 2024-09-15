@@ -37,8 +37,8 @@ var aim_target: AimTarget = null
 var dead: bool = false
 
 @export var patrol_points: Array[Node3D] = []
-
 @export var blackboard: NPCBlackboard
+var was_just_shot: bool = false
 
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
@@ -225,9 +225,13 @@ func handle_pushing_raycast():
 
 
 func take_damage(damage_taken: float):
+	was_just_shot = true
 	health -= damage_taken
 	if health <= 0 and not dead:
 		self.die()
+	await get_tree().process_frame
+	was_just_shot = false
+
 
 func die():
 	blackboard.set_value(
@@ -242,14 +246,18 @@ func die():
 	standing_collision.queue_free()
 	navigation_agent.queue_free()
 
+
 func sees_player() -> bool:
 	return VisionHelper.sees_player(vision_raycast, player)
+
 
 func is_crouching() -> bool:
 	return should_crouch
 
+
 func _on_reload_cooldown_timeout() -> void:
 	self.weapon.refill_magazine()
+
 
 func play_look_around_animation() -> int:
 	if animation_timer.is_stopped():
