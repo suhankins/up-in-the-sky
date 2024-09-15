@@ -31,13 +31,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115075, -0.0132726, 0.1150
 shape = SubResource("BoxShape3D_ll5qn")
 
 [node name="DuckCover" parent="." instance=ExtResource("2_6wawk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339, 0, 0.373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205036, 0, 0.373)
 
 [node name="DuckCover2" parent="." instance=ExtResource("2_6wawk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.339, 0, -0.372991)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.205036, 0, -0.372991)
 
 [node name="DuckCover3" parent="." instance=ExtResource("2_6wawk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.339, 0, 0.373)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.252718, 0, 0.373)
 
 [node name="DuckCover4" parent="." instance=ExtResource("2_6wawk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.339, 0, -0.372991)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.252718, 0, -0.372991)
