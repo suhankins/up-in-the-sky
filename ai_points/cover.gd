@@ -10,23 +10,35 @@ class_name Cover
 ## Max distance between position and closest navmesh point
 @export var outside_threshold: float = 0.05
 
-func _is_on_navmesh():
-	var closest_point = NavigationServer3D.map_get_closest_point(get_world_3d().navigation_map, global_position)
-	if VectorHelper.get_with_y(closest_point).distance_to(VectorHelper.get_with_y(global_position)) < outside_threshold:
+
+func _is_on_navmesh() -> bool:
+	var closest_point = NavigationServer3D.map_get_closest_point(
+		get_world_3d().navigation_map, global_position
+	)
+	if (
+		VectorHelper.get_with_y(closest_point).distance_to(VectorHelper.get_with_y(global_position))
+		< outside_threshold
+	):
 		return true
 	return false
+
 
 func _ready() -> void:
 	raycast.enabled = false
 	await get_tree().process_frame
 	if not _is_on_navmesh():
-		print_debug('Outside of navmesh, deleting ', self.global_position)
+		print_debug("Outside of navmesh, deleting ", self.global_position)
 		self.queue_free()
 
-func is_safe_from_vector(vector: Vector3):
+
+func is_safe_from_vector(vector: Vector3) -> bool:
+	if vector == null:
+		return true
 	if requires_crouching and vector.distance_to(self.global_position) < unsafe_distance:
 		return false
-	var cover_to_player_direction = VectorHelper.get_with_y(self.global_position).direction_to(VectorHelper.get_with_y(vector))
+	var cover_to_player_direction = VectorHelper.get_with_y(self.global_position).direction_to(
+		VectorHelper.get_with_y(vector)
+	)
 	var direction = Vector3(sin(self.global_rotation.y), 0, cos(self.global_rotation.y))
 	var dot_product = cover_to_player_direction.dot(direction)
 	if dot_product > safe_angle:
