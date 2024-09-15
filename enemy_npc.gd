@@ -60,6 +60,8 @@ func _physics_process(_delta: float) -> void:
 		return
 	animate_legs()
 	update_animation_alert_state()
+	velocity = Vector3.ZERO
+
 
 func get_sort_by_distance(to: Vector3 = self.global_position):
 	return func sort_by_distance(a: Node3D, b: Node3D):
@@ -161,6 +163,7 @@ func set_aim_target_to_player() -> void:
 
 func reset_aim_target() -> void:
 	self.aim_target = null
+
 
 func reload() -> int:
 	if self.reload_cooldown.is_stopped():
