@@ -14,7 +14,8 @@ size = Vector3(1, 0.075, 0.075)
 [node name="SoftBody3D" type="SoftBody3D" parent="."]
 transform = Transform3D(9.55343e-16, 2.18557e-08, 0.7, 0.5, -2.18557e-08, 1.27027e-22, 2.18557e-08, 0.5, -3.0598e-08, 0, 0.648134, -0.0177176)
 mesh = ExtResource("1_cj5wj")
-collision_layer = 20
+collision_layer = 16
+collision_mask = 9
 simulation_precision = 3
 pinned_points = [1, 69, 21, 49, 7, 63, 43, 15, 3]
 attachments/0/point_index = 1
