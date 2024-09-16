@@ -45,7 +45,6 @@ _subresources={
 },
 "nodes": {
 "PATH:Node/Layer_1": {
-"mesh_instance/layers": 5,
 "physics/shape_type": 1
 }
 }
