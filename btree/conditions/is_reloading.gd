@@ -1,7 +1,7 @@
-class_name SeesPlayer extends ConditionLeaf
+class_name IsReloading extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if actor.sees_player():
+	if actor.is_reloading():
 		return SUCCESS
 	return FAILURE

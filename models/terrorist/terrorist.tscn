@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cacsynjusl76n"]
+[gd_scene load_steps=75 format=3 uid="uid://cacsynjusl76n"]
 
 [ext_resource type="Material" uid="uid://jvy2bok6mmpo" path="res://models/terrorist/shirt.tres" id="1_5yia2"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_2mfnx"]
@@ -801,6 +801,82 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, -0.349066, 0), Vector3(0, -0.349066, 0), Vector3(0, 0.349066, 0), Vector3(0, 0.349066, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_olk6o"]
+resource_name = "point_at"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Torso/LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.633333, 0.7, 0.9),
+"transitions": PackedFloat32Array(2.63902, 2.63902, 1, 1),
+"update": 0,
+"values": [Vector3(0.872665, -0.174533, 0), Vector3(1.5708, 0.349066, 0), Vector3(1.6057, 0.349066, 0), Vector3(1.5708, 0.349066, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Torso/RightArm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.17, 0.2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Torso/RightArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.698132, 0.698132, 0), Vector3(0.523599, 0.698132, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Torso/RightArm/Gun:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.0472, -0.349066, -0.872665), Vector3(0.3927, -0.1309, -0.327249)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Torso:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(2.54912, 2.54912),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.349066, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Torso/Head:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.633333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.349066, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0r2bx"]
 _data = {
 "RESET": SubResource("Animation_f0bf8"),
@@ -812,6 +888,7 @@ _data = {
 "hands_rifle_reload": SubResource("Animation_4amtc"),
 "look_around": SubResource("Animation_e3hmv"),
 "no_footsteps": ExtResource("11_rla0a"),
+"point_at": SubResource("Animation_olk6o"),
 "walk_crouch_forward": ExtResource("12_kxqyo"),
 "walk_crouch_idle": ExtResource("13_t4g3r"),
 "walk_crouch_left": ExtResource("14_ena04"),
@@ -823,6 +900,9 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_cx6vc"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_do0n4"]
+animation = &"point_at"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s83ef"]
 animation = &"die"
@@ -925,6 +1005,20 @@ animation = &"look_around"
 filter_enabled = true
 filters = ["Torso/Head:rotation"]
 
+[sub_resource type="Curve" id="Curve_myxpj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_841yb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6hmdj"]
+fadein_time = 0.2
+fadein_curve = SubResource("Curve_myxpj")
+fadeout_time = 0.4
+fadeout_curve = SubResource("Curve_841yb")
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_223mg"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h85d7"]
@@ -955,13 +1049,15 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_qhtgj")
 blend_point_4/pos = Vector2(0, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_q5xqj"]
-graph_offset = Vector2(590.022, 262.706)
+graph_offset = Vector2(172.629, 164.119)
 "nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_cx6vc")
-"nodes/Add2 2/position" = Vector2(1020, 300)
+"nodes/Add2 2/position" = Vector2(1420, 320)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_s83ef")
-nodes/Animation/position = Vector2(1040, 540)
+nodes/Animation/position = Vector2(1440, 560)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_do0n4")
+"nodes/Animation 2/position" = Vector2(640, 580)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_5eckd")
-nodes/Blend2/position = Vector2(480, 340)
+nodes/Blend2/position = Vector2(580, 340)
 nodes/Transition/node = SubResource("AnimationNodeTransition_p1pxw")
 nodes/Transition/position = Vector2(180, 420)
 nodes/alert_state/node = SubResource("AnimationNodeTransition_n0tni")
@@ -969,11 +1065,11 @@ nodes/alert_state/position = Vector2(280, 80)
 nodes/crouch_blend_space/node = SubResource("AnimationNodeBlendSpace2D_x3s3u")
 nodes/crouch_blend_space/position = Vector2(-240, 700)
 nodes/die/node = SubResource("AnimationNodeBlend2_isq86")
-nodes/die/position = Vector2(1300, 300)
+nodes/die/position = Vector2(1700, 320)
 nodes/fire_gun/node = SubResource("AnimationNodeOneShot_vsos5")
 nodes/fire_gun/position = Vector2(-240, -180)
 nodes/footstep_blend_space/node = SubResource("AnimationNodeBlendSpace1D_36147")
-nodes/footstep_blend_space/position = Vector2(760, 560)
+nodes/footstep_blend_space/position = Vector2(1160, 580)
 "nodes/hands patrol/node" = SubResource("AnimationNodeAnimation_tx4wr")
 "nodes/hands patrol/position" = Vector2(20, 200)
 nodes/hands_fire/node = SubResource("AnimationNodeAnimation_h75vl")
@@ -983,15 +1079,17 @@ nodes/hands_idle/position = Vector2(-500, -280)
 nodes/hands_reload/node = SubResource("AnimationNodeAnimation_gcygt")
 nodes/hands_reload/position = Vector2(-240, 100)
 "nodes/look around 2/node" = SubResource("AnimationNodeAnimation_jtq2v")
-"nodes/look around 2/position" = Vector2(480, 580)
+"nodes/look around 2/position" = Vector2(920, 580)
 nodes/look_around/node = SubResource("AnimationNodeOneShot_vti70")
-nodes/look_around/position = Vector2(740, 300)
-nodes/output/position = Vector2(1580, 300)
+nodes/look_around/position = Vector2(1140, 320)
+nodes/output/position = Vector2(1980, 320)
+nodes/point/node = SubResource("AnimationNodeOneShot_6hmdj")
+nodes/point/position = Vector2(840, 320)
 nodes/reload/node = SubResource("AnimationNodeOneShot_223mg")
 nodes/reload/position = Vector2(20, -120)
 nodes/walk_blend_space/node = SubResource("AnimationNodeBlendSpace2D_5gdit")
 nodes/walk_blend_space/position = Vector2(-240, 480)
-node_connections = [&"Add2 2", 0, &"look_around", &"Add2 2", 1, &"footstep_blend_space", &"Blend2", 0, &"alert_state", &"Blend2", 1, &"Transition", &"Transition", 0, &"walk_blend_space", &"Transition", 1, &"crouch_blend_space", &"alert_state", 0, &"reload", &"alert_state", 1, &"hands patrol", &"die", 0, &"Add2 2", &"die", 1, &"Animation", &"fire_gun", 0, &"hands_idle", &"fire_gun", 1, &"hands_fire", &"look_around", 0, &"Blend2", &"look_around", 1, &"look around 2", &"output", 0, &"die", &"reload", 0, &"fire_gun", &"reload", 1, &"hands_reload"]
+node_connections = [&"Add2 2", 0, &"look_around", &"Add2 2", 1, &"footstep_blend_space", &"Blend2", 0, &"alert_state", &"Blend2", 1, &"Transition", &"Transition", 0, &"walk_blend_space", &"Transition", 1, &"crouch_blend_space", &"alert_state", 0, &"reload", &"alert_state", 1, &"hands patrol", &"die", 0, &"Add2 2", &"die", 1, &"Animation", &"fire_gun", 0, &"hands_idle", &"fire_gun", 1, &"hands_fire", &"look_around", 0, &"point", &"look_around", 1, &"look around 2", &"output", 0, &"die", &"point", 0, &"Blend2", &"point", 1, &"Animation 2", &"reload", 0, &"fire_gun", &"reload", 1, &"hands_reload"]
 
 [node name="Terrorist" type="Node3D"]
 
@@ -1098,23 +1196,26 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_q5xqj")
 anim_player = NodePath("../AnimationPlayer")
-"parameters/Add2 2/add_amount" = 0
+"parameters/Add2 2/add_amount" = 1.0
 parameters/Blend2/blend_amount = 1.0
 parameters/Transition/current_state = "standing"
 parameters/Transition/transition_request = ""
 parameters/Transition/current_index = 0
-parameters/alert_state/current_state = "patrol"
+parameters/alert_state/current_state = "alert"
 parameters/alert_state/transition_request = ""
-parameters/alert_state/current_index = 1
+parameters/alert_state/current_index = 0
 parameters/crouch_blend_space/blend_position = Vector2(0, 0)
 parameters/die/blend_amount = 0.0
 parameters/fire_gun/active = false
 parameters/fire_gun/internal_active = false
 parameters/fire_gun/request = 0
-parameters/footstep_blend_space/blend_position = -0.00370371
+parameters/footstep_blend_space/blend_position = 0.0
 parameters/look_around/active = false
 parameters/look_around/internal_active = false
 parameters/look_around/request = 0
+parameters/point/active = false
+parameters/point/internal_active = false
+parameters/point/request = 0
 parameters/reload/active = false
 parameters/reload/internal_active = false
 parameters/reload/request = 0
@@ -1132,5 +1233,5 @@ volume_db = -2.0
 unit_size = 2.0
 
 [node name="FootstepAudioPlayer" type="AudioStreamPlayer3D" parent="."]
-volume_db = -15.0
+volume_db = -20.0
 unit_size = 1.0

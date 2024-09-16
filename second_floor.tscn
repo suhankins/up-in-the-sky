@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clme7n1b515du"]
+[gd_scene load_steps=21 format=3 uid="uid://clme7n1b515du"]
 
 [ext_resource type="PackedScene" uid="uid://cu5vf4uu5rhin" path="res://models/architecture/floor_carpet.gltf" id="1_jmk8n"]
 [ext_resource type="PackedScene" uid="uid://biove6a0nl0m5" path="res://models/architecture/wall_window.tscn" id="2_a46y5"]
@@ -12,6 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://cy82ijo7jg1u0" path="res://models/architecture/curtains.tscn" id="9_e3e78"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="11_a5oqp"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="12_rw3oo"]
+[ext_resource type="PackedScene" uid="uid://twf8ivriie2b" path="res://ai_points/patrol_point.tscn" id="13_4fjuj"]
+[ext_resource type="PackedScene" uid="uid://dpahxmdk1u5af" path="res://ai_points/flank_point.tscn" id="14_ju5v2"]
+[ext_resource type="PackedScene" uid="uid://p7ajyx361158" path="res://ai_points/flank_area.tscn" id="15_6di3t"]
+[ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://ai_points/full_body_cover.tscn" id="16_jhnx6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jv8up"]
 vertices = PackedVector3Array(1.4, 0.07, 1.95, 1.3, 0.07, 2.4, 1.45, 0.07, 2.25, -0.2, 0.07, -1.6, -0.25, 0.07, -1.45, -0.25, 0.07, -1.15, 0.8, 0.07, -1.15, 0.8, 0.07, -1.6, 1.25, 0.07, -2.2, 1.4, 0.07, -2.35, 0.8, 0.07, -2.35, 0.95, 0.07, -2.2, 3.2, 0.07, 1.15, 4.25, 0.07, 1.15, 4.25, 0.07, 0.75, 3.2, 0.07, 0.75, 0.95, 0.07, -1, 1.25, 0.07, -1, 0.8, 0.07, -0.0500002, 0.95, 0.07, 0.0999999, 1.25, 0.07, 0.0999999, 0.8, 0.07, 1.15, 0.95, 0.07, 1.3, 1.25, 0.07, 1.3, 3.05, 0.07, -2.2, 3.2, 0.07, -2.35, 2.55, 0.07, -2.35, 2.7, 0.07, -2.2, 3.05, 0.07, 1.3, 1.25, 0.07, -1.75, 0.95, 0.07, -1.75, 0.55, 0.07, 3.8, -0.25, 0.07, 3.8, -0.2, 0.07, 5.3, 1.4, 0.07, -1.6, 3.05, 0.07, -1.75, 2.7, 0.07, -1.75, 2.55, 0.07, 1.95, 2.6, 0.07, 2.25, 3.2, 0.07, -1.6, 2.55, 0.07, -1.6, 3.05, 0.07, -1, 3.2, 0.07, -1.15, 1.25, 0.07, 1.8, 0.95, 0.07, 1.8, 2.75, 0.07, 2.4, 2.7, 0.07, 1.8, 0.8, 0.07, 1.95, 0.75, 0.07, 2.4, 1.25, 0.07, -0.5, 0.95, 0.07, -0.5, 2.7, 0.07, -0.5, 2.55, 0.07, -0.35, 2.55, 0.07, -0.0500002, 1.4, 0.07, -0.35, 1.25, 0.07, 0.6, 0.95, 0.07, 0.6, 3.05, 0.07, 1.8, 2.7, 0.07, 1.3, 1.4, 0.07, 0.75, 3.05, 0.07, 0.6, 3.05, 0.07, 0.0999999, 2.7, 0.07, 0.0999999, 2.7, 0.07, 0.6, 1.4, 0.07, -1.15, 3.05, 0.07, -0.5, 2.7, 0.07, -1, 1.4, 0.07, -0.0500002, 0.8, 0.07, -0.35, 4.25, 0.07, 5.3, 4.25, 0.07, 3.8, 3.45, 0.07, 3.8, 1.4, 0.07, 1.15, 0.8, 0.07, 0.75, 1.45, 0.07, 3.8, 1.3, 0.07, 3.65, 0.75, 0.07, 3.6, 3.2, 0.07, -0.35, 3.45, 0.07, 2.25, 4.25, 0.07, 2.25, 4.25, 0.07, 1.95, 3.2, 0.07, 1.95, 2.55, 0.07, 1.15, 3.3, 0.07, 2.4, 4.25, 0.07, -1.15, 4.25, 0.07, -1.6, -0.25, 0.07, 1.95, -0.2, 0.07, 2.25, 0.6, 0.07, 2.25, 2.75, 0.07, 3.6, 2.55, 0.07, 3.8, 3.3, 0.07, 3.65, 2.55, 0.07, -1.15, -0.25, 0.07, 0.75, -0.2, 0.07, 1.15, 2.55, 0.07, 0.75, 3.2, 0.07, -0.0500002, 4.25, 0.07, -0.0500002, 4.25, 0.07, -0.35, -0.25, 0.07, -0.35, -0.25, 0.07, -0.0500002)
@@ -285,7 +289,7 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.95, 0,
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.05, 0, 3)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_j7b24")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144388, 0.05, 4.3864)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01708, 0.05, 4.3864)
 camera = NodePath("../SmoothCamera/Camera")
 
 [node name="SmoothCamera" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("5_0hc7r")]
@@ -306,9 +310,78 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3.48022)
 [node name="Curtains2" parent="." instance=ExtResource("9_e3e78")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3.48022)
 
-[node name="TerroristNPC" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("11_a5oqp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07649, 0.0500001, 1.03715)
-blackboard = NodePath("../NPCBlackboard")
-
 [node name="NPCBlackboard" type="Node" parent="."]
 script = ExtResource("12_rw3oo")
+
+[node name="TerroristNPC" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("11_a5oqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07649, 0.0500001, 1.03715)
+patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+blackboard = NodePath("../NPCBlackboard")
+
+[node name="TerroristNPC2" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("11_a5oqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07815, 0.0500001, -1.37632)
+patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+blackboard = NodePath("../NPCBlackboard")
+
+[node name="TerroristNPC3" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("11_a5oqp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86991, 0.0500003, -1.32644)
+patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint2"), NodePath("../PatrolPoint3"), NodePath("../PatrolPoint4")]
+blackboard = NodePath("../NPCBlackboard")
+
+[node name="PatrolPoint" parent="." instance=ExtResource("13_4fjuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.79598, 0.0500001, 2.17328)
+
+[node name="PatrolPoint2" parent="." instance=ExtResource("13_4fjuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.797164, 0.0499999, 2.21549)
+
+[node name="PatrolPoint3" parent="." instance=ExtResource("13_4fjuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06015, 0.0500001, -1.41521)
+
+[node name="PatrolPoint4" parent="." instance=ExtResource("13_4fjuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.90719, 0.0500001, -1.46543)
+
+[node name="FlankPoint" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00767, 0.0500001, 4.15486)
+flank_area = NodePath("../FlankArea2")
+
+[node name="FlankArea2" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 0.808689, 0.0500001, 4.17439)
+
+[node name="FlankPoint2" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945636, 0.0500001, 4.03513)
+flank_area = NodePath("../FlankArea")
+
+[node name="FlankArea" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 3.20057, 0.0500001, 4.17439)
+
+[node name="FlankPoint3" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03292, 0.0500001, 2.07083)
+flank_area = NodePath("../FlankArea3")
+
+[node name="FlankArea3" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 3.20057, 0.0500001, 1.65906)
+
+[node name="FlankPoint4" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97896, 0.0500001, 2.08255)
+flank_area = NodePath("../FlankArea4")
+
+[node name="FlankArea4" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 0.808689, 0.0500001, 1.65906)
+
+[node name="FullBodyCover" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.85303, 0.0500001, 2.17531)
+
+[node name="FullBodyCover2" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.0259, 0.0500001, 2.17531)
+
+[node name="FullBodyCover3" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.00255895, 0.0500001, 2.17531)
+
+[node name="FullBodyCover4" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.85303, 0.0500001, 3.84344)
+
+[node name="FullBodyCover5" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0259, 0.0500001, 3.84344)
+
+[node name="FullBodyCover6" parent="." instance=ExtResource("16_jhnx6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00255895, 0.0500001, 3.84344)

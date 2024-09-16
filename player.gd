@@ -88,10 +88,12 @@ func update_collision():
 	crouching_collision.disabled = not is_crouching()
 
 
+func get_raycast_position() -> Vector3:
+	return (crouching_raycast_origin if is_crouching() else standing_raycast_origin).position
+
+
 func move_aim():
-	shooting_raycast.position = (
-		(crouching_raycast_origin if is_crouching() else standing_raycast_origin).position
-	)
+	shooting_raycast.position = get_raycast_position()
 	if not shooting_raycast.get_collider():
 		cursor.hide()
 		return

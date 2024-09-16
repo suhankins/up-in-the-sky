@@ -15,9 +15,6 @@ class_name EnemyNPC
 @onready var fire_cooldown: Timer = $FireCooldown
 @onready var reload_cooldown: Timer = $ReloadCooldown
 
-@onready var animation_timer: Timer = $AnimationTimer
-var animation_is_done = false
-
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
 
 @export var crouch_speed: float = 0.75
@@ -58,6 +55,7 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if dead:
 		return
+	sees_player()
 	animate_legs()
 	update_animation_alert_state()
 	velocity = Vector3.ZERO
@@ -165,6 +163,10 @@ func reset_aim_target() -> void:
 	self.aim_target = null
 
 
+func is_reloading() -> bool:
+	return not self.reload_cooldown.is_stopped()
+
+
 func reload() -> int:
 	if self.reload_cooldown.is_stopped():
 		if weapon.is_magazine_full():
@@ -251,7 +253,14 @@ func die():
 
 
 func sees_player() -> bool:
-	return VisionHelper.sees_player(vision_raycast, player)
+	if VisionHelper.sees_player(vision_raycast, player):
+		blackboard.set_value(
+			NPCBlackboard.LAST_PLAYER_POSITION,
+			VectorHelper.get_with_y(player.global_position, player.get_raycast_position().y)
+		)
+		return true
+	return false
+
 
 
 func is_crouching() -> bool:
@@ -260,20 +269,3 @@ func is_crouching() -> bool:
 
 func _on_reload_cooldown_timeout() -> void:
 	self.weapon.refill_magazine()
-
-
-func play_look_around_animation() -> int:
-	if animation_timer.is_stopped():
-		if animation_is_done:
-			animation_is_done = false
-			return BeehaveNode.SUCCESS
-		animation_timer.start(4.0)
-		animation_tree.set('parameters/look_around/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	return BeehaveNode.RUNNING
-
-func cancel_look_around_animation() -> void:
-	animation_tree.set('parameters/look_around/request', AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
-	animation_timer.stop()
-
-func _on_animation_timer_timeout() -> void:
-	animation_is_done = true
