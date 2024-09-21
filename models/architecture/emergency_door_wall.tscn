@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://buf27nhgsyhrg"]
+
+[ext_resource type="PackedScene" uid="uid://hg43ajd2n3jc" path="res://models/architecture/emergency_door_wall.gltf" id="1_q1hlp"]
+[ext_resource type="ArrayMesh" uid="uid://dpw5rk5dow85b" path="res://models/architecture/wall_window_glass.tres" id="2_yeeel"]
+
+[node name="emergency_door_wall" instance=ExtResource("1_q1hlp")]
+
+[node name="Node" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0.5)
+
+[node name="Layer_2" parent="Node" index="1"]
+mesh = ExtResource("2_yeeel")

@@ -8,6 +8,8 @@ func _ready() -> void:
 
 
 func is_valid_flank_for_player_position(vector: Vector3):
+	if vector == null:
+		return false
 	return (
 		vector.x > flank_area.global_position.x - flank_area.scale.x / 2.0
 		and vector.x < flank_area.global_position.x + flank_area.scale.x / 2.0

@@ -11,11 +11,15 @@ signal reload_started
 @export var bullet_distance = 20.0
 @export var reload_time: float = 1.0
 @export var max_ammo: int = 7
-@export var current_ammo: int = 7
+var current_ammo: int = self.max_ammo
 @export var damage: float = 1.0
 @export var tracer_scene: PackedScene
 @export var bullethole_scene: PackedScene
 @export var softbody_pusher_scene: PackedScene
+
+
+func is_magazine_empty() -> bool:
+	return current_ammo == 0
 
 
 func is_magazine_full() -> bool:
@@ -31,6 +35,7 @@ func refill_magazine() -> void:
 
 
 func spend_bullet() -> bool:
+	print_debug(current_ammo)
 	if current_ammo > 0:
 		current_ammo -= 1
 		bullet_spent.emit(current_ammo, max_ammo)

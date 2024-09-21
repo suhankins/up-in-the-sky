@@ -1,7 +1,7 @@
-class_name WasJustShot extends ConditionLeaf
+class_name IsMagazineFull extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if actor.was_just_shot:
+	if actor.weapon.is_magazine_full():
 		return SUCCESS
 	return FAILURE

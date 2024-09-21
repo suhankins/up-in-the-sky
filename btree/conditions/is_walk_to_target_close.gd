@@ -4,7 +4,6 @@ class_name IsWalkToTargetClose extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard) -> int:
-	print_debug("distance to target ", actor.navigation_agent.distance_to_target())
 	if actor.navigation_agent.distance_to_target() <= close_threshold:
 		return SUCCESS
 	return FAILURE

@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="up in the sky"
+run/main_scene="res://second_floor.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -32,6 +33,7 @@ duck_cover=""
 stand_cover=""
 enemy=""
 flanks=""
+pull_out_cart_points=""
 
 [input]
 

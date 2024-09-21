@@ -12,7 +12,7 @@ size = Vector3(1, 0.075, 0.075)
 [node name="Curtains" type="Node3D"]
 
 [node name="SoftBody3D" type="SoftBody3D" parent="."]
-transform = Transform3D(9.55343e-16, 2.18557e-08, 0.7, 0.5, -2.18557e-08, 1.27027e-22, 2.18557e-08, 0.5, -3.0598e-08, 0, 0.648134, -0.0177176)
+transform = Transform3D(9.55343e-16, 2.18557e-08, 0.65, 0.5, -2.18557e-08, 1.37591e-22, 2.18557e-08, 0.5, -2.84124e-08, 0, 0.648134, -0.0177176)
 mesh = ExtResource("1_cj5wj")
 collision_layer = 16
 collision_mask = 9

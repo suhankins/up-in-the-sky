@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://u4xjlt0nkurd"]
+
+[ext_resource type="PackedScene" uid="uid://de0uem2jk67iw" path="res://models/architecture/plain_wall.tscn" id="1_qf3pb"]
+[ext_resource type="PackedScene" uid="uid://imxa5lf8mfxt" path="res://models/architecture/dark_cube.tscn" id="2_l1jbq"]
+[ext_resource type="PackedScene" uid="uid://cr4w4xrdhysoa" path="res://models/architecture/toilet_wall.tscn" id="3_4q0r4"]
+
+[node name="ToiletWallBlock" type="Node3D"]
+
+[node name="PlainWall" parent="." instance=ExtResource("1_qf3pb")]
+
+[node name="PlainWall3" parent="." instance=ExtResource("1_qf3pb")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.05, 0, 0)
+
+[node name="PlainWall2" parent="." instance=ExtResource("1_qf3pb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DarkCube" parent="." instance=ExtResource("2_l1jbq")]
+transform = Transform3D(0.94, 0, 0, 0, 1, 0, 0, 0, 0.95, -0.03, 0, 0)
+
+[node name="ToiletWall" parent="." instance=ExtResource("3_4q0r4")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0.95, 0, 0)

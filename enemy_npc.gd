@@ -27,7 +27,8 @@ var move_target: Node3D = null
 
 var aim_target: AimTarget = null
 
-@export var weapon: Weapon
+@export var weapon_template: Weapon
+@onready var weapon: Weapon = self.weapon_template.duplicate()
 @export var barrel_end: Node3D
 
 @export var health: float = 3
@@ -36,6 +37,7 @@ var dead: bool = false
 @export var patrol_points: Array[Node3D] = []
 @export var blackboard: NPCBlackboard
 var was_just_shot: bool = false
+
 
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
@@ -46,11 +48,13 @@ func _ready() -> void:
 	list_of_npcs.append(self)
 	blackboard.set_value(NPCBlackboard.LIST_OF_NPCS, list_of_npcs)
 
+
 func _process(_delta: float) -> void:
 	if dead:
 		return
 	update_collision()
 	update_rotation()
+
 
 func _physics_process(_delta: float) -> void:
 	if dead:
@@ -66,6 +70,8 @@ func get_sort_by_distance(to: Vector3 = self.global_position):
 		return a.global_position.distance_to(to) < b.global_position.distance_to(to)
 
 func find_closest_viable_flank() -> NumberAndNode3DTuple:
+	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION) == null:
+		return NumberAndNode3DTuple.new(INF, null)
 	var flanks = get_tree().get_nodes_in_group('flanks')
 	flanks.sort_custom(get_sort_by_distance())
 	for flank in flanks:
@@ -91,7 +97,11 @@ func get_next_patrol_point() -> Node3D:
 
 func find_closest_safe_cover() -> Cover:
 	var covers = get_tree().get_nodes_in_group('cover')
+	if covers.size() == 0:
+		return null
 	covers.sort_custom(get_sort_by_distance())
+	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION) == null:
+		return covers[0]
 	for cover: Cover in covers:
 		if cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION)):
 			return cover
@@ -134,7 +144,7 @@ func move_to_target(delta: float) -> bool:
 	if distance < get_speed() * delta:
 		self.global_position = destination
 	else:
-		var direction = VectorHelper.get_with_y(destination - global_position).normalized()
+		var direction = VectorHelper.get_direction(global_position, destination)
 		velocity = direction * get_speed()
 		self.global_position += direction * get_speed() * delta
 	return false
@@ -211,7 +221,7 @@ func handle_shooting_raycast() -> int:
 	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	if collided_with.is_in_group('player'):
+	if "take_damage" in collided_with:
 		collided_with.take_damage(weapon.damage)
 	elif collided_with is StaticBody3D:
 		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)

@@ -1,0 +1,243 @@
+[gd_scene load_steps=23 format=3 uid="uid://dnq58wbuvbqk0"]
+
+[ext_resource type="Texture2D" uid="uid://c1a1sspgpted6" path="res://models/architecture/tv/broken_tv.png" id="1_6uaup"]
+[ext_resource type="Script" path="res://models/architecture/tv/tv.gd" id="1_uq4do"]
+[ext_resource type="AudioStream" uid="uid://balos48apqkya" path="res://sfx/sparks.wav" id="2_ulsqd"]
+[ext_resource type="Texture2D" uid="uid://k00nt13224c7" path="res://models/architecture/tv/fixed_tv.png" id="2_wp788"]
+[ext_resource type="AudioStream" uid="uid://3tpgqoytql18" path="res://sfx/glass_crack.wav" id="4_bp8ct"]
+[ext_resource type="Script" path="res://scripts/disable_on_web.gd" id="6_qvq6g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwwlb"]
+size = Vector3(0.825, 0.5, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uq4wu"]
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vru5o"]
+material = SubResource("StandardMaterial3D_uq4wu")
+size = Vector3(0.75, 0.1, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5tlj"]
+albedo_color = Color(1, 0, 0, 1)
+backlight = Color(1, 1, 1, 1)
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_a4avd"]
+material = SubResource("StandardMaterial3D_o5tlj")
+size = Vector3(0.025, 0.025, 0.025)
+
+[sub_resource type="BoxMesh" id="BoxMesh_03usf"]
+material = SubResource("StandardMaterial3D_uq4wu")
+size = Vector3(0.1, 0.6, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33i4o"]
+albedo_texture = ExtResource("1_6uaup")
+metallic = 1.0
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cmhlh"]
+material = SubResource("StandardMaterial3D_33i4o")
+flip_faces = true
+size = Vector2(0.8, 0.4)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2o77s"]
+albedo_texture = ExtResource("2_wp788")
+metallic = 1.0
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qcwm0"]
+material = SubResource("StandardMaterial3D_2o77s")
+flip_faces = true
+size = Vector2(0.8, 0.4)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_pvgmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FixedModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BrokenModel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_d3cjs"]
+resource_name = "break"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FixedModel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BrokenModel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.31,
+"start_offset": 0.0,
+"stream": ExtResource("4_bp8ct")
+}, {
+"end_offset": 0.47,
+"start_offset": 0.0,
+"stream": ExtResource("2_ulsqd")
+}],
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8ruw"]
+_data = {
+"RESET": SubResource("Animation_pvgmu"),
+"break": SubResource("Animation_d3cjs")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_23sty"]
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 0.1, 0.1)
+direction = Vector3(0, 0, -1)
+initial_velocity_max = 1.0
+collision_mode = 1
+collision_friction = 0.4
+collision_bounce = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v7vc"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_623yc"]
+material = SubResource("StandardMaterial3D_1v7vc")
+size = Vector2(0.02, 0.02)
+orientation = 2
+
+[node name="TV" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+script = ExtResource("1_uq4do")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="StaticBody3D"]
+unit_size = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, 0, 0)
+shape = SubResource("BoxShape3D_xwwlb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.877393, 0, 0, 0, 0.856758, 0, 0, 0, 1, -0.00715544, -0.220158, 0)
+mesh = SubResource("BoxMesh_vru5o")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.877393, 0, 0, 0, 0.856758, 0, 0, 0, 1, -0.314389, -0.220158, -0.0218877)
+mesh = SubResource("BoxMesh_a4avd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.877393, 0, 0, 0, 0.856758, 0, 0, 0, 1, -0.00715544, 0.208221, 0)
+mesh = SubResource("BoxMesh_vru5o")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.877393, 0, 0, 0, 0.856758, 0, 0, 0, 1, 0.365737, -0.00596841, 0)
+mesh = SubResource("BoxMesh_03usf")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.877393, 0, 0, 0, 0.856758, 0, 0, 0, 1, -0.380048, -0.00596841, 0)
+mesh = SubResource("BoxMesh_03usf")
+skeleton = NodePath("../..")
+
+[node name="BrokenModel" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00829139, 0, 0)
+mesh = SubResource("PlaneMesh_cmhlh")
+skeleton = NodePath("../..")
+
+[node name="FixedModel" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00829139, 0, 0)
+mesh = SubResource("PlaneMesh_qcwm0")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StaticBody3D"]
+libraries = {
+"": SubResource("AnimationLibrary_f8ruw")
+}
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0669884)
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.25
+visibility_aabb = AABB(-0.485601, -20.5892, -1.24632, 1.48833, 20.6741, 1.31333)
+process_material = SubResource("ParticleProcessMaterial_23sty")
+draw_pass_1 = SubResource("PlaneMesh_623yc")
+script = ExtResource("6_qvq6g")

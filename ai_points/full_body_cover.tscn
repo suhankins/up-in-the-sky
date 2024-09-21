@@ -9,25 +9,23 @@ size = Vector3(0.1, 0.558, 0.1)
 
 [node name="FullBodyCover" type="Node3D" groups=["cover", "stand_cover"]]
 script = ExtResource("1_3owfk")
-requires_crouching = null
-unsafe_distance = null
-outside_threshold = null
 
-[node name="FullBodyCover" type="Area3D" parent="."]
+[node name="Collision" type="Area3D" parent="."]
 collision_layer = 2
+collision_mask = 0
 input_ray_pickable = false
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FullBodyCover"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274, 0)
 shape = SubResource("BoxShape3D_x1npx")
 
-[node name="Direction" parent="FullBodyCover" instance=ExtResource("2_ue5b7")]
+[node name="Direction" parent="Collision" instance=ExtResource("2_ue5b7")]
 axis = 1
 billboard = 0
 texture = ExtResource("3_ijo7n")
 
-[node name="DebugIcon" parent="FullBodyCover" instance=ExtResource("2_ue5b7")]
+[node name="DebugIcon" parent="Collision" instance=ExtResource("2_ue5b7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

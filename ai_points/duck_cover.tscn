@@ -11,29 +11,27 @@ size = Vector3(0.1, 0.445, 0.1)
 [node name="DuckCover" type="Node3D" groups=["cover", "duck_cover"]]
 script = ExtResource("1_udsdi")
 requires_crouching = true
-unsafe_distance = null
-outside_threshold = null
 
-[node name="DuckCoverCollision" type="Area3D" parent="."]
+[node name="Collision" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 0
 input_ray_pickable = false
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DuckCoverCollision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.223, 0)
 shape = SubResource("BoxShape3D_dcfqy")
 
-[node name="DebugIcon" parent="DuckCoverCollision" instance=ExtResource("2_uemkk")]
+[node name="DebugIcon" parent="Collision" instance=ExtResource("2_uemkk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445, 0)
 texture = ExtResource("3_brrgd")
 
-[node name="DebugIcon2" parent="DuckCoverCollision" instance=ExtResource("2_uemkk")]
+[node name="DebugIcon2" parent="Collision" instance=ExtResource("2_uemkk")]
 axis = 1
 billboard = 0
 texture = ExtResource("4_y8nnw")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.445, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 collision_mask = 4
 hit_from_inside = true

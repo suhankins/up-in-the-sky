@@ -189,7 +189,8 @@ func handle_shoot_shooting_raycast():
 	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	if collided_with.is_in_group("enemy"):
+	print_debug(collided_with)
+	if "take_damage" in collided_with:
 		collided_with.take_damage(weapon.damage)
 	elif collided_with is StaticBody3D:
 		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)

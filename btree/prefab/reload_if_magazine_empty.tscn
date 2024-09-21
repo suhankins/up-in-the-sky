@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk54fub1dt41m"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_c7mmn"]
+[ext_resource type="Script" path="res://btree/conditions/is_magazine_empty.gd" id="2_e27ny"]
+[ext_resource type="Script" path="res://btree/actions/reload.gd" id="3_ax3a8"]
+
+[node name="ReloadIfMagazineEmpty" type="Node"]
+script = ExtResource("1_c7mmn")
+
+[node name="IsMagazineEmpty" type="Node" parent="."]
+script = ExtResource("2_e27ny")
+
+[node name="Reload" type="Node" parent="."]
+script = ExtResource("3_ax3a8")
