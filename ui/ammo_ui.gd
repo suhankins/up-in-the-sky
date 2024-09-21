@@ -22,7 +22,7 @@ func _on_player_weapon_reload_started():
 	animation_player.play("reload")
 
 
-func _update_bullet_visiblity(current_ammo: int = 0, max_ammo: int = 0):
+func _update_bullet_visiblity(current_ammo: int = 1, max_ammo: int = 1):
 	magazine_foreground.material.set_shader_parameter("ammo", float(current_ammo) / float(max_ammo))
 	var bullets_to_hide = max_ammo - current_ammo
 	for index in bullets.size():
