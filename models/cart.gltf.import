@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ckgajq8xdkarf"
-path="res://.godot/imported/cart.gltf-fc558a5156735267d468c8600e7bafaa.scn"
+path="res://.godot/imported/cart.gltf-f5c514d9a64d5d53dab8748c335b9fda.scn"
 
 [deps]
 
-source_file="res://models/architecture/cart.gltf"
-dest_files=["res://.godot/imported/cart.gltf-fc558a5156735267d468c8600e7bafaa.scn"]
+source_file="res://models/cart.gltf"
+dest_files=["res://.godot/imported/cart.gltf-f5c514d9a64d5d53dab8748c335b9fda.scn"]
 
 [params]
 

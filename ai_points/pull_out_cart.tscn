@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6vyepcqo51js"]
+
+[ext_resource type="Script" path="res://ai_points/pull_out_cart.gd" id="1_aw020"]
+[ext_resource type="PackedScene" uid="uid://b0qgs3owxsivo" path="res://ai_points/debug_icons/debug_icon.tscn" id="2_r6skx"]
+[ext_resource type="Texture2D" uid="uid://fisvk4qghfv4" path="res://ai_points/debug_icons/cross.png" id="3_7g5fk"]
+[ext_resource type="Texture2D" uid="uid://5jfayc5lohjs" path="res://ai_points/debug_icons/pull_cart.png" id="3_vvj3e"]
+
+[node name="PullOutCartPoint" type="Node3D" groups=["pull_out_cart_points"]]
+script = ExtResource("1_aw020")
+
+[node name="DebugIcon" parent="." instance=ExtResource("2_r6skx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+texture = ExtResource("3_vvj3e")
+
+[node name="Target" parent="." instance=ExtResource("2_r6skx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+axis = 1
+billboard = 0
+texture = ExtResource("3_7g5fk")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvam1xh7k65vn"]
+
+[ext_resource type="PackedScene" uid="uid://ckgajq8xdkarf" path="res://models/cart.gltf" id="1_3ikog"]
+[ext_resource type="Script" path="res://models/cart.gd" id="1_tj38k"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_b1jne"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y2trm"]
+friction = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0c1af"]
+size = Vector3(0.4, 0.15, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cylly"]
+size = Vector3(0.4, 0.05, 0.550488)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b76gn"]
+size = Vector3(0.05, 0.55, 0.55)
+
+[node name="Cart" type="RigidBody3D" node_paths=PackedStringArray("covers")]
+collision_layer = 5
+collision_mask = 9
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_y2trm")
+script = ExtResource("1_tj38k")
+covers = [NodePath("DuckCover"), NodePath("DuckCover2")]
+
+[node name="cart" parent="." instance=ExtResource("1_3ikog")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0.025)
+shape = SubResource("BoxShape3D_0c1af")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.525, 0.025)
+shape = SubResource("BoxShape3D_cylly")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175, 0.275, 0.025)
+shape = SubResource("BoxShape3D_b76gn")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175, 0.275, 0.025)
+shape = SubResource("BoxShape3D_b76gn")
+
+[node name="DuckCover" parent="." instance=ExtResource("2_b1jne")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.440314, 0, 0)
+enabled = false
+
+[node name="DuckCover2" parent="." instance=ExtResource("2_b1jne")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.44, 0, 0)
+enabled = false

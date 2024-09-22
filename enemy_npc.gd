@@ -171,6 +171,9 @@ func set_aim_target_position(vector: Vector3) -> void:
 func set_aim_target_to_player() -> void:
 	self.aim_target = AimTarget.aim_target_from_player(player)
 
+func set_aim_target_node(node: Node3D) -> void:
+	self.aim_target = AimTarget.aim_target_from_node(node)
+
 func reset_aim_target() -> void:
 	self.aim_target = null
 

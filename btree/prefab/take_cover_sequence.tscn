@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://c52qal3o7gqpf"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="1_eqhuk"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="2_n2prs"]
+[ext_resource type="Script" path="res://btree/conditions/in_safe_cover.gd" id="3_pm6gj"]
+[ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_safe_cover.gd" id="4_hi5vn"]
+[ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="5_uxiic"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="6_fxpcf"]
+[ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="7_v36d8"]
+
+[node name="TakeCoverSequence" type="Node"]
+script = ExtResource("1_eqhuk")
+
+[node name="MoveToCover" type="Node" parent="."]
+script = ExtResource("1_eqhuk")
+
+[node name="InverterDecorator" type="Node" parent="MoveToCover"]
+script = ExtResource("2_n2prs")
+
+[node name="InSafeCover" type="Node" parent="MoveToCover/InverterDecorator"]
+script = ExtResource("3_pm6gj")
+
+[node name="SetMoveTargetToClosestSafeCover" type="Node" parent="MoveToCover"]
+script = ExtResource("4_hi5vn")
+
+[node name="MoveToTarget" type="Node" parent="MoveToCover"]
+script = ExtResource("5_uxiic")
+
+[node name="AlwaysSucceedDecorator" type="Node" parent="."]
+script = ExtResource("6_fxpcf")
+
+[node name="CrouchBehindCover" parent="AlwaysSucceedDecorator" instance=ExtResource("7_v36d8")]
