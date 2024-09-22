@@ -13,7 +13,7 @@ class_name Player
 @export var coyote_fire_time: float = 0.1
 
 @export var max_health: float = 5.0
-@export var health: float = max_health
+@onready var health: float = max_health
 # Points per second
 @export var regen_health: float = 2.0
 signal health_changed(current_health: float, max_health: float)
