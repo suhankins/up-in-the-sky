@@ -34,6 +34,8 @@ var aim_target: AimTarget = null
 @export var health: float = 3
 var dead: bool = false
 
+@export var on_damage_effect_scene: PackedScene
+
 @export var patrol_points: Array[Node3D] = []
 @export var blackboard: NPCBlackboard
 var was_just_shot: bool = false
@@ -221,7 +223,9 @@ func handle_shooting_raycast() -> int:
 	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	if "take_damage" in collided_with:
+	if "take_bullet_damage" in collided_with:
+		collided_with.take_bullet_damage(weapon.damage, collision_position)
+	elif "take_damage" in collided_with:
 		collided_with.take_damage(weapon.damage)
 	elif collided_with is StaticBody3D:
 		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)
@@ -237,6 +241,15 @@ func handle_pushing_raycast():
 
 	if collided_with is SoftBody3D:
 		weapon.spawn_softbody_pusher(collided_with, pushing_raycast.get_collision_point(), self)
+
+
+func take_bullet_damage(damage_taken: float, collision_position: Vector3) -> void:
+	print_debug('bullet damage taken')
+	self.take_damage(damage_taken)
+	var instance = on_damage_effect_scene.instantiate()
+	add_child(instance)
+	instance.global_position = collision_position
+	instance.global_rotation.y = PI
 
 
 func take_damage(damage_taken: float):

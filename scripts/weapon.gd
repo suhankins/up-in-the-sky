@@ -35,7 +35,6 @@ func refill_magazine() -> void:
 
 
 func spend_bullet() -> bool:
-	print_debug(current_ammo)
 	if current_ammo > 0:
 		current_ammo -= 1
 		bullet_spent.emit(current_ammo, max_ammo)

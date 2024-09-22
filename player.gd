@@ -190,7 +190,9 @@ func handle_shoot_shooting_raycast():
 
 	weapon.spawn_tracer(barrel_end, collision_position)
 	print_debug(collided_with)
-	if "take_damage" in collided_with:
+	if "take_bullet_damage" in collided_with:
+		collided_with.take_bullet_damage(weapon.damage, collision_position)
+	elif "take_damage" in collided_with:
 		collided_with.take_damage(weapon.damage)
 	elif collided_with is StaticBody3D:
 		weapon.spawn_bullethole(collided_with, collision_position, collision_normal)

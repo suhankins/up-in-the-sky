@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=40 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_77uw5"]
 [ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="4_7i6b4"]
 [ext_resource type="PackedScene" uid="uid://361lrfpepd2u" path="res://models/effects/bullet_softbody_pusher.tscn" id="4_pnsh8"]
+[ext_resource type="PackedScene" uid="uid://ddtxxw1c5ulsx" path="res://models/effects/blood.tscn" id="6_w32tx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="7_x6ayr"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="8_hvx6b"]
 [ext_resource type="Script" path="res://btree/conditions/sees_player.gd" id="9_fjsai"]
@@ -64,6 +65,7 @@ motion_mode = 1
 script = ExtResource("1_pgwwp")
 weapon_template = SubResource("Resource_sns8g")
 barrel_end = NodePath("Terrorist/Torso/RightArm/Gun/BarrelEnd")
+on_damage_effect_scene = ExtResource("6_w32tx")
 animation_tree = NodePath("Terrorist/AnimationTree")
 
 [node name="Terrorist" parent="." instance=ExtResource("1_584io")]
@@ -112,7 +114,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@17271")
+blackboard = NodePath("@Node@29453")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
