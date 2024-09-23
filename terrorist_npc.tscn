@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=48 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_cart_pull_point.gd" id="22_4qpfm"]
 [ext_resource type="PackedScene" uid="uid://bk54fub1dt41m" path="res://btree/prefab/reload_if_magazine_empty.tscn" id="24_6qoai"]
 [ext_resource type="Script" path="res://btree/actions/pull_cart.gd" id="24_k583y"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="26_j7k2k"]
 [ext_resource type="Script" path="res://btree/conditions/in_cover.gd" id="28_h7qoy"]
 [ext_resource type="Script" path="res://btree/conditions/is_closest_npc_to_viable_flank.gd" id="29_ch1rj"]
 [ext_resource type="Script" path="res://btree/actions/play_animation.gd" id="30_kg2iy"]
@@ -39,7 +40,9 @@
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_viable_flank.gd" id="31_ftrn5"]
 [ext_resource type="Script" path="res://btree/actions/reset_last_player_position.gd" id="32_34mky"]
 [ext_resource type="Script" path="res://btree/conditions/was_just_shot.gd" id="34_oih6t"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="36_lra63"]
 [ext_resource type="Script" path="res://btree/actions/set_aim_target_to_player.gd" id="36_odfae"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="37_s13hc"]
 
 [sub_resource type="Resource" id="Resource_sns8g"]
 script = ExtResource("3_1d61s")
@@ -119,7 +122,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@25199")
+blackboard = NodePath("@Node@26371")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -133,6 +136,35 @@ script = ExtResource("11_o4d57")
 
 [node name="SelectorComposite3" type="Node" parent="BeehaveTree/SelectorComposite/Alerted"]
 script = ExtResource("7_x6ayr")
+
+[node name="PullOutCart" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
+script = ExtResource("8_hvx6b")
+
+[node name="IsCloseToCartPullPoint" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("21_ul0tj")
+
+[node name="SetMoveTargetToClosestCartPullPoint" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("22_4qpfm")
+
+[node name="MoveToTarget" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("19_o8l1l")
+
+[node name="SimpleParallelComposite" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("26_j7k2k")
+
+[node name="PullCart" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart/SimpleParallelComposite"]
+script = ExtResource("24_k583y")
+
+[node name="PlayAnimation" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart/SimpleParallelComposite"]
+script = ExtResource("30_kg2iy")
+animation_name = "move_cart"
+animation_duration = 1e+10
+
+[node name="TakeCoverSequence" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart" instance=ExtResource("19_f5t4y")]
+
+[node name="StartMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("22_2ki8k")
+time = 10.0
 
 [node name="SeesPlayerSequence" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
 script = ExtResource("8_hvx6b")
@@ -158,34 +190,11 @@ script = ExtResource("12_p77lt")
 [node name="ResetAimTarget" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
 script = ExtResource("14_jisep")
 
-[node name="CanMove" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
-script = ExtResource("19_6qi4f")
-
 [node name="TakeCoverSequence" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence" instance=ExtResource("19_f5t4y")]
 
 [node name="ReloadIfMagazineEmpty" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence" instance=ExtResource("24_6qoai")]
 
 [node name="StartMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
-script = ExtResource("22_2ki8k")
-
-[node name="PullOutCart" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
-script = ExtResource("8_hvx6b")
-
-[node name="IsCloseToCartPullPoint" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
-script = ExtResource("21_ul0tj")
-
-[node name="SetMoveTargetToClosestCartPullPoint" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
-script = ExtResource("22_4qpfm")
-
-[node name="MoveToTarget" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
-script = ExtResource("19_o8l1l")
-
-[node name="PullCart" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
-script = ExtResource("24_k583y")
-
-[node name="TakeCoverSequence" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart" instance=ExtResource("19_f5t4y")]
-
-[node name="StartMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
 script = ExtResource("22_2ki8k")
 
 [node name="FlankSequence" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
@@ -252,11 +261,23 @@ script = ExtResource("19_o8l1l")
 
 [node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/AlertedDoesntSeePlayer" instance=ExtResource("21_0efy1")]
 
+[node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
+script = ExtResource("36_lra63")
+
+[node name="ActionLeaf" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/AlwaysFailDecorator"]
+script = ExtResource("37_s13hc")
+
 [node name="NotAlerted" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("15_5pw4c")
 
 [node name="NoticePlayerSequence" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted"]
 script = ExtResource("8_hvx6b")
+
+[node name="IsNotAlerted" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence"]
+script = ExtResource("16_v5y75")
+
+[node name="IsAlerted" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence/IsNotAlerted"]
+script = ExtResource("11_o4d57")
 
 [node name="SeesPlayer" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence"]
 script = ExtResource("9_fjsai")
@@ -280,7 +301,7 @@ script = ExtResource("16_v5y75")
 [node name="WasJustShot" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence/InterruptablePlayAnimation/SequenceReactiveComposite/WasNotJustShot"]
 script = ExtResource("34_oih6t")
 
-[node name="PlayAnimation" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence/InterruptablePlayAnimation/SequenceReactiveComposite"]
+[node name="PlayPointAnimation" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/NoticePlayerSequence/InterruptablePlayAnimation/SequenceReactiveComposite"]
 script = ExtResource("30_kg2iy")
 animation_name = "point"
 animation_duration = 1.5

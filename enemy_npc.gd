@@ -298,8 +298,8 @@ func can_move() -> bool:
 	return movement_cooldown.is_stopped()
 
 
-func start_movement_cooldown() -> void:
-	movement_cooldown.start()
+func start_movement_cooldown(time: float) -> void:
+	movement_cooldown.start(time)
 
 
 func _on_reload_cooldown_timeout() -> void:
