@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvam1xh7k65vn"]
+[gd_scene load_steps=9 format=3 uid="uid://bvam1xh7k65vn"]
 
 [ext_resource type="PackedScene" uid="uid://ckgajq8xdkarf" path="res://models/cart.gltf" id="1_3ikog"]
 [ext_resource type="Script" path="res://models/cart.gd" id="1_tj38k"]
@@ -16,9 +16,14 @@ size = Vector3(0.4, 0.05, 0.550488)
 [sub_resource type="BoxShape3D" id="BoxShape3D_b76gn"]
 size = Vector3(0.05, 0.55, 0.55)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_idn2q"]
+size = Vector3(0.4, 0.55, 0.55)
+
 [node name="Cart" type="RigidBody3D" node_paths=PackedStringArray("covers")]
 collision_layer = 5
 collision_mask = 9
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_y2trm")
 script = ExtResource("1_tj38k")
@@ -44,8 +49,18 @@ shape = SubResource("BoxShape3D_b76gn")
 
 [node name="DuckCover" parent="." instance=ExtResource("2_b1jne")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.440314, 0, 0)
+unsafe_distance = 0.0
 enabled = false
 
 [node name="DuckCover2" parent="." instance=ExtResource("2_b1jne")]
 transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.44, 0, 0)
+unsafe_distance = 0.0
 enabled = false
+
+[node name="NavigationCollision" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationCollision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275905, 0.0304919)
+shape = SubResource("BoxShape3D_idn2q")
