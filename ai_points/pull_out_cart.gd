@@ -2,6 +2,7 @@ class_name PullOutCartPoint extends Node3D
 
 @export var cart: RigidBody3D
 @export var distance_threshold_squared: float = 0.1
+@export var viable_npc_distance: float = 2.0
 @onready var destination: Node3D = $Target
 var enabled = true
 

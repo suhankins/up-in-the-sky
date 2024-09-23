@@ -8,6 +8,6 @@ func tick(actor: Node, _blackboard) -> int:
 	for trigger in triggers:
 		if not trigger.enabled:
 			continue
-		if trigger.global_position.distance_squared_to(actor.global_position) < 3.0:
+		if trigger.global_position.distance_squared_to(actor.global_position) < trigger.viable_npc_distance:
 			return SUCCESS
 	return FAILURE
