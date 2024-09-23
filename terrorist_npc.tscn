@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=45 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -23,10 +23,12 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="15_5pw4c"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="16_v5y75"]
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_safe_cover.gd" id="18_c3lg6"]
+[ext_resource type="Script" path="res://btree/conditions/can_move.gd" id="19_6qi4f"]
 [ext_resource type="PackedScene" uid="uid://c52qal3o7gqpf" path="res://btree/prefab/take_cover_sequence.tscn" id="19_f5t4y"]
 [ext_resource type="Script" path="res://btree/actions/move_to_target.gd" id="19_o8l1l"]
 [ext_resource type="PackedScene" uid="uid://d21gndnmnydct" path="res://btree/prefab/crouch_behind_cover.tscn" id="21_0efy1"]
 [ext_resource type="Script" path="res://btree/conditions/is_close_to_cart_pull_point.gd" id="21_ul0tj"]
+[ext_resource type="Script" path="res://btree/actions/start_movement_cooldown.gd" id="22_2ki8k"]
 [ext_resource type="Script" path="res://btree/actions/set_move_target_to_closest_cart_pull_point.gd" id="22_4qpfm"]
 [ext_resource type="PackedScene" uid="uid://bk54fub1dt41m" path="res://btree/prefab/reload_if_magazine_empty.tscn" id="24_6qoai"]
 [ext_resource type="Script" path="res://btree/actions/pull_cart.gd" id="24_k583y"]
@@ -117,7 +119,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@33535")
+blackboard = NodePath("@Node@25199")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -156,9 +158,15 @@ script = ExtResource("12_p77lt")
 [node name="ResetAimTarget" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
 script = ExtResource("14_jisep")
 
+[node name="CanMove" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
+script = ExtResource("19_6qi4f")
+
 [node name="TakeCoverSequence" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence" instance=ExtResource("19_f5t4y")]
 
 [node name="ReloadIfMagazineEmpty" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence" instance=ExtResource("24_6qoai")]
+
+[node name="StartMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/SeesPlayerSequence"]
+script = ExtResource("22_2ki8k")
 
 [node name="PullOutCart" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
 script = ExtResource("8_hvx6b")
@@ -177,8 +185,14 @@ script = ExtResource("24_k583y")
 
 [node name="TakeCoverSequence" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart" instance=ExtResource("19_f5t4y")]
 
+[node name="StartMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/PullOutCart"]
+script = ExtResource("22_2ki8k")
+
 [node name="FlankSequence" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
 script = ExtResource("8_hvx6b")
+
+[node name="CanMove" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/FlankSequence"]
+script = ExtResource("19_6qi4f")
 
 [node name="IsAlerted" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/FlankSequence"]
 script = ExtResource("11_o4d57")
@@ -322,6 +336,10 @@ one_shot = true
 
 [node name="FireCooldown" type="Timer" parent="."]
 process_callback = 0
+one_shot = true
+
+[node name="MovementCooldown" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

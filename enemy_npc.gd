@@ -14,6 +14,7 @@ class_name EnemyNPC
 
 @onready var fire_cooldown: Timer = $FireCooldown
 @onready var reload_cooldown: Timer = $ReloadCooldown
+@onready var movement_cooldown: Timer = $MovementCooldown
 
 @onready var behavior_tree: BeehaveTree = $BeehaveTree
 
@@ -291,6 +292,14 @@ func sees_player() -> bool:
 
 func is_crouching() -> bool:
 	return should_crouch
+
+
+func can_move() -> bool:
+	return movement_cooldown.is_stopped()
+
+
+func start_movement_cooldown() -> void:
+	movement_cooldown.start()
 
 
 func _on_reload_cooldown_timeout() -> void:
