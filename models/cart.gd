@@ -4,6 +4,12 @@ class_name Cart extends RigidBody3D
 @export var navigation_region: NavigationRegion3D
 var moved = false
 const STOPPED_THRESHOLD = 0.0002
+@export var cover_enabled_by_default: bool = false
+
+
+func _ready() -> void:
+	if cover_enabled_by_default:
+		self.enable_cover()
 
 
 func enable_cover():
