@@ -264,6 +264,7 @@ func take_damage(damage_taken: float):
 	if health <= 0 and not dead:
 		self.die()
 	await get_tree().process_frame
+	await get_tree().process_frame
 	was_just_shot = false
 
 
