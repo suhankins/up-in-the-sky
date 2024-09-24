@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://tbdbqhkh8ypf"]
+
+[ext_resource type="Texture2D" uid="uid://bltumq42uwi0w" path="res://models/effects/clouds/cloud_03.png" id="1_7jpul"]
+[ext_resource type="Texture2D" uid="uid://37gew2tuqgb1" path="res://models/effects/clouds/cloud_11.png" id="2_m6o05"]
+[ext_resource type="Texture2D" uid="uid://svylx5464epv" path="res://models/effects/clouds/cloud_10.png" id="3_drknk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74cme"]
+transparency = 1
+albedo_texture = ExtResource("1_7jpul")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uvix8"]
+material = SubResource("StandardMaterial3D_74cme")
+size = Vector2(3, 2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4jep"]
+transparency = 1
+albedo_texture = ExtResource("2_m6o05")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m56fm"]
+material = SubResource("StandardMaterial3D_w4jep")
+size = Vector2(3, 2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jjgt"]
+transparency = 1
+albedo_texture = ExtResource("3_drknk")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rdnyq"]
+material = SubResource("StandardMaterial3D_1jjgt")
+size = Vector2(3, 2)
+orientation = 2
+
+[node name="CloudParticles" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.96729, 0.708156, -22.8635)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+amount = 20
+lifetime = 10.0
+preprocess = 20.0
+mesh = SubResource("PlaneMesh_uvix8")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 1)
+spread = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
+amount = 20
+lifetime = 10.0
+preprocess = 20.0
+mesh = SubResource("PlaneMesh_m56fm")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 1)
+spread = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+
+[node name="CPUParticles3D3" type="CPUParticles3D" parent="."]
+amount = 20
+lifetime = 10.0
+preprocess = 20.0
+mesh = SubResource("PlaneMesh_rdnyq")
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, 0, 1)
+spread = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
