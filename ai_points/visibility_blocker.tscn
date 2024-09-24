@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm18r5amrt1jh"]
+
+[ext_resource type="Shader" path="res://ai_points/debug.gdshader" id="1_1jvlr"]
+[ext_resource type="Script" path="res://ai_points/debug_icons/debug_icon.gd" id="2_siv8v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1fki"]
+render_priority = 0
+shader = ExtResource("1_1jvlr")
+
+[sub_resource type="BoxMesh" id="BoxMesh_exhyx"]
+material = SubResource("ShaderMaterial_n1fki")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hm5el"]
+
+[node name="VisibilityBlocker" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_exhyx")
+script = ExtResource("2_siv8v")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_hm5el")
