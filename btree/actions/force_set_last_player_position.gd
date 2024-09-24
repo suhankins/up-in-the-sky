@@ -6,6 +6,7 @@ class_name ForceSetLastPlayerPosition extends ActionLeaf
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	blackboard.set_value(
 		NPCBlackboard.LAST_PLAYER_POSITION,
-		VectorHelper.get_with_y(actor.player.global_position, 0.6)
+		VectorHelper.get_with_y(actor.player.global_position, 0.6),
+		actor.team
 	)
 	return SUCCESS

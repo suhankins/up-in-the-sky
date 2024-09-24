@@ -39,17 +39,19 @@ var dead: bool = false
 
 @export var patrol_points: Array[Node3D] = []
 @export var blackboard: NPCBlackboard
+@export var team: String
 var was_just_shot: bool = false
 
 
 func _ready() -> void:
 	navigation_agent.target_desired_distance = 0.05
 	assert(blackboard != null, "No blackboard set")
+	assert(team != null, 'No team defined!')
 	behavior_tree.blackboard = blackboard
 	await get_tree().process_frame
-	var list_of_npcs = blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).duplicate()
+	var list_of_npcs = blackboard.get_value(NPCBlackboard.LIST_OF_NPCS, [], team).duplicate()
 	list_of_npcs.append(self)
-	blackboard.set_value(NPCBlackboard.LIST_OF_NPCS, list_of_npcs)
+	blackboard.set_value(NPCBlackboard.LIST_OF_NPCS, list_of_npcs, team)
 
 
 func _process(_delta: float) -> void:
@@ -73,12 +75,12 @@ func get_sort_by_distance(to: Vector3 = self.global_position):
 		return a.global_position.distance_to(to) < b.global_position.distance_to(to)
 
 func find_closest_viable_flank() -> NumberAndNode3DTuple:
-	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION) == null:
+	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team) == null:
 		return NumberAndNode3DTuple.new(INF, null)
 	var flanks = get_tree().get_nodes_in_group('flanks')
 	flanks.sort_custom(get_sort_by_distance())
 	for flank in flanks:
-		if flank.is_valid_flank_for_player_position(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION)):
+		if flank.is_valid_flank_for_player_position(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team)):
 			return NumberAndNode3DTuple.new(self.global_position.distance_squared_to(flank.global_position), flank)
 	return NumberAndNode3DTuple.new(INF, null)
 
@@ -103,10 +105,10 @@ func find_closest_safe_cover() -> Cover:
 	if covers.size() == 0:
 		return null
 	covers.sort_custom(get_sort_by_distance())
-	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION) == null:
+	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team) == null:
 		return covers[0]
 	for cover: Cover in covers:
-		if cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION)):
+		if cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team)):
 			return cover
 	return null
 
@@ -119,10 +121,10 @@ func is_current_cover_safe() -> bool:
 	var current_cover = get_current_cover()
 	if not current_cover:
 		return false
-	return current_cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION))
+	return current_cover.is_safe_from_vector(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team))
 
 func update_animation_alert_state():
-	animation_tree.set("parameters/alert_state/transition_request", 'alert' if blackboard.get_value(NPCBlackboard.ALERTED) else 'patrol')
+	animation_tree.set("parameters/alert_state/transition_request", 'alert' if blackboard.get_value(NPCBlackboard.ALERTED, null, team) else 'patrol')
 
 func update_rotation():
 	if aim_target:
@@ -155,7 +157,7 @@ func move_to_target(delta: float) -> bool:
 func get_speed() -> float:
 	if is_crouching():
 		return self.crouch_speed
-	if not blackboard.get_value(NPCBlackboard.ALERTED):
+	if not blackboard.get_value(NPCBlackboard.ALERTED, false, team):
 		return self.patrol_speed
 	return self.walk_speed
 
@@ -268,7 +270,8 @@ func take_damage(damage_taken: float):
 func die():
 	blackboard.set_value(
 		NPCBlackboard.LIST_OF_NPCS,
-		blackboard.get_value(NPCBlackboard.LIST_OF_NPCS).filter(func(npc): return npc != self)
+		blackboard.get_value(NPCBlackboard.LIST_OF_NPCS, [], team).filter(func(npc): return npc != self),
+		team
 	)
 	self.dead = true
 	behavior_tree.queue_free()
@@ -283,7 +286,8 @@ func sees_player() -> bool:
 	if VisionHelper.sees_player(vision_raycast, player):
 		blackboard.set_value(
 			NPCBlackboard.LAST_PLAYER_POSITION,
-			VectorHelper.get_with_y(player.global_position, player.get_raycast_position().y)
+			VectorHelper.get_with_y(player.global_position, player.get_raycast_position().y),
+			team
 		)
 		return true
 	return false
