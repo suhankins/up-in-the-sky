@@ -407,13 +407,13 @@ transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, -1
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.02311, 0, -10)
 
 [node name="ThreeSeats" parent="NavigationRegion3D" instance=ExtResource("3_a0d1e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.131118, 0.0500001, 2.28077)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.131118, 0.0500001, 2.28077)
 
 [node name="ThreeSeats2" parent="NavigationRegion3D" instance=ExtResource("3_a0d1e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.0082, 0.0500001, 2.28077)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 2.0082, 0.0500001, 2.28077)
 
 [node name="ThreeSeats3" parent="NavigationRegion3D" instance=ExtResource("3_a0d1e")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.91577, 0.0500001, 2.28077)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 3.91577, 0.0500001, 2.28077)
 
 [node name="ThreeSeats4" parent="NavigationRegion3D" instance=ExtResource("3_a0d1e")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.131118, 0.0500001, 1.25808)
@@ -690,6 +690,34 @@ flank_area = NodePath("../FlankArea4")
 
 [node name="FlankArea4" parent="." instance=ExtResource("15_6di3t")]
 transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 0.808689, 0.0500001, 1.65906)
+
+[node name="FlankPoint5" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.00767, 0.0500001, -1.84514)
+flank_area = NodePath("../FlankArea2")
+
+[node name="FlankArea5" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 0.808689, 0.0500001, -1.82561)
+
+[node name="FlankPoint6" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.945636, 0.0500001, -1.96487)
+flank_area = NodePath("../FlankArea")
+
+[node name="FlankArea6" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 3.20057, 0.0500001, -1.82561)
+
+[node name="FlankPoint7" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03292, 0.0500001, -3.92917)
+flank_area = NodePath("../FlankArea3")
+
+[node name="FlankArea7" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 3.20057, 0.0500001, -4.34094)
+
+[node name="FlankPoint8" parent="." node_paths=PackedStringArray("flank_area") instance=ExtResource("14_ju5v2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97896, 0.0500001, -3.91745)
+flank_area = NodePath("../FlankArea4")
+
+[node name="FlankArea8" parent="." instance=ExtResource("15_6di3t")]
+transform = Transform3D(2.50815, 0, 0, 0, 1, 0, 0, 0, 2.64142, 0.808689, 0.0500001, -4.34094)
 
 [node name="FullBodyCover" parent="." instance=ExtResource("16_jhnx6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.85303, 0.0500001, 1.51964)
