@@ -17,6 +17,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	list_of_npcs_and_distances_to_flanks.sort_custom(
 		func(a: NumberAndNode3DTuple, b: NumberAndNode3DTuple): return a.number < b.number
 	)
-=	if list_of_npcs_and_distances_to_flanks[0].node == actor:
+	if list_of_npcs_and_distances_to_flanks[0].node == actor:
 		return SUCCESS
 	return FAILURE
