@@ -78,7 +78,8 @@ func look_at_cursor():
 		Plane(Vector3(0, 1, 0), shooting_raycast.global_position.y).intersects_ray(from, to)
 	)
 
-	self.look_at(cursor_position)
+	if cursor_position:
+		self.look_at(cursor_position)
 	self.rotation.x = 0
 	self.rotation.z = 0
 
