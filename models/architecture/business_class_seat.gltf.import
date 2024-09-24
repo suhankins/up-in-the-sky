@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ckgajq8xdkarf"
-path="res://.godot/imported/cart.gltf-f5c514d9a64d5d53dab8748c335b9fda.scn"
+uid="uid://b10eovw11lkfh"
+path="res://.godot/imported/business_class_seat.gltf-f64d16dc22fef2cca51d695a272d758b.scn"
 
 [deps]
 
-source_file="res://models/cart.gltf"
-dest_files=["res://.godot/imported/cart.gltf-f5c514d9a64d5d53dab8748c335b9fda.scn"]
+source_file="res://models/architecture/business_class_seat.gltf"
+dest_files=["res://.godot/imported/business_class_seat.gltf-f64d16dc22fef2cca51d695a272d758b.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.05
+nodes/root_scale=0.025
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=false
@@ -33,16 +33,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"cart_mesh": {
-"generate/lightmap_uv": 1,
-"generate/lods": 0,
-"generate/shadow_meshes": 1,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": false,
-"save_to_file/path": ""
-},
-"cart_mesh2": {
+"business_class_seat_mesh": {
 "generate/lightmap_uv": 1,
 "generate/lods": 0,
 "generate/shadow_meshes": 1,

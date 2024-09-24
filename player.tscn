@@ -30,7 +30,7 @@ radius = 0.191
 height = 0.5
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["danger_to_npc", "player"]]
-collision_layer = 5
+collision_layer = 37
 script = ExtResource("1_oeowi")
 weapon = SubResource("Resource_gam4c")
 animation_tree = NodePath("Model/AnimationTree")

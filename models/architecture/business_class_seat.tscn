@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcyqpei040vh6"]
+
+[ext_resource type="PackedScene" uid="uid://b10eovw11lkfh" path="res://models/architecture/business_class_seat.gltf" id="1_e2250"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_bkjan"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vhndi"]
+size = Vector3(0.699585, 0.201866, 0.333496)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xagx"]
+size = Vector3(0.0646362, 0.550152, 0.333496)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v0vrg"]
+size = Vector3(0.699585, 0.52035, 0.0853271)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cok08"]
+size = Vector3(0.205261, 0.30003, 0.428467)
+
+[node name="business_class_seat" instance=ExtResource("1_e2250")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00164795, 0.101269, 0.0129395)
+shape = SubResource("BoxShape3D_vhndi")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315826, 0.248445, 0.0129395)
+shape = SubResource("BoxShape3D_7xagx")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00164795, 0.260511, -0.111145)
+shape = SubResource("BoxShape3D_v0vrg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24881, 0.150351, 0.0604248)
+shape = SubResource("BoxShape3D_cok08")
+
+[node name="DuckCover" parent="." index="2" instance=ExtResource("2_bkjan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.522978)
+
+[node name="DuckCover2" parent="." index="3" instance=ExtResource("2_bkjan")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.477022)

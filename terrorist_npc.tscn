@@ -95,6 +95,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.645111, 0)
 target_position = Vector3(0, 0, -1)
 collision_mask = 4
 hit_from_inside = true
+collide_with_areas = true
 debug_shape_custom_color = Color(0.765056, 0.164322, 1, 1)
 
 [node name="ShootingRaycast" type="RayCast3D" parent="."]
@@ -342,13 +343,7 @@ animation_duration = 4.0
 [node name="SetMoveTargetToNextPatrolPoint" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/PatrolSequence"]
 script = ExtResource("12_n0la1")
 
-[node name="GotShotSequence" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted"]
-script = ExtResource("8_hvx6b")
-
-[node name="WasJustShot" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/GotShotSequence"]
-script = ExtResource("34_oih6t")
-
-[node name="SetAlert" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/GotShotSequence"]
+[node name="SetAlert" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted"]
 script = ExtResource("13_ehdof")
 alerted_state = true
 
