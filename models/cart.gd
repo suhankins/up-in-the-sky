@@ -6,7 +6,8 @@ var moved = false
 var moved_by_player = false
 const STOPPED_THRESHOLD = 0.0002
 @export var cover_enabled_by_default: bool = false
-@onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var rolling_player: AudioStreamPlayer3D = $RollingAudio
+@onready var hit_player: AudioStreamPlayer3D = $HitAudio
 
 
 func _is_moving() -> bool:
@@ -30,8 +31,8 @@ func enable_cover():
 
 func _physics_process(_delta: float) -> void:
 	if _is_moving():
-		if linear_velocity.length_squared() > 0.5 and not self.audio_player.playing:
-			self.audio_player.playing = true
+		if linear_velocity.length_squared() > 0.5 and not self.rolling_player.playing:
+			self.rolling_player.playing = true
 		self.moved = true
 		return
 	if self.moved:
@@ -43,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_interactable_interacted(player: Player) -> void:
 	moved_by_player = true
+	hit_player.playing = true
 	apply_central_impulse(
 		VectorHelper.get_direction(player.global_position, self.global_position) * 10,
 	)
