@@ -920,5 +920,5 @@ size = Vector3(5, 0.1, 27.3224)
 [node name="CloudParticles2" parent="." instance=ExtResource("24_14y2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92993, 0.708156, -22.8635)
 
-[node name="StaticBody3D" parent="." instance=ExtResource("26_xa6td")]
-transform = Transform3D(4.8, 0, 0, 0, 1.00501, 0, 0, 0, 1.00501, 2, 0.564148, -4.74248)
+[node name="VisibilityBlocker" parent="." instance=ExtResource("26_xa6td")]
+transform = Transform3D(4.8, 0, 0, 0, 1.00501, 0, 0, 0, 1.00501, 2, 0.564148, -3.17739)
