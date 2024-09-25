@@ -1,7 +1,10 @@
 class_name Cart extends RigidBody3D
 
 @export var covers: Array[Cover]
-@export var navigation_region: NavigationRegion3D
+@export var regions: Array[NavigationRegion3D]
+@onready var region_rids: Array = self.regions.map(
+	func(region: NavigationRegion3D): return region.get_rid()
+)
 var moved = false
 var moved_by_player = false
 const STOPPED_THRESHOLD = 0.0002
@@ -20,6 +23,7 @@ func _is_moving() -> bool:
 
 
 func _ready() -> void:
+	assert(regions.size() != 0, 'No regions assigned to cart')
 	if cover_enabled_by_default:
 		self.enable_cover()
 
@@ -39,6 +43,14 @@ func _physics_process(_delta: float) -> void:
 		print_debug("region rebake called")
 		moved = false
 		moved_by_player = false
+		var closest_navigation_point: Vector3 = NavigationServer3D.map_get_closest_point(
+			get_world_3d().navigation_map, global_position
+		)
+		var navigation_region_rid: RID = NavigationServer3D.map_get_closest_point_owner(
+			get_world_3d().navigation_map, closest_navigation_point
+		)
+		var region_index: int = self.region_rids.find(navigation_region_rid)
+		var navigation_region = self.regions[region_index]
 		if navigation_region.is_baking():
 			await navigation_region.bake_finished
 		navigation_region.bake_navigation_mesh()
@@ -53,5 +65,5 @@ func _on_interactable_interacted(player: Player) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is EnemyNPC and _is_moving() and moved_by_player:
+	if body is EnemyNPC and moved_by_player:
 		body.take_damage(body.health)
