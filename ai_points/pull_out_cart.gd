@@ -15,7 +15,6 @@ func move_cart() -> bool:
 	):
 		cart.enable_cover()
 		return true
-	print_debug(VectorHelper.get_direction(cart.global_position, destination.global_position))
 	cart.apply_central_force(
 		VectorHelper.get_direction(cart.global_position, destination.global_position) * 50
 	)

@@ -250,7 +250,6 @@ func handle_pushing_raycast():
 
 
 func take_bullet_damage(damage_taken: float, collision_position: Vector3) -> void:
-	print_debug('bullet damage taken')
 	self.take_damage(damage_taken)
 	var instance = on_damage_effect_scene.instantiate()
 	add_child(instance)

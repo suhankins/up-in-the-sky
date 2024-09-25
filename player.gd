@@ -191,7 +191,6 @@ func handle_shoot_shooting_raycast():
 	var collision_normal: Vector3 = shooting_raycast.get_collision_normal()
 
 	weapon.spawn_tracer(barrel_end, collision_position)
-	print_debug(collided_with)
 	if "take_bullet_damage" in collided_with:
 		collided_with.take_bullet_damage(weapon.damage, collision_position)
 	elif "take_damage" in collided_with:
