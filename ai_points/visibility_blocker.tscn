@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://ai_points/debug.gdshader" id="1_1jvlr"]
 [ext_resource type="Script" path="res://ai_points/remove_on_touch.gd" id="1_p722p"]
-[ext_resource type="Script" path="res://ai_points/debug_icons/debug_icon.gd" id="2_siv8v"]
+[ext_resource type="Script" path="res://ai_points/debug_hide.gd" id="3_kx8op"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hm5el"]
 
@@ -23,7 +23,7 @@ shape = SubResource("BoxShape3D_hm5el")
 
 [node name="VisibilityBlocker" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_exhyx")
-script = ExtResource("2_siv8v")
+script = ExtResource("3_kx8op")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
