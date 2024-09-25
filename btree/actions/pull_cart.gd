@@ -7,6 +7,9 @@ func tick(actor: Node, _blackboard) -> int:
 		return FAILURE
 	if not actor.move_target or not (actor.move_target is PullOutCartPoint):
 		return FAILURE
+	if not actor.move_target.occupy(actor):
+		actor.move_target = null
+		return FAILURE
 	actor.set_aim_target_node(actor.move_target.cart)
 	if actor.move_target.move_cart():
 		actor.move_target.queue_free()

@@ -1,4 +1,4 @@
-extends Node3D
+class_name FlankPoint extends AIPoint
 
 @export var flank_area: Node3D
 

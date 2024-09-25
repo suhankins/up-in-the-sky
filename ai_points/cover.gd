@@ -1,7 +1,7 @@
-extends Node3D
-class_name Cover
+class_name Cover extends AIPoint
 
 @onready var raycast: RayCast3D = $RayCast3D
+@onready var collision: Area3D = $Collision
 
 @export var requires_crouching: bool = false
 @export var unsafe_distance: float = 1.5
@@ -10,6 +10,12 @@ class_name Cover
 
 ## Max distance between position and closest navmesh point
 @export var outside_threshold: float = 0.05
+
+
+func _process(delta: float) -> void:
+	super._process(delta)
+	if collision.has_overlapping_bodies():
+		self.occupy(collision.get_overlapping_bodies()[0])
 
 
 func _is_on_navmesh() -> bool:

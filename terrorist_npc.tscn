@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=50 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -44,6 +44,7 @@
 [ext_resource type="Script" path="res://btree/actions/set_aim_target_to_player.gd" id="36_odfae"]
 [ext_resource type="Script" path="res://btree/actions/reset_movement_cooldown.gd" id="37_irmyx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="37_s13hc"]
+[ext_resource type="Script" path="res://btree/actions/force_set_last_player_position.gd" id="45_thkjp"]
 
 [sub_resource type="Resource" id="Resource_sns8g"]
 script = ExtResource("3_1d61s")
@@ -353,9 +354,18 @@ animation_duration = 4.0
 [node name="SetMoveTargetToNextPatrolPoint" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/PatrolSequence"]
 script = ExtResource("12_n0la1")
 
-[node name="SetAlert" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted"]
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted"]
+script = ExtResource("8_hvx6b")
+
+[node name="WasJustShot" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/SequenceComposite"]
+script = ExtResource("34_oih6t")
+
+[node name="SetAlert" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/SequenceComposite"]
 script = ExtResource("13_ehdof")
 alerted_state = true
+
+[node name="ForceSetLastPlayerPosition" type="Node" parent="BeehaveTree/SelectorComposite/NotAlerted/SequenceComposite"]
+script = ExtResource("45_thkjp")
 
 [node name="ReloadCooldown" type="Timer" parent="."]
 process_callback = 0

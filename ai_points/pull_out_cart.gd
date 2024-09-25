@@ -1,4 +1,4 @@
-class_name PullOutCartPoint extends Node3D
+class_name PullOutCartPoint extends AIPoint
 
 @export var cart: RigidBody3D
 @export var distance_threshold_squared: float = 0.1

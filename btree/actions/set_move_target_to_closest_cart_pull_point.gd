@@ -9,6 +9,8 @@ func tick(actor: Node, _blackboard) -> int:
 		if not trigger.enabled:
 			continue
 		if trigger.global_position.distance_squared_to(actor.global_position) < trigger.viable_npc_distance:
+			if not trigger.occupy(actor):
+				return FAILURE
 			actor.set_move_target(trigger)
 			return SUCCESS
 	return FAILURE
