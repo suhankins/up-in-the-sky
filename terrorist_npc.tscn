@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://8ei7aro1m5v4"]
+[gd_scene load_steps=49 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
 [ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://btree/conditions/was_just_shot.gd" id="34_oih6t"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/failer.gd" id="36_lra63"]
 [ext_resource type="Script" path="res://btree/actions/set_aim_target_to_player.gd" id="36_odfae"]
+[ext_resource type="Script" path="res://btree/actions/reset_movement_cooldown.gd" id="37_irmyx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="37_s13hc"]
 
 [sub_resource type="Resource" id="Resource_sns8g"]
@@ -123,7 +124,7 @@ shape = SubResource("BoxShape3D_wxadq")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_77uw5")
-blackboard = NodePath("@Node@88685")
+blackboard = NodePath("@Node@17283")
 actor = NodePath("..")
 
 [node name="SelectorComposite" type="Node" parent="BeehaveTree"]
@@ -262,6 +263,15 @@ script = ExtResource("18_c3lg6")
 script = ExtResource("19_o8l1l")
 
 [node name="CrouchBehindCover" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/AlertedDoesntSeePlayer" instance=ExtResource("21_0efy1")]
+
+[node name="WasShotRemoveMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
+script = ExtResource("8_hvx6b")
+
+[node name="WasJustShot" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/WasShotRemoveMovementCooldown"]
+script = ExtResource("34_oih6t")
+
+[node name="ResetMovementCooldown" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3/WasShotRemoveMovementCooldown"]
+script = ExtResource("37_irmyx")
 
 [node name="AlwaysFailDecorator" type="Node" parent="BeehaveTree/SelectorComposite/Alerted/SelectorComposite3"]
 script = ExtResource("36_lra63")

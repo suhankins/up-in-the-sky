@@ -307,5 +307,9 @@ func start_movement_cooldown(time: float) -> void:
 	movement_cooldown.start(time)
 
 
+func stop_movement_cooldown() -> void:
+	movement_cooldown.stop()
+
+
 func _on_reload_cooldown_timeout() -> void:
 	self.weapon.refill_magazine()
