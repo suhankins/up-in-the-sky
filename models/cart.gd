@@ -37,9 +37,11 @@ func _physics_process(_delta: float) -> void:
 		return
 	if self.moved:
 		print_debug("region rebake called")
-		navigation_region.bake_navigation_mesh()
 		moved = false
 		moved_by_player = false
+		if navigation_region.is_baking():
+			await navigation_region.bake_finished
+		navigation_region.bake_navigation_mesh()
 
 
 func _on_interactable_interacted(player: Player) -> void:
