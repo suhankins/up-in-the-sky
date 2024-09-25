@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://361lrfpepd2u" path="res://models/effects/bullet_softbody_pusher.tscn" id="4_l1dsq"]
 [ext_resource type="PackedScene" uid="uid://dl77xd224bg2" path="res://ui/ui.tscn" id="7_f8nwl"]
 
-[sub_resource type="Resource" id="Resource_gam4c"]
+[sub_resource type="Resource" id="Resource_xv047"]
 script = ExtResource("2_4uhfg")
 rate_of_fire = 4.0
 spread = 0.025
@@ -32,7 +32,7 @@ height = 0.5
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["danger_to_npc", "player"]]
 collision_layer = 37
 script = ExtResource("1_oeowi")
-weapon = SubResource("Resource_gam4c")
+weapon_template = SubResource("Resource_xv047")
 animation_tree = NodePath("Model/AnimationTree")
 
 [node name="StandingCollision" type="CollisionShape3D" parent="."]

@@ -3,7 +3,8 @@ class_name Player
 
 @export var camera: Camera3D
 
-@export var weapon: Weapon
+@export var weapon_template: Weapon
+@onready var weapon: Weapon = self.weapon_template.duplicate()
 
 @export var crouch_speed: float = 1.0
 @export var walk_speed: float = 2.0
