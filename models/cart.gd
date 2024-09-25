@@ -30,3 +30,9 @@ func _physics_process(_delta: float) -> void:
 		print_debug("region rebake called")
 		navigation_region.bake_navigation_mesh()
 		moved = false
+
+
+func _on_interactable_interacted(player: Player) -> void:
+	self.apply_central_impulse(
+		VectorHelper.get_direction(player.global_position, self.global_position) * 10,
+	)

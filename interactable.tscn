@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg3g1jr7l1s5q"]
+
+[ext_resource type="Script" path="res://interactable.gd" id="1_o1c4c"]
+[ext_resource type="Script" path="res://button_prompt_label.gd" id="1_uier8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a8bs"]
+font_size = 28
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l3hc4"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Interactable" type="Node3D"]
+script = ExtResource("1_o1c4c")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(48, 48)
+
+[node name="Control" type="Control" parent="SubViewport"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SubViewport/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionLabel" type="Label" parent="SubViewport/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "F"
+label_settings = SubResource("LabelSettings_7a8bs")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("1_uier8")
+action = &"interact"
+
+[node name="Prompt" type="Sprite3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 1.25, 0)
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 0
+texture = SubResource("ViewportTexture_l3hc4")
