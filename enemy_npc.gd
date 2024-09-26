@@ -74,27 +74,36 @@ func get_sort_by_distance(to: Vector3 = self.global_position):
 	return func sort_by_distance(a: Node3D, b: Node3D):
 		return a.global_position.distance_to(to) < b.global_position.distance_to(to)
 
+
+func no_patrol_points():
+	return patrol_points.size() == 0 or patrol_points.any(func(point): return point == null)
+
+
 func find_closest_viable_flank() -> NumberAndNode3DTuple:
 	if blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team) == null:
-		return NumberAndNode3DTuple.new(INF, null)
+		return NumberAndNode3DTuple.EMPTY
 	var flanks = get_tree().get_nodes_in_group('flanks')
+	if not flanks:
+		return NumberAndNode3DTuple.EMPTY
 	flanks.sort_custom(get_sort_by_distance())
 	for flank in flanks:
 		if flank.is_valid_flank_for_player_position(blackboard.get_value(NPCBlackboard.LAST_PLAYER_POSITION, null, team)):
 			return NumberAndNode3DTuple.new(self.global_position.distance_squared_to(flank.global_position), flank)
-	return NumberAndNode3DTuple.new(INF, null)
+	return NumberAndNode3DTuple.EMPTY
 
 func find_closest_patrol_point() -> Node3D:
-	if patrol_points.size() == 0:
+	if no_patrol_points():
 		return null
 	var sorted_patrol_points = patrol_points.duplicate()
 	sorted_patrol_points.sort_custom(get_sort_by_distance())
 	return sorted_patrol_points[0]
 
 func get_next_patrol_point() -> Node3D:
-	if patrol_points.size() == 0:
+	if no_patrol_points():
 		return null
 	var current_point = find_closest_patrol_point()
+	if not current_point:
+		return null
 	var index = patrol_points.find(current_point)
 	if index >= patrol_points.size() - 1:
 		return patrol_points[0]
