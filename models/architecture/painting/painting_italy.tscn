@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://haj2nimcdqtb"]
+
+[ext_resource type="Material" uid="uid://3hfd3p8mro4" path="res://models/architecture/painting/wood.tres" id="1_mm2x8"]
+[ext_resource type="Texture2D" uid="uid://dmtaf2syi3d4i" path="res://models/architecture/painting/italy.png" id="2_o8jek"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t3xe8"]
+lightmap_size_hint = Vector2i(6, 14)
+material = ExtResource("1_mm2x8")
+add_uv2 = true
+size = Vector3(0.4, 0.6, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm8fg"]
+albedo_texture = ExtResource("2_o8jek")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tcjnn"]
+lightmap_size_hint = Vector2i(4, 5)
+material = SubResource("StandardMaterial3D_lm8fg")
+add_uv2 = true
+size = Vector2(0.4, 0.6)
+orientation = 2
+
+[node name="PaintingItaly" type="Node3D"]
+
+[node name="Back" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_t3xe8")
+
+[node name="Surface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0265248)
+mesh = SubResource("PlaneMesh_tcjnn")

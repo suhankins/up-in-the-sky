@@ -7,6 +7,7 @@ class_name Cover extends AIPoint
 @export var unsafe_distance: float = 1.5
 @export var safe_angle: float = -0.8
 @export var enabled: bool = true
+@export var delete_if_outside_navmesh: bool = true
 
 ## Max distance between position and closest navmesh point
 @export var outside_threshold: float = 0.05
@@ -33,7 +34,7 @@ func _is_on_navmesh() -> bool:
 func _ready() -> void:
 	raycast.enabled = false
 	await get_tree().process_frame
-	if self.enabled and not _is_on_navmesh():
+	if (self.enabled and self.delete_if_outside_navmesh) and not _is_on_navmesh():
 		print_debug("Outside of navmesh, deleting ", self.global_position)
 		self.queue_free()
 

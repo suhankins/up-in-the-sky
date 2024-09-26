@@ -11,19 +11,22 @@
 [node name="TakeCoverSequence" type="Node"]
 script = ExtResource("1_eqhuk")
 
-[node name="MoveToCover" type="Node" parent="."]
+[node name="AlwaysSucceedDecorator2" type="Node" parent="."]
+script = ExtResource("6_fxpcf")
+
+[node name="MoveToCover" type="Node" parent="AlwaysSucceedDecorator2"]
 script = ExtResource("1_eqhuk")
 
-[node name="InverterDecorator" type="Node" parent="MoveToCover"]
+[node name="InverterDecorator" type="Node" parent="AlwaysSucceedDecorator2/MoveToCover"]
 script = ExtResource("2_n2prs")
 
-[node name="InSafeCover" type="Node" parent="MoveToCover/InverterDecorator"]
+[node name="InSafeCover" type="Node" parent="AlwaysSucceedDecorator2/MoveToCover/InverterDecorator"]
 script = ExtResource("3_pm6gj")
 
-[node name="SetMoveTargetToClosestSafeCover" type="Node" parent="MoveToCover"]
+[node name="SetMoveTargetToClosestSafeCover" type="Node" parent="AlwaysSucceedDecorator2/MoveToCover"]
 script = ExtResource("4_hi5vn")
 
-[node name="MoveToTarget" type="Node" parent="MoveToCover"]
+[node name="MoveToTarget" type="Node" parent="AlwaysSucceedDecorator2/MoveToCover"]
 script = ExtResource("5_uxiic")
 
 [node name="AlwaysSucceedDecorator" type="Node" parent="."]

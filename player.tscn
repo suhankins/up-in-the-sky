@@ -12,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_xv047"]
 script = ExtResource("2_4uhfg")
 rate_of_fire = 4.0
-spread = 0.025
+spread = 0.0
 bullet_distance = 10.0
 reload_time = 1.0
 max_ammo = 7

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqtf5c5pwbdl"]
+
+[ext_resource type="PackedScene" uid="uid://gmssn202vosc" path="res://models/architecture/premium_seat.gltf" id="1_gjkoj"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_gbra3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxsem"]
+size = Vector3(0.435028, 0.197998, 0.314194)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wn6n"]
+size = Vector3(0.435028, 0.492554, 0.0720787)
+
+[node name="premium_seat" instance=ExtResource("1_gjkoj")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0148468, 0.105347, 0.0069046)
+shape = SubResource("BoxShape3D_gxsem")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0148468, 0.256653, -0.114153)
+shape = SubResource("BoxShape3D_5wn6n")
+
+[node name="DuckCover" parent="." index="2" instance=ExtResource("2_gbra3")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.390108)
+
+[node name="DuckCover2" parent="." index="3" instance=ExtResource("2_gbra3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.404419)

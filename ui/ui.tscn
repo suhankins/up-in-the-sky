@@ -271,17 +271,6 @@ grow_vertical = 0
 scale = Vector2(1.92, 1.92)
 script = ExtResource("2_rjq4d")
 
-[node name="HealthBackground" type="TextureRect" parent="HealthControl"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 2.95
-anchor_bottom = 2.95
-offset_top = -136.0
-offset_right = 90.0
-texture = ExtResource("5_0w5xt")
-stretch_mode = 4
-
 [node name="HealthForeground" type="TextureRect" parent="HealthControl"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_rxwp6")
@@ -292,6 +281,17 @@ anchor_bottom = 2.95
 offset_top = -136.0
 offset_right = 90.0
 texture = ExtResource("6_hp1tp")
+
+[node name="HealthBackground" type="TextureRect" parent="HealthControl"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.95
+anchor_bottom = 2.95
+offset_top = -136.0
+offset_right = 90.0
+texture = ExtResource("5_0w5xt")
+stretch_mode = 4
 
 [connection signal="animation_finished" from="AmmoControl/AnimationPlayer" to="AmmoControl" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AmmoControl/AnimationPlayer" to="AmmoControl" method="_on_animation_player_animation_started"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6p74wflmvdy6"]
+
+[ext_resource type="PackedScene" uid="uid://h57bye1fdg3u" path="res://models/architecture/table.gltf" id="1_k8v0h"]
+[ext_resource type="PackedScene" uid="uid://cqtf5c5pwbdl" path="res://models/architecture/premium_seat.tscn" id="2_dm5hq"]
+
+[node name="TableAndPremiumSeats" type="Node3D"]
+
+[node name="table" parent="." instance=ExtResource("1_k8v0h")]
+
+[node name="premium_seat" parent="." instance=ExtResource("2_dm5hq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.177227, 0, -0.5)
+
+[node name="premium_seat2" parent="." instance=ExtResource("2_dm5hq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285303, 0, -0.5)
+
+[node name="premium_seat3" parent="." instance=ExtResource("2_dm5hq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.177227, 0, 0.5)
+
+[node name="premium_seat4" parent="." instance=ExtResource("2_dm5hq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.285303, 0, 0.5)

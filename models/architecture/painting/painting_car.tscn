@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmh7i01d22sts"]
+
+[ext_resource type="Material" uid="uid://3hfd3p8mro4" path="res://models/architecture/painting/wood.tres" id="1_mjk5t"]
+[ext_resource type="Texture2D" uid="uid://ubwsdnakbylu" path="res://models/architecture/painting/car.png" id="2_rixsp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_d6j5h"]
+lightmap_size_hint = Vector2i(7, 13)
+material = ExtResource("1_mjk5t")
+add_uv2 = true
+size = Vector3(0.6, 0.4, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_itbk3"]
+albedo_texture = ExtResource("2_rixsp")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h3vin"]
+lightmap_size_hint = Vector2i(5, 4)
+material = SubResource("StandardMaterial3D_itbk3")
+add_uv2 = true
+size = Vector2(0.6, 0.4)
+orientation = 2
+
+[node name="PaintingCar" type="Node3D"]
+
+[node name="Back" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_d6j5h")
+
+[node name="Surface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0265248)
+mesh = SubResource("PlaneMesh_h3vin")

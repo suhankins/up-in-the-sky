@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbpavwvysoerw"
-path="res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"
+uid="uid://wfnnnasjysd6"
+path="res://.godot/imported/bar_corner.gltf-719b7616e9fa59c604f77acf658de609.scn"
 
 [deps]
 
-source_file="res://models/architecture/plain_wall.gltf"
-dest_files=["res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"]
+source_file="res://models/architecture/bar_corner.gltf"
+dest_files=["res://.godot/imported/bar_corner.gltf-719b7616e9fa59c604f77acf658de609.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.05
+nodes/root_scale=0.025
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=false
@@ -24,8 +24,8 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=2
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=true
-animation/import=true
+skins/use_named_skins=false
+animation/import=false
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
@@ -33,7 +33,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"plain_wall_mesh": {
+"bar_corner_mesh": {
 "generate/lightmap_uv": 1,
 "generate/lods": 2,
 "generate/shadow_meshes": 1,
@@ -46,10 +46,7 @@ _subresources={
 "nodes": {
 "PATH:Node/Layer_1": {
 "generate/physics": true,
-"physics/layer": 5,
-"physics/shape_type": 3,
-"primitive/position": Vector3(0, 0, 14),
-"primitive/size": Vector3(20, 2, 28)
+"physics/shape_type": 1
 }
 }
 }

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbpavwvysoerw"
-path="res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"
+uid="uid://bcvoadxu3cauw"
+path="res://.godot/imported/pillar.gltf-0e1ebb48b3ffd25eb9507d2eadd2f480.scn"
 
 [deps]
 
-source_file="res://models/architecture/plain_wall.gltf"
-dest_files=["res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"]
+source_file="res://models/architecture/pillar.gltf"
+dest_files=["res://.godot/imported/pillar.gltf-0e1ebb48b3ffd25eb9507d2eadd2f480.scn"]
 
 [params]
 
@@ -33,7 +33,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"plain_wall_mesh": {
+"pillar_mesh": {
 "generate/lightmap_uv": 1,
 "generate/lods": 2,
 "generate/shadow_meshes": 1,
@@ -47,9 +47,8 @@ _subresources={
 "PATH:Node/Layer_1": {
 "generate/physics": true,
 "physics/layer": 5,
-"physics/shape_type": 3,
-"primitive/position": Vector3(0, 0, 14),
-"primitive/size": Vector3(20, 2, 28)
+"physics/mask": 0,
+"physics/shape_type": 1
 }
 }
 }

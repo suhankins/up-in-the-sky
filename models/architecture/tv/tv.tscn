@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://dnq58wbuvbqk0"]
 
 [ext_resource type="Texture2D" uid="uid://c1a1sspgpted6" path="res://models/architecture/tv/broken_tv.png" id="1_6uaup"]
-[ext_resource type="Script" path="res://models/architecture/tv/tv.gd" id="1_uq4do"]
+[ext_resource type="Script" path="res://scripts/breakable.gd" id="1_uq4do"]
 [ext_resource type="AudioStream" uid="uid://balos48apqkya" path="res://sfx/sparks.wav" id="2_ulsqd"]
 [ext_resource type="Texture2D" uid="uid://k00nt13224c7" path="res://models/architecture/tv/fixed_tv.png" id="2_wp788"]
 [ext_resource type="AudioStream" uid="uid://3tpgqoytql18" path="res://sfx/glass_crack.wav" id="4_bp8ct"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgjhnlgprd3d2"]
+
+[ext_resource type="Material" uid="uid://3hfd3p8mro4" path="res://models/architecture/painting/wood.tres" id="1_x3b8a"]
+[ext_resource type="Texture2D" uid="uid://byt5odw1sbkwe" path="res://models/architecture/painting/mountain.png" id="2_gk757"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vur20"]
+lightmap_size_hint = Vector2i(7, 14)
+material = ExtResource("1_x3b8a")
+add_uv2 = true
+size = Vector3(0.6, 0.5, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nula6"]
+albedo_texture = ExtResource("2_gk757")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_m6g7d"]
+lightmap_size_hint = Vector2i(5, 4)
+material = SubResource("StandardMaterial3D_nula6")
+add_uv2 = true
+size = Vector2(0.6, 0.5)
+orientation = 2
+
+[node name="PaintingMountain" type="Node3D"]
+
+[node name="Back" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vur20")
+
+[node name="Surface" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0265248)
+mesh = SubResource("PlaneMesh_m6g7d")

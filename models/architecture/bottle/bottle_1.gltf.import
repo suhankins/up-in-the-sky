@@ -3,29 +3,29 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dbpavwvysoerw"
-path="res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"
+uid="uid://c4ch6d38a40mm"
+path="res://.godot/imported/bottle_1.gltf-1d20d3c05b4f1e28f471a17a61ac9815.scn"
 
 [deps]
 
-source_file="res://models/architecture/plain_wall.gltf"
-dest_files=["res://.godot/imported/plain_wall.gltf-29fd58f0bf9b5937427a355bd00d2c39.scn"]
+source_file="res://models/architecture/bottle/bottle_1.gltf"
+dest_files=["res://.godot/imported/bottle_1.gltf-1d20d3c05b4f1e28f471a17a61ac9815.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.05
+nodes/root_scale=0.025
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=false
 meshes/create_shadow_meshes=true
-meshes/light_baking=2
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=true
-animation/import=true
+skins/use_named_skins=false
+animation/import=false
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
@@ -33,7 +33,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"plain_wall_mesh": {
+"bottle_1_mesh": {
 "generate/lightmap_uv": 1,
 "generate/lods": 2,
 "generate/shadow_meshes": 1,
@@ -45,11 +45,9 @@ _subresources={
 },
 "nodes": {
 "PATH:Node/Layer_1": {
-"generate/physics": true,
-"physics/layer": 5,
-"physics/shape_type": 3,
-"primitive/position": Vector3(0, 0, 14),
-"primitive/size": Vector3(20, 2, 28)
+"physics/layer": 16,
+"physics/mask": 5,
+"physics/shape_type": 1
 }
 }
 }
