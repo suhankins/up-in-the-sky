@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://clme7n1b515du"]
+[gd_scene load_steps=5 format=3 uid="uid://clme7n1b515du"]
 
-[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="1_0kbgu"]
 [ext_resource type="PackedScene" uid="uid://b85uagylcjfgu" path="res://third_floor.tscn" id="2_in5yu"]
-[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="2_xamtb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tgygc"]
 sky_top_color = Color(0.25098, 0.47451, 0.74902, 1)
@@ -31,14 +29,6 @@ directional_shadow_max_distance = 50.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1u37w")
-
-[node name="SmoothCamera" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("1_0kbgu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.682, 0, -14.318)
-targets = [NodePath("../Player")]
-
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_xamtb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.665, 0, -11.932)
-camera = NodePath("../SmoothCamera/Camera")
 
 [node name="ThirdFloor" parent="." instance=ExtResource("2_in5yu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
