@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4lqhfi61y53t"]
+
+[ext_resource type="PackedScene" uid="uid://imxa5lf8mfxt" path="res://models/architecture/dark_cube.tscn" id="1_ieiw0"]
+[ext_resource type="PackedScene" uid="uid://de0uem2jk67iw" path="res://models/architecture/plain_wall.tscn" id="2_77g2y"]
+
+[node name="2x1WalledDarkCube" type="Node3D"]
+
+[node name="DarkCube" parent="." instance=ExtResource("1_ieiw0")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PlainWall3" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(-4.80825e-08, 0, -1, 0, 1, 0, 1.1, 0, -4.37114e-08, 2, 0, 0)
+
+[node name="PlainWall4" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(-4.80825e-08, 0, 1, 0, 1, 0, -1.1, 0, -4.37114e-08, -2, 0, 0)
+
+[node name="PlainWall5" parent="." instance=ExtResource("2_77g2y")]
+
+[node name="PlainWall9" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="PlainWall8" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="PlainWall6" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="PlainWall10" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="PlainWall11" parent="." instance=ExtResource("2_77g2y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://clme7n1b515du"]
+[gd_scene load_steps=7 format=3 uid="uid://clme7n1b515du"]
 
 [ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="1_0kbgu"]
-[ext_resource type="PackedScene" uid="uid://cvbvhvsn2mi38" path="res://second_floor.tscn" id="1_j1dvv"]
 [ext_resource type="PackedScene" uid="uid://b85uagylcjfgu" path="res://third_floor.tscn" id="2_in5yu"]
 [ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="2_xamtb"]
 
@@ -40,10 +39,6 @@ targets = [NodePath("../Player")]
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_xamtb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.665, 0, -11.932)
 camera = NodePath("../SmoothCamera/Camera")
-
-[node name="SecondFloor" parent="." instance=ExtResource("1_j1dvv")]
-process_mode = 4
-visible = false
 
 [node name="ThirdFloor" parent="." instance=ExtResource("2_in5yu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
