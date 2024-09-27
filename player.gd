@@ -96,12 +96,17 @@ func get_raycast_position() -> Vector3:
 
 func move_aim():
 	shooting_raycast.position = get_raycast_position()
-	if not shooting_raycast.get_collider():
+	var collided_with = shooting_raycast.get_collider()
+	if not collided_with:
 		cursor.hide()
 		return
 
 	cursor.show()
 	cursor.global_position = shooting_raycast.get_collision_point()
+	if collided_with is EnemyNPC:
+		cursor.modulate = Color.RED
+	else:
+		cursor.modulate = Color.WHITE
 
 
 func is_crouching():
