@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=4 format=3 uid="uid://dtp10bmq2qpyj"]
+
+[ext_resource type="AudioStream" uid="uid://41kiacoqq6o0" path="res://sfx/typewriter/typewriter_0.wav" id="1_8uf4r"]
+[ext_resource type="AudioStream" uid="uid://c62po51dxub8h" path="res://sfx/typewriter/typewriter_1.wav" id="2_75oun"]
+[ext_resource type="AudioStream" uid="uid://dre8r0jydykq2" path="res://sfx/typewriter/typewriter_2.wav" id="3_gshe2"]
+
+[resource]
+streams_count = 3
+stream_0/stream = ExtResource("1_8uf4r")
+stream_1/stream = ExtResource("2_75oun")
+stream_2/stream = ExtResource("3_gshe2")

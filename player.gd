@@ -31,7 +31,7 @@ signal health_changed(current_health: float, max_health: float)
 @onready var reload_cooldown: Timer = $ReloadCooldown
 
 @onready var cursor: Sprite3D = $Cursor
-@onready var barrel_end: Node3D = $Model/Torso/LeftArm/Gun/GunMesh/BarrelEnd
+@onready var barrel_end: Node3D = $Model/PlayerAgent/Torso/LeftArm/Gun/GunMesh/BarrelEnd
 
 @onready var standing_raycast_origin: Node3D = $StandingRaycastOrigin
 @onready var crouching_raycast_origin: Node3D = $CrouchingRaycastOrigin
