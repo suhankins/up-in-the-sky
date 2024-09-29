@@ -39,6 +39,33 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="Theme" id="Theme_f5kem"]
 Button/font_sizes/font_size = 32
 
+[sub_resource type="Animation" id="Animation_yv7ij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small_plane:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.566115, -0.00175875, 0.71455)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("small_plane:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.36994e-17, -1.5708, 0.00349066)]
+}
+
 [sub_resource type="Animation" id="Animation_dbbq6"]
 resource_name = "plane_animation"
 length = 7.0
@@ -66,33 +93,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.707107, 0.707107, 0.707107, 0.707107),
 "update": 0,
 "values": [Vector3(4.36994e-17, -1.5708, 0.00349066), Vector3(0.0349066, -1.5708, 0.00349066), Vector3(-0.0349066, -1.5708, 0.00349066), Vector3(4.36994e-17, -1.5708, 0.00349066)]
-}
-
-[sub_resource type="Animation" id="Animation_yv7ij"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("small_plane:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.566115, -0.00175875, 0.71455)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("small_plane:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(4.36994e-17, -1.5708, 0.00349066)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7265u"]
@@ -149,7 +149,8 @@ grow_vertical = 2
 focus_mode = 2
 bbcode_enabled = true
 text = "Made by Punished Bernadetta [url=https://tech.lgbt/@punishedbernadetta](@punishedbernadetta@tech.lgbt)[/url]
-Made for #FediJam 2024
+For #FediJam 2024
+Tools used: [url=https://godotengine.org/license/]Godot -- MIT[/url], [url=https://goxel.xyz/]Goxel[/url], [url=https://www.gimp.org/]GIMP[/url], [url=https://www.audacityteam.org/]Audacity[/url], [url=https://code.visualstudio.com/]VSCode[/url]
 
 [url=https://github.com/suhankins/up-in-the-sky/blob/main/fonts/VT323/OFL.txt]VT323 Font - The VT323 Project Authors (peter.hull@oikoi.com) - OFL[/url]
 
@@ -195,6 +196,7 @@ script = ExtResource("5_1176o")
 control_to_show = NodePath("..")
 
 [node name="Logo" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 25.0
 offset_top = 30.0
 offset_right = 630.0
@@ -237,7 +239,7 @@ script = ExtResource("5_1176o")
 control_to_show = NodePath("../Panel")
 
 [node name="small_plane" parent="." instance=ExtResource("1_vg8kh")]
-transform = Transform3D(-4.37111e-08, 1.52581e-10, -1, 0.00349065, 0.999994, -4.36994e-17, 0.999994, -0.00349065, -4.37114e-08, -0.566115, -0.00175875, 0.71455)
+transform = Transform3D(-3.61997e-06, 1.26361e-08, -1, 0.00349065, 0.999994, -4.36994e-17, 0.999994, -0.00349065, -3.61999e-06, -0.566115, -0.00175875, 0.71455)
 
 [node name="CloudParticles" parent="." instance=ExtResource("2_sqbrv")]
 transform = Transform3D(0.999995, -0.00310668, 0, 0.00310668, 0.999995, 0, 0, 0, 1, -5.71071, 1.64334, -27.8279)
