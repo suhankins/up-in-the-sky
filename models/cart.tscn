@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvam1xh7k65vn"]
+[gd_scene load_steps=14 format=3 uid="uid://bvam1xh7k65vn"]
 
 [ext_resource type="PackedScene" uid="uid://ckgajq8xdkarf" path="res://models/cart.gltf" id="1_3ikog"]
 [ext_resource type="Script" path="res://models/cart.gd" id="1_tj38k"]
@@ -25,13 +25,15 @@ size = Vector3(0.4, 0.55, 0.55)
 [sub_resource type="SphereShape3D" id="SphereShape3D_7npyr"]
 radius = 0.6
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qq2gu"]
+size = Vector3(0.611572, 1, 0.731445)
+
 [node name="Cart" type="RigidBody3D" node_paths=PackedStringArray("covers")]
 collision_mask = 9
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_y2trm")
-contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_tj38k")
 covers = [NodePath("DuckCover"), NodePath("DuckCover2")]
@@ -73,15 +75,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275905, 0.0304919)
 shape = SubResource("BoxShape3D_idn2q")
 
 [node name="Interactable" parent="." node_paths=PackedStringArray("collision") instance=ExtResource("4_l5s8a")]
-collision = NodePath("../Area3D")
+collision = NodePath("../InteractableRegion")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="InteractableRegion" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 32
 input_ray_pickable = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableRegion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_7npyr")
 
@@ -93,5 +95,15 @@ unit_size = 2.0
 stream = ExtResource("6_dcof8")
 unit_size = 4.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="DamageArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+input_ray_pickable = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea"]
+shape = SubResource("BoxShape3D_qq2gu")
+
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

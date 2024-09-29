@@ -1,0 +1,56 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://duo21k74tg1be"
+path="res://.godot/imported/plane_curved_walls.gltf-b2ed7c9d3e36b5c47fc123697989147d.scn"
+
+[deps]
+
+source_file="res://models/architecture/plane_curved_walls.gltf"
+dest_files=["res://.godot/imported/plane_curved_walls.gltf-b2ed7c9d3e36b5c47fc123697989147d.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=0.05
+nodes/import_as_skeleton_bones=false
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=2
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=false
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"meshes": {
+"plane_curved_walls_mesh": {
+"generate/lightmap_uv": 1,
+"generate/lods": 2,
+"generate/shadow_meshes": 1,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+}
+},
+"nodes": {
+"PATH:Node/Layer_1": {
+"generate/physics": true,
+"physics/layer": 69,
+"physics/mask": 0,
+"physics/shape_type": 1
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

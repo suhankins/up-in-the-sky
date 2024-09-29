@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6yvtqr8dwlx7"]
+
+[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="1_87tfb"]
+[ext_resource type="PackedScene" uid="uid://hmdwvwo0x1ch" path="res://models/placeholders/crate.glb" id="1_7384l"]
+[ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="2_kn6qr"]
+[ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_ko0rh"]
+[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="2_vqsno"]
+[ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="6_t4wnh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4koxm"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_x1x8g"]
+sky_material = SubResource("ProceduralSkyMaterial_4koxm")
+
+[sub_resource type="Environment" id="Environment_c301c"]
+background_mode = 2
+sky = SubResource("Sky_x1x8g")
+tonemap_mode = 2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_vk87d"]
+vertices = PackedVector3Array(0.7, 0.02, 2.3, 0.7, 0.02, 0.5, 0.5, 0.02, 0.4, -2.3, 0.02, 2.3, 0.5, 0.02, -0.4, 0.7, 0.02, -0.5, 0.7, 0.02, -2.3, -2.3, 0.02, -2.3, 1.5, 0.02, 0.4, 2.3, 0.02, 2.3, 1.5, 0.02, -0.4, 2.3, 0.02, -2.3)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 7), PackedInt32Array(1, 8, 0), PackedInt32Array(0, 8, 9), PackedInt32Array(10, 11, 8), PackedInt32Array(8, 11, 9), PackedInt32Array(5, 6, 10), PackedInt32Array(10, 6, 11)]
+cell_size = 0.1
+cell_height = 0.01
+agent_radius = 0.2
+agent_max_climb = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c301c")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_vk87d")
+
+[node name="crate2" parent="NavigationRegion3D" instance=ExtResource("1_7384l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+collision_layer = 5
+size = Vector3(5, 1, 5)
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_vqsno")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+camera = NodePath("../SmoothCamera/Camera")
+max_health = 1e+09
+health = 999999.0
+regen_health = 1e+10
+regeneration_time = 0.0
+
+[node name="SmoothCamera" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("1_87tfb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+targets = [NodePath("../Player")]
+
+[node name="DuckCover" parent="." instance=ExtResource("2_ko0rh")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.54185, 0, 0)
+unsafe_distance = 1.5
+outside_threshold = 0.05
+
+[node name="TerroristNPC" parent="." instance=ExtResource("2_kn6qr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39997, 0, -1)
+
+[node name="NPCBlackboard" type="Node" parent="."]
+script = ExtResource("6_t4wnh")

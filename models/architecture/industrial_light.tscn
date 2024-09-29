@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc5hf6qx6tix8"]
+
+[ext_resource type="PackedScene" uid="uid://bwox37talr6h8" path="res://models/architecture/industrial_light.gltf" id="1_ev840"]
+
+[node name="industrial_light" instance=ExtResource("1_ev840")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0478753, 0.228413, 0)
+light_color = Color(1, 0, 0, 1)
+light_bake_mode = 1
+omni_range = 3.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0478753, 0.117264, 0)
+light_color = Color(1, 0, 0, 1)
+light_bake_mode = 1
+omni_range = 3.0

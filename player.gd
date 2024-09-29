@@ -24,6 +24,7 @@ signal health_changed(current_health: float, max_health: float)
 
 @onready var shooting_raycast: RayCast3D = $ShootingRaycast
 @onready var pushing_raycast: RayCast3D = $PushingRaycast
+@onready var can_stand_raycast: RayCast3D = $CanStandRaycast
 
 @onready var coyote_fire_cooldown: Timer = $CoyoteFire
 @onready var fire_cooldown: Timer = $FireCooldown
@@ -109,8 +110,13 @@ func move_aim():
 		cursor.modulate = Color.WHITE
 
 
-func is_crouching():
-	return Input.is_action_pressed("crouch")
+func is_crouching() -> bool:
+	return Input.is_action_pressed("crouch") or not can_stand()
+
+
+func can_stand() -> bool:
+	can_stand_raycast.force_raycast_update()
+	return not can_stand_raycast.is_colliding()
 
 
 func _physics_process(delta: float) -> void:

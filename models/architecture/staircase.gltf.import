@@ -46,6 +46,7 @@ _subresources={
 "nodes": {
 "PATH:Node/Layer_2": {
 "generate/physics": true,
+"physics/mask": 0,
 "physics/shape_type": 3,
 "primitive/position": Vector3(0, 0, 25),
 "primitive/size": Vector3(20, 32, 50)

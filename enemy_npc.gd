@@ -40,6 +40,7 @@ var dead: bool = false
 @export var patrol_points: Array[Node3D] = []
 @export var blackboard: NPCBlackboard
 @export var team: String
+@export var blind: bool = false
 var was_just_shot: bool = false
 
 
@@ -292,6 +293,8 @@ func die():
 
 
 func sees_player() -> bool:
+	if self.blind:
+		return false
 	if VisionHelper.sees_player(vision_raycast, player):
 		blackboard.set_value(
 			NPCBlackboard.LAST_PLAYER_POSITION,

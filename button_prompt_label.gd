@@ -4,7 +4,7 @@ extends Label
 
 
 func get_input_event_text(input_event: InputEvent) -> String:
-	return input_event.as_text().replace(" (Physical)", "")
+	return input_event.as_text().replace(" (Physical)", "").replace(" - All Devices", "")
 
 
 func _ready() -> void:
@@ -13,5 +13,5 @@ func _ready() -> void:
 		if keys == "":
 			keys = get_input_event_text(input_event)
 		else:
-			keys = str(keys, "/", get_input_event_text(input_event))
+			keys = str(keys, " / ", get_input_event_text(input_event))
 	self.text = keys

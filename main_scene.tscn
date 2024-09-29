@@ -1,34 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clme7n1b515du"]
+[gd_scene load_steps=2 format=3 uid="uid://clme7n1b515du"]
 
-[ext_resource type="PackedScene" uid="uid://b85uagylcjfgu" path="res://third_floor.tscn" id="2_in5yu"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tgygc"]
-sky_top_color = Color(0.25098, 0.47451, 0.74902, 1)
-ground_bottom_color = Color(0.152941, 0.333333, 0.490196, 1)
-
-[sub_resource type="Sky" id="Sky_dshjk"]
-sky_material = SubResource("ProceduralSkyMaterial_tgygc")
-
-[sub_resource type="Environment" id="Environment_1u37w"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_dshjk")
-sky_custom_fov = 149.4
-ambient_light_source = 2
-ambient_light_color = Color(0.962565, 0.892765, 0.804331, 1)
-tonemap_mode = 2
+[ext_resource type="PackedScene" uid="uid://uhda5in05pr2" path="res://levels/first_floor.tscn" id="1_jpetj"]
 
 [node name="MainScene" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.128395, -0.931505, 0.340312, -0.0395785, 0.338066, 0.94029, -0.990933, -0.134197, 0.00653816, 4.0069, 2.676, 0)
-light_energy = 0.4
-light_bake_mode = 1
-shadow_enabled = true
-directional_shadow_max_distance = 50.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1u37w")
-
-[node name="ThirdFloor" parent="." instance=ExtResource("2_in5yu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, 0)
+[node name="ThirdFloor" parent="." instance=ExtResource("1_jpetj")]

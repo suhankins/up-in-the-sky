@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxlcbvirqdgu3"]
+
+[ext_resource type="Script" path="res://button_prompt_label.gd" id="2_lbd3p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a8bs"]
+font_size = 28
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l3hc4"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ControlsMovement" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(144, 96)
+
+[node name="Control" type="Control" parent="SubViewport"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="SubViewport/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 0.667
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionLabel" type="Label" parent="SubViewport/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+label_settings = SubResource("LabelSettings_7a8bs")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_lbd3p")
+action = &"walk_up"
+
+[node name="Panel2" type="Panel" parent="SubViewport/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.5
+anchor_right = 0.667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionLabel" type="Label" parent="SubViewport/Control/Panel2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "S"
+label_settings = SubResource("LabelSettings_7a8bs")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_lbd3p")
+action = &"walk_down"
+
+[node name="Panel3" type="Panel" parent="SubViewport/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.333
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionLabel" type="Label" parent="SubViewport/Control/Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A"
+label_settings = SubResource("LabelSettings_7a8bs")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_lbd3p")
+action = &"walk_left"
+
+[node name="Panel4" type="Panel" parent="SubViewport/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.667
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractionLabel" type="Label" parent="SubViewport/Control/Panel4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "D"
+label_settings = SubResource("LabelSettings_7a8bs")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("2_lbd3p")
+action = &"walk_right"
+
+[node name="Prompt" type="Sprite3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 1.25, 0)
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 0
+texture = SubResource("ViewportTexture_l3hc4")
