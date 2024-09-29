@@ -48,7 +48,7 @@ shape = SubResource("CapsuleShape3D_qy3o0")
 [node name="ShootingRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.558143, 0)
 target_position = Vector3(0, 0, -1)
-collision_mask = 9
+collision_mask = 137
 debug_shape_custom_color = Color(1.58831e-06, 0.585292, 0.448657, 1)
 
 [node name="PushingRaycast" type="RayCast3D" parent="."]
