@@ -14,7 +14,7 @@ script = ExtResource("1_o1c4c")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
-size = Vector2i(48, 48)
+size = Vector2i(78, 48)
 
 [node name="Control" type="Control" parent="SubViewport"]
 texture_filter = 1
@@ -41,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "F"
+text = "F / E"
 label_settings = SubResource("LabelSettings_7a8bs")
 horizontal_alignment = 1
 vertical_alignment = 1
