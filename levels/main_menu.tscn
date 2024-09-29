@@ -1,0 +1,192 @@
+[gd_scene load_steps=16 format=3 uid="uid://30syc4wxqb0r"]
+
+[ext_resource type="FontFile" uid="uid://bv077r2cebsl6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_s0roe"]
+[ext_resource type="PackedScene" uid="uid://b214wf8e2f61v" path="res://models/small_plane.gltf" id="1_vg8kh"]
+[ext_resource type="PackedScene" uid="uid://tbdbqhkh8ypf" path="res://models/effects/clouds/cloud_particles.tscn" id="2_sqbrv"]
+[ext_resource type="Script" path="res://levels/main_menu_plane.gd" id="3_8gr24"]
+[ext_resource type="Texture2D" uid="uid://bltumq42uwi0w" path="res://models/effects/clouds/cloud_03.png" id="4_vuqy2"]
+[ext_resource type="Texture2D" uid="uid://svylx5464epv" path="res://models/effects/clouds/cloud_10.png" id="5_6yu3p"]
+[ext_resource type="Texture2D" uid="uid://37gew2tuqgb1" path="res://models/effects/clouds/cloud_11.png" id="6_a2tx4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ur1i0"]
+sky_top_color = Color(0.25098, 0.47451, 0.74902, 1)
+ground_bottom_color = Color(0.152941, 0.333333, 0.490196, 1)
+
+[sub_resource type="Sky" id="Sky_ec50i"]
+sky_material = SubResource("ProceduralSkyMaterial_ur1i0")
+
+[sub_resource type="Environment" id="Environment_xyxpg"]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_ec50i")
+sky_custom_fov = 149.4
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_wygxu"]
+font = ExtResource("1_s0roe")
+font_size = 72
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_f5kem"]
+Button/font_sizes/font_size = 32
+
+[sub_resource type="Animation" id="Animation_dbbq6"]
+resource_name = "plane_animation"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small_plane:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6, 4.96667, 6.66667),
+"transitions": PackedFloat32Array(0.707107, 0.707107, 0.707107, 0.707107),
+"update": 0,
+"values": [Vector3(-0.566115, -0.00175875, 0.71455), Vector3(-0.566, -0.002, 0.4), Vector3(-0.566, -0.002, 1.3), Vector3(-0.566115, -0.00175875, 0.71455)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("small_plane:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.83333, 4.6, 6.66667),
+"transitions": PackedFloat32Array(0.707107, 0.707107, 0.707107, 0.707107),
+"update": 0,
+"values": [Vector3(4.36994e-17, -1.5708, 0.00349066), Vector3(0.0349066, -1.5708, 0.00349066), Vector3(-0.0349066, -1.5708, 0.00349066), Vector3(4.36994e-17, -1.5708, 0.00349066)]
+}
+
+[sub_resource type="Animation" id="Animation_yv7ij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small_plane:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.566115, -0.00175875, 0.71455)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("small_plane:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.36994e-17, -1.5708, 0.00349066)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7265u"]
+_data = {
+"RESET": SubResource("Animation_yv7ij"),
+"plane_animation": SubResource("Animation_dbbq6")
+}
+
+[node name="Main Menu" type="Node3D"]
+transform = Transform3D(0.999995, 0.00310668, 0, -0.00310668, 0.999995, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0642514, -0.430577, 0.900265, -0.117998, 0.892521, 0.435295, -0.990933, -0.134198, 0.00653842, 4.0069, 2.676, 0)
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_max_distance = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xyxpg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+offset_left = 25.0
+offset_top = 30.0
+offset_right = 630.0
+offset_bottom = 103.0
+text = "Agent Up In The Skies"
+label_settings = SubResource("LabelSettings_wygxu")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = -170.0
+offset_right = 278.0
+offset_bottom = -106.0
+grow_vertical = 0
+theme = SubResource("Theme_f5kem")
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = -98.0
+offset_right = 278.0
+offset_bottom = -34.0
+grow_vertical = 0
+theme = SubResource("Theme_f5kem")
+text = "CREDITS"
+
+[node name="small_plane" parent="." instance=ExtResource("1_vg8kh")]
+transform = Transform3D(-4.37111e-08, 1.52581e-10, -1, 0.00349065, 0.999994, -4.36994e-17, 0.999994, -0.00349065, -4.37114e-08, -0.566115, -0.00175875, 0.71455)
+
+[node name="CloudParticles" parent="." instance=ExtResource("2_sqbrv")]
+transform = Transform3D(0.999995, -0.00310668, 0, 0.00310668, 0.999995, 0, 0, 0, 1, -5.71071, 1.64334, -27.8279)
+
+[node name="CloudParticles2" parent="." instance=ExtResource("2_sqbrv")]
+transform = Transform3D(0.999995, -0.00310668, 0, 0.00310668, 0.999995, 0, 0, 0, 1, 2.28925, 1.6682, -27.8279)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.537772, 0.505287, -0.674897, -0.0063704, 0.798046, 0.602563, 0.843066, 0.328341, -0.425948, -8.27777, 8.82162, -3.89993)
+projection = 1
+size = 11.6602
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7265u")
+}
+script = ExtResource("3_8gr24")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2165, 0.0410595, -6.08933)
+pixel_size = 0.05
+billboard = 1
+shaded = true
+texture = ExtResource("4_vuqy2")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7951, -8.02517, 16.5471)
+pixel_size = 0.05
+billboard = 1
+shaded = true
+texture = ExtResource("5_6yu3p")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7951, -8.02517, -13.0765)
+pixel_size = 0.025
+billboard = 1
+shaded = true
+texture = ExtResource("6_a2tx4")

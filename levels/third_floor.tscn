@@ -1165,7 +1165,6 @@ camera = NodePath("../SmoothCamera/Camera")
 transform = Transform3D(0.128395, -0.931505, 0.340312, -0.0395785, 0.338066, 0.94029, -0.990933, -0.134197, 0.00653816, 4.0069, 2.676, 0)
 light_energy = 0.4
 light_bake_mode = 1
-shadow_enabled = true
 directional_shadow_max_distance = 50.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
