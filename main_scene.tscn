@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://clme7n1b515du"]
 
 [ext_resource type="Script" path="res://main_scene.gd" id="1_ytn7w"]
-[ext_resource type="PackedScene" uid="uid://dshd5tpyrin3s" path="res://levels/opening_cutscene.tscn" id="2_j0psc"]
+[ext_resource type="PackedScene" uid="uid://30syc4wxqb0r" path="res://levels/main_menu.tscn" id="2_olyen"]
 [ext_resource type="Texture2D" uid="uid://csxqdkkulik6v" path="res://black_pixel.png" id="3_k0cqe"]
 [ext_resource type="Script" path="res://fade_box.gd" id="3_xi25q"]
 
@@ -11,7 +11,7 @@ font_size = 32
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_ytn7w")
 
-[node name="OpeningCutscene" parent="." instance=ExtResource("2_j0psc")]
+[node name="Main Menu" parent="." instance=ExtResource("2_olyen")]
 
 [node name="FadeBox" type="TextureRect" parent="."]
 z_index = 999

@@ -1,11 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://30syc4wxqb0r"]
+[gd_scene load_steps=21 format=3 uid="uid://30syc4wxqb0r"]
 
+[ext_resource type="Script" path="res://levels/level.gd" id="1_aw0dt"]
 [ext_resource type="FontFile" uid="uid://bv077r2cebsl6" path="res://fonts/VT323/VT323-Regular.ttf" id="1_s0roe"]
 [ext_resource type="PackedScene" uid="uid://b214wf8e2f61v" path="res://models/small_plane.gltf" id="1_vg8kh"]
 [ext_resource type="PackedScene" uid="uid://tbdbqhkh8ypf" path="res://models/effects/clouds/cloud_particles.tscn" id="2_sqbrv"]
+[ext_resource type="Script" path="res://levels/credits_text.gd" id="2_v7ym6"]
+[ext_resource type="Script" path="res://levels/play_button.gd" id="3_6wa5n"]
 [ext_resource type="Script" path="res://levels/main_menu_plane.gd" id="3_8gr24"]
+[ext_resource type="PackedScene" uid="uid://dshd5tpyrin3s" path="res://levels/opening_cutscene.tscn" id="4_bo2i0"]
 [ext_resource type="Texture2D" uid="uid://bltumq42uwi0w" path="res://models/effects/clouds/cloud_03.png" id="4_vuqy2"]
 [ext_resource type="Texture2D" uid="uid://svylx5464epv" path="res://models/effects/clouds/cloud_10.png" id="5_6yu3p"]
+[ext_resource type="Script" path="res://levels/credits_button.gd" id="5_1176o"]
 [ext_resource type="Texture2D" uid="uid://37gew2tuqgb1" path="res://models/effects/clouds/cloud_11.png" id="6_a2tx4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ur1i0"]
@@ -98,6 +103,7 @@ _data = {
 
 [node name="Main Menu" type="Node3D"]
 transform = Transform3D(0.999995, 0.00310668, 0, -0.00310668, 0.999995, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_aw0dt")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.0642514, -0.430577, 0.900265, -0.117998, 0.892521, 0.435295, -0.990933, -0.134198, 0.00653842, 4.0069, 2.676, 0)
@@ -116,7 +122,79 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Panel" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -670.0
+offset_top = -483.0
+offset_right = -73.0
+offset_bottom = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CreditsText" type="RichTextLabel" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "Made by Punished Bernadetta [url=https://tech.lgbt/@punishedbernadetta](@punishedbernadetta@tech.lgbt)[/url]
+Made for #FediJam 2024
+
+[url=https://github.com/suhankins/up-in-the-sky/blob/main/fonts/VT323/OFL.txt]VT323 Font - The VT323 Project Authors (peter.hull@oikoi.com) - OFL[/url]
+
+[url=https://kenney.nl]Muzzle, aim icon, placeholder assets, some sound effects - Kenney.nl[/url]
+
+[url=https://freesound.org/s/157900/]AK-74U by duesto -- License: Attribution 3.0[/url]
+
+[url=https://freesound.org/s/613702/]MagazineClatter_03.wav by dustboxednorth -- License: Creative Commons 0[/url]
+
+[url=https://freesound.org/s/613703/]MagazineClatter_02.wav by dustboxednorth -- License: Creative Commons 0[/url]
+
+[url=https://freesound.org/s/147901/]Gunshot.mp3 by tcawte -- License: Attribution 4.0[/url]
+
+[url=https://freesound.org/s/100804/]Glock19_reload.wav by Fr3yr -- License: Attribution 3.0[/url]
+
+[url=https://freesound.org/s/323369/]Metal Slide 2 by WasabiWielder -- License: Creative Commons 0[/url]
+
+[url=https://opengameart.org/content/footsteps-on-different-surfaces]Footsteps by congusbongus[/url], derived from [url=http://www.freesound.org/people/swuing/sounds/38873/]footstep-concrete.wav by swuing -- License: Attribution 3.0[/url]
+
+Car photo by [url=https://unsplash.com/@bylukemiller?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Luke Miller[/url] on [url=https://unsplash.com/photos/a-car-parked-on-the-side-of-the-road-in-the-woods-VGtOTYUB6BU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Unsplash[/url]
+
+\"Italy\" photo by [url=https://unsplash.com/@drewdempsey?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Drew Dempsey[/url] on [url=https://unsplash.com/photos/a-narrow-alley-way-with-clothes-hanging-out-to-dry-Waf83aznKO8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Unsplash[/url]
+
+Mountains photo by [url=https://unsplash.com/@karsten116?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Karsten Winegeart[/url] on [url=https://unsplash.com/photos/a-group-of-mountains-with-a-sky-in-the-background-M3mCahAs5Qg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash]Unsplash[/url]"
+selection_enabled = true
+script = ExtResource("2_v7ym6")
+
+[node name="CloseButton" type="Button" parent="Control/Panel" node_paths=PackedStringArray("control_to_show")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.005
+anchor_right = 1.0
+anchor_bottom = 0.005
+offset_left = -38.0
+offset_top = -31.105
+offset_right = -3.0
+offset_bottom = -0.105
+grow_horizontal = 0
+grow_vertical = 0
+text = "X"
+script = ExtResource("5_1176o")
+control_to_show = NodePath("..")
+
+[node name="Logo" type="Label" parent="Control"]
 offset_left = 25.0
 offset_top = 30.0
 offset_right = 630.0
@@ -124,7 +202,7 @@ offset_bottom = 103.0
 text = "Agent Up In The Skies"
 label_settings = SubResource("LabelSettings_wygxu")
 
-[node name="Button" type="Button" parent="Control"]
+[node name="PlayButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -134,10 +212,14 @@ offset_top = -170.0
 offset_right = 278.0
 offset_bottom = -106.0
 grow_vertical = 0
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
 theme = SubResource("Theme_f5kem")
 text = "PLAY"
+script = ExtResource("3_6wa5n")
+next_scene = ExtResource("4_bo2i0")
 
-[node name="Button2" type="Button" parent="Control"]
+[node name="CreditsButton" type="Button" parent="Control" node_paths=PackedStringArray("control_to_show")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -147,8 +229,12 @@ offset_top = -98.0
 offset_right = 278.0
 offset_bottom = -34.0
 grow_vertical = 0
+focus_neighbor_top = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
 theme = SubResource("Theme_f5kem")
 text = "CREDITS"
+script = ExtResource("5_1176o")
+control_to_show = NodePath("../Panel")
 
 [node name="small_plane" parent="." instance=ExtResource("1_vg8kh")]
 transform = Transform3D(-4.37111e-08, 1.52581e-10, -1, 0.00349065, 0.999994, -4.36994e-17, 0.999994, -0.00349065, -4.37114e-08, -0.566115, -0.00175875, 0.71455)
@@ -190,3 +276,5 @@ pixel_size = 0.025
 billboard = 1
 shaded = true
 texture = ExtResource("6_a2tx4")
+
+[connection signal="meta_clicked" from="Control/Panel/CreditsText" to="Control/Panel/CreditsText" method="_on_meta_clicked"]
