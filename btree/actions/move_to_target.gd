@@ -2,8 +2,6 @@ class_name MoveToTarget extends ActionLeaf
 
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-	if not is_instance_valid(actor.move_target):
-		return FAILURE
 	if actor.move_target is AIPoint:
 		if not actor.move_target.occupy(actor):
 			actor.move_target = null
