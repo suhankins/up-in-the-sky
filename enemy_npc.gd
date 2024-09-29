@@ -2,7 +2,7 @@ extends AnimatableCharacter
 class_name EnemyNPC
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var player: Player = get_tree().get_nodes_in_group('player')[0]
+@export var player: Player
 @onready var cover_detection: Area3D = $CoverDetection
 
 @onready var vision_raycast: RayCast3D = $VisionRaycast
@@ -56,14 +56,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if dead:
+	if dead or not is_instance_valid(player):
 		return
 	update_collision()
 	update_rotation()
 
 
 func _physics_process(_delta: float) -> void:
-	if dead:
+	if dead or not is_instance_valid(player):
 		return
 	sees_player()
 	animate_legs()
@@ -295,7 +295,7 @@ func die():
 func sees_player() -> bool:
 	if self.blind:
 		return false
-	if VisionHelper.sees_player(vision_raycast, player):
+	if is_instance_valid(player) and VisionHelper.sees_player(vision_raycast, player):
 		blackboard.set_value(
 			NPCBlackboard.LAST_PLAYER_POSITION,
 			VectorHelper.get_with_y(player.global_position, player.get_raycast_position().y),

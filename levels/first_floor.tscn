@@ -1,9 +1,13 @@
-[gd_scene load_steps=33 format=4 uid="uid://uhda5in05pr2"]
+[gd_scene load_steps=38 format=4 uid="uid://uhda5in05pr2"]
 
+[ext_resource type="Script" path="res://levels/level.gd" id="1_nwm0v"]
 [ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="11_curj2"]
 [ext_resource type="PackedScene" uid="uid://o4ugj25iyg1n" path="res://levels/first_floor_layout.tscn" id="18_i5m7t"]
 [ext_resource type="LightmapGIData" uid="uid://de7f0slrd1c2y" path="res://levels/first_floor.lmbake" id="19_1k1gi"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="19_52jve"]
+[ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://interactable.tscn" id="21_dwbt8"]
+[ext_resource type="PackedScene" uid="uid://b0rdlcokbj6xb" path="res://change_level.tscn" id="22_ft81y"]
+[ext_resource type="PackedScene" uid="uid://cvbvhvsn2mi38" path="res://levels/second_floor.tscn" id="23_rfgbm"]
 [ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="26_v5hhe"]
 [ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://ai_points/full_body_cover.tscn" id="27_wdk7c"]
 [ext_resource type="PackedScene" uid="uid://p7ajyx361158" path="res://ai_points/flank_area.tscn" id="28_j4d3q"]
@@ -134,7 +138,11 @@ shadow_mesh = SubResource("ArrayMesh_8vl36")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tae3v"]
 points = PackedVector3Array(0.3, 0.3, 1.15, -0.35, 0.3, 1.15, 0.3, 0.2, 1.15, 0.3, 0.3, 0, -0.35, 0.2, 1.15, -0.35, 0.3, 0, 0.3, 0.2, 0, -0.35, 0.2, 0)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_orrg5"]
+size = Vector3(1.71777, 1.72803, 1.09033)
+
 [node name="FirstFloor" type="Node3D"]
+script = ExtResource("1_nwm0v")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.0123217, 0, 0.999924, 0, 1, 0, -0.999924, 0, -0.0123217, 0.534606, 0.502528, -0.519391)
@@ -156,8 +164,9 @@ targets = [NodePath("../Player")]
 [node name="NPCBlackboard" type="Node" parent="."]
 script = ExtResource("19_52jve")
 
-[node name="TerroristNPC" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("11_curj2")]
+[node name="TerroristNPC" parent="." node_paths=PackedStringArray("player", "blackboard") instance=ExtResource("11_curj2")]
 transform = Transform3D(-0.999478, 0, 0.0323005, 0, 1, 0, -0.0323005, 0, -0.999478, 1.1425, 0.0500001, 0.17443)
+player = NodePath("../Player")
 health = 1.0
 blackboard = NodePath("../NPCBlackboard")
 team = "cart training dummy"
@@ -207,14 +216,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.905884, 0.0500002, 1.98442)
 [node name="PatrolPoint3" parent="." instance=ExtResource("30_anr4n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12038, 0.0499997, 3.83773)
 
-[node name="TerroristNPC2" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("11_curj2")]
+[node name="TerroristNPC2" parent="." node_paths=PackedStringArray("player", "blackboard") instance=ExtResource("11_curj2")]
 transform = Transform3D(-0.58616, 0, -0.810195, 0, 1, 0, 0.810195, 0, -0.58616, 1.60419, 0.05, 2.15354)
+player = NodePath("../Player")
 weapon_template = SubResource("Resource_myx8l")
 blackboard = NodePath("../NPCBlackboard")
 team = "break room"
 
-[node name="TerroristNPC3" parent="." node_paths=PackedStringArray("patrol_points", "blackboard") instance=ExtResource("11_curj2")]
+[node name="TerroristNPC3" parent="." node_paths=PackedStringArray("player", "patrol_points", "blackboard") instance=ExtResource("11_curj2")]
 transform = Transform3D(0.890951, 0, -0.454099, 0, 1, 0, 0.454099, 0, 0.890951, 2.42735, 0.05, 3.63329)
+player = NodePath("../Player")
 weapon_template = SubResource("Resource_5m1sl")
 patrol_points = [NodePath("../PatrolPoint"), NodePath("../PatrolPoint3")]
 blackboard = NodePath("../NPCBlackboard")
@@ -302,3 +313,22 @@ collision_layer = 69
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crate/Node/Layer_2/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_tae3v")
+
+[node name="ExitArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3094, 0.05, 5.84531)
+collision_layer = 0
+collision_mask = 32
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358887, 0.364014, -0.045166)
+shape = SubResource("BoxShape3D_orrg5")
+
+[node name="Interactable" parent="." node_paths=PackedStringArray("collision") instance=ExtResource("21_dwbt8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3094, 0.05, 5.84531)
+collision = NodePath("../ExitArea")
+
+[node name="ChangeLevel" parent="." instance=ExtResource("22_ft81y")]
+next_scene = ExtResource("23_rfgbm")
+
+[connection signal="interacted" from="Interactable" to="ChangeLevel" method="_on_interactable_interacted"]

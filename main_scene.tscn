@@ -1,7 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://clme7n1b515du"]
+[gd_scene load_steps=6 format=3 uid="uid://clme7n1b515du"]
 
-[ext_resource type="PackedScene" uid="uid://uhda5in05pr2" path="res://levels/first_floor.tscn" id="1_jpetj"]
+[ext_resource type="Script" path="res://main_scene.gd" id="1_ytn7w"]
+[ext_resource type="PackedScene" uid="uid://dshd5tpyrin3s" path="res://levels/opening_cutscene.tscn" id="2_j0psc"]
+[ext_resource type="Texture2D" uid="uid://csxqdkkulik6v" path="res://black_pixel.png" id="3_k0cqe"]
+[ext_resource type="Script" path="res://fade_box.gd" id="3_xi25q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y50kd"]
+font_size = 32
 
 [node name="MainScene" type="Node3D"]
+script = ExtResource("1_ytn7w")
 
-[node name="ThirdFloor" parent="." instance=ExtResource("1_jpetj")]
+[node name="OpeningCutscene" parent="." instance=ExtResource("2_j0psc")]
+
+[node name="FadeBox" type="TextureRect" parent="."]
+z_index = 999
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_k0cqe")
+expand_mode = 1
+script = ExtResource("3_xi25q")
+
+[node name="LoadingText" type="Label" parent="."]
+z_index = 999
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+offset_right = 149.0
+grow_vertical = 0
+text = "Loading..."
+label_settings = SubResource("LabelSettings_y50kd")

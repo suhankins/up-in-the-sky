@@ -19,6 +19,8 @@ class_name Player
 @export var regen_health: float = 2.0
 signal health_changed(current_health: float, max_health: float)
 
+var dead = false
+
 @export var regeneration_time: float = 2.0
 @onready var regeneration_cooldown: Timer = $RegenCooldown
 
@@ -54,6 +56,8 @@ func reset_shooting_raycast():
 
 
 func _process(delta: float):
+	if dead:
+		return
 	look_at_cursor()
 	move_aim()
 	animate_legs()
@@ -120,6 +124,8 @@ func can_stand() -> bool:
 
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -214,13 +220,13 @@ func take_damage(damage_taken: float):
 	self.health -= damage_taken
 	health_changed.emit(self.health, max_health)
 	regeneration_cooldown.start(regeneration_time)
-	if self.health <= 0:
+	if self.health <= 0 and not dead:
 		self.die()
 
 
 func die():
-	# TODO: Animations, UI, etc.
-	get_tree().reload_current_scene()
+	self.dead = true
+	self.get_parent_node_3d().restart()
 
 
 func get_spread_modifier() -> float:
