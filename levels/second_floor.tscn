@@ -952,12 +952,15 @@ regions = [NodePath("../NavigationRegion3D"), NodePath("../NavigationRegion3D2")
 script = ExtResource("12_rw3oo")
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+bounces = 2
+bounce_indirect_energy = 0.5
 directional = true
 interior = true
+denoiser_strength = 0.2
 environment_mode = 3
 environment_custom_color = Color(1, 1, 1, 1)
 environment_custom_energy = 0.8
-generate_probes_subdiv = 3
 light_data = ExtResource("7_rlyfe")
 
 [node name="SmoothCamera" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("26_0fnu1")]

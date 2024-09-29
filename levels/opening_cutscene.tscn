@@ -403,11 +403,12 @@ far = 100.0
 
 [node name="LightmapGI" type="LightmapGI" parent="."]
 quality = 3
-bounces = 2
+bounces = 1
 bounce_indirect_energy = 0.5
 directional = true
 interior = true
-texel_scale = 5.0
+denoiser_strength = 0.125
+texel_scale = 3.0
 environment_mode = 3
 environment_custom_color = Color(0.226707, 0.226707, 0.226707, 1)
 environment_custom_energy = 0.0
