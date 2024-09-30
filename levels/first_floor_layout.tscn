@@ -675,5 +675,4 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 1, 
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_snbot")
-pitch_scale = 0.8
 autoplay = true
