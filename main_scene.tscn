@@ -10,6 +10,7 @@ font_size = 32
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_ytn7w")
+main_menu = ExtResource("2_olyen")
 
 [node name="Main Menu" parent="." instance=ExtResource("2_olyen")]
 

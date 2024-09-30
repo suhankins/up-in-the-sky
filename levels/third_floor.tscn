@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://b85uagylcjfgu"]
+[gd_scene load_steps=54 format=3 uid="uid://b85uagylcjfgu"]
 
 [ext_resource type="PackedScene" uid="uid://tbdbqhkh8ypf" path="res://models/effects/clouds/cloud_particles.tscn" id="1_bt37j"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_p840t"]
@@ -42,7 +42,6 @@
 [ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://interactable.tscn" id="39_kp5ce"]
 [ext_resource type="PackedScene" uid="uid://b0rdlcokbj6xb" path="res://change_level.tscn" id="40_xn58u"]
 [ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="40_yc6vu"]
-[ext_resource type="PackedScene" uid="uid://30syc4wxqb0r" path="res://levels/main_menu.tscn" id="41_5ienc"]
 [ext_resource type="Script" path="res://levels/blinking_light.gd" id="41_bxgpb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jv8up"]
@@ -1233,7 +1232,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99842, 0.05, 3.68417)
 collision = NodePath("../ExitArea")
 
 [node name="ChangeLevel" parent="." instance=ExtResource("40_xn58u")]
-next_scene = ExtResource("41_5ienc")
 
 [connection signal="timeout" from="bomb/BlinkingLight/Timer" to="bomb/BlinkingLight" method="_on_timer_timeout"]
 [connection signal="interacted" from="Interactable" to="ChangeLevel" method="_on_interactable_interacted"]
