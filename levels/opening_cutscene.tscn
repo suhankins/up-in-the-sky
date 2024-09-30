@@ -6,12 +6,12 @@
 [ext_resource type="FontFile" uid="uid://bv077r2cebsl6" path="res://fonts/VT323/VT323-Regular.ttf" id="3_fay0e"]
 [ext_resource type="Script" path="res://display_text.gd" id="4_kho43"]
 [ext_resource type="AudioStream" uid="uid://dtp10bmq2qpyj" path="res://sfx/typewriter/typewriter_random.tres" id="5_f462r"]
-[ext_resource type="Script" path="res://levels/opening_cutscene_player.gd" id="6_4q0th"]
 [ext_resource type="AudioStream" uid="uid://bbe86ujxwghas" path="res://sfx/squeek.wav" id="6_dtxa5"]
 [ext_resource type="LightmapGIData" uid="uid://c1gueba6qtjn7" path="res://levels/opening_cutscene.lmbake" id="7_7a7vt"]
 [ext_resource type="Texture2D" uid="uid://by8pbh1lkrfj2" path="res://models/effects/whitePuff.png" id="7_88jrt"]
 [ext_resource type="AudioStream" uid="uid://bytpfcn0c7hx4" path="res://sfx/loud_thud.wav" id="7_sicy6"]
 [ext_resource type="PackedScene" uid="uid://uhda5in05pr2" path="res://levels/first_floor.tscn" id="9_8veh5"]
+[ext_resource type="Script" path="res://scripts/autostart_animation.gd" id="10_r5sg0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j848i"]
 resource_name = "Material.1"
@@ -373,7 +373,8 @@ max_polyphony = 2
 libraries = {
 "": SubResource("AnimationLibrary_ed6as")
 }
-script = ExtResource("6_4q0th")
+script = ExtResource("10_r5sg0")
+animation_name = &"opening_cutscene"
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="OpeningAnimation"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.07963, 0.0761181, -6.5842)

@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://tbdbqhkh8ypf" path="res://models/effects/clouds/cloud_particles.tscn" id="2_sqbrv"]
 [ext_resource type="Script" path="res://levels/credits_text.gd" id="2_v7ym6"]
 [ext_resource type="Script" path="res://levels/play_button.gd" id="3_6wa5n"]
-[ext_resource type="Script" path="res://levels/main_menu_plane.gd" id="3_8gr24"]
 [ext_resource type="PackedScene" uid="uid://dshd5tpyrin3s" path="res://levels/opening_cutscene.tscn" id="4_bo2i0"]
 [ext_resource type="Texture2D" uid="uid://bltumq42uwi0w" path="res://models/effects/clouds/cloud_03.png" id="4_vuqy2"]
 [ext_resource type="Texture2D" uid="uid://svylx5464epv" path="res://models/effects/clouds/cloud_10.png" id="5_6yu3p"]
 [ext_resource type="Script" path="res://levels/credits_button.gd" id="5_1176o"]
 [ext_resource type="Texture2D" uid="uid://37gew2tuqgb1" path="res://models/effects/clouds/cloud_11.png" id="6_a2tx4"]
+[ext_resource type="Script" path="res://scripts/autostart_animation.gd" id="9_7ae28"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ur1i0"]
 sky_top_color = Color(0.25098, 0.47451, 0.74902, 1)
@@ -256,7 +256,8 @@ size = 11.6602
 libraries = {
 "": SubResource("AnimationLibrary_7265u")
 }
-script = ExtResource("3_8gr24")
+script = ExtResource("9_7ae28")
+animation_name = &"plane_animation"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2165, 0.0410595, -6.08933)
