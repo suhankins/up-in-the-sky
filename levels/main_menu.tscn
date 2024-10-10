@@ -150,6 +150,9 @@ focus_mode = 2
 bbcode_enabled = true
 text = "Made by Punished Bernadetta [url=https://tech.lgbt/@punishedbernadetta](@punishedbernadetta@tech.lgbt)[/url]
 For #FediJam 2024
+
+Uses [url=https://github.com/bitbrain/beehave]Beehave addon by BitBrain -- MIT[/url]
+
 Tools used: [url=https://godotengine.org/license/]Godot -- MIT[/url], [url=https://goxel.xyz/]Goxel[/url], [url=https://www.gimp.org/]GIMP[/url], [url=https://www.audacityteam.org/]Audacity[/url], [url=https://code.visualstudio.com/]VSCode[/url]
 
 [url=https://fonts.google.com/specimen/VT323]VT323 Font - The VT323 Project Authors (peter.hull@oikoi.com) - OFL[/url]
