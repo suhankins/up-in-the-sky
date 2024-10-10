@@ -41,6 +41,8 @@ var dead = false
 @onready var standing_collision: CollisionShape3D = $StandingCollision
 @onready var crouching_collision: CollisionShape3D = $CrouchingCollision
 
+@onready var laser: Node3D = $Laser
+
 
 func _ready() -> void:
 	self.reset_shooting_raycast()
@@ -101,13 +103,19 @@ func get_raycast_position() -> Vector3:
 
 func move_aim():
 	shooting_raycast.position = get_raycast_position()
+	self.laser.position.y = shooting_raycast.position.y
 	var collided_with = shooting_raycast.get_collider()
 	if not collided_with:
+		self.laser.rotation = Vector3.ZERO
+		self.laser.scale.z = self.weapon.bullet_distance
 		cursor.hide()
 		return
 
 	cursor.show()
-	cursor.global_position = shooting_raycast.get_collision_point()
+	var collision_point = shooting_raycast.get_collision_point()
+	cursor.global_position = collision_point
+	self.laser.look_at(collision_point)
+	self.laser.scale.z = self.laser.global_position.distance_to(collision_point)
 	if collided_with is EnemyNPC:
 		cursor.modulate = Color.RED
 	else:
@@ -243,12 +251,14 @@ func handle_reload():
 	if not reload_cooldown.is_stopped():
 		return
 
+	self.laser.visible = false
 	reload_cooldown.start(weapon.reload_time)
 	weapon.start_reload()
 	play_reload_animation()
 
 
 func _on_reload_cooldown_timeout() -> void:
+	self.laser.visible = true
 	weapon.refill_magazine()
 
 
