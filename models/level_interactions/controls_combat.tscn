@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvcpam0ii14oh"]
 
-[ext_resource type="Script" path="res://button_prompt_label.gd" id="1_pr0mv"]
+[ext_resource type="Script" path="res://models/level_interactions/button_prompt_label.gd" id="1_pr0mv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yjv3o"]
 font_size = 28

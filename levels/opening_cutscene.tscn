@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://levels/level.gd" id="1_us523"]
 [ext_resource type="PackedScene" uid="uid://dklhuniy1ca5y" path="res://models/player_agent/player_agent_no_animation_tree.tscn" id="2_1sc0p"]
 [ext_resource type="FontFile" uid="uid://bv077r2cebsl6" path="res://fonts/VT323/VT323-Regular.ttf" id="3_fay0e"]
-[ext_resource type="Script" path="res://display_text.gd" id="4_kho43"]
+[ext_resource type="Script" path="res://scripts/animate_text.gd" id="4_kho43"]
 [ext_resource type="AudioStream" uid="uid://dtp10bmq2qpyj" path="res://sfx/typewriter/typewriter_random.tres" id="5_f462r"]
 [ext_resource type="AudioStream" uid="uid://bbe86ujxwghas" path="res://sfx/squeek.wav" id="6_dtxa5"]
 [ext_resource type="LightmapGIData" uid="uid://c1gueba6qtjn7" path="res://levels/opening_cutscene.lmbake" id="7_7a7vt"]

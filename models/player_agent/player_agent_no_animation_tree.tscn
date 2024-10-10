@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://dvg88q8hor4ei" path="res://models/player_agent/jacket.tres" id="1_fqmbk"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_qdcti"]
 [ext_resource type="ArrayMesh" uid="uid://8lprjqn2pu1b" path="res://models/player_agent/pistol.obj" id="3_lqian"]
-[ext_resource type="Texture2D" uid="uid://qpnigvcuxecn" path="res://muzzle.png" id="4_qwsg6"]
+[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="4_qwsg6"]
 [ext_resource type="ArrayMesh" uid="uid://cqg8r4q804qvg" path="res://models/player_agent/sunglasses.obj" id="5_pxtpx"]
 [ext_resource type="PackedScene" uid="uid://u41n1vsbsu2y" path="res://models/player_agent/tie.gltf" id="6_7f2qs"]
 [ext_resource type="Material" uid="uid://d1fdvf7a4g3ol" path="res://models/player_agent/pants.tres" id="7_figv3"]

@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://th66yoypu5mp"
-path="res://.godot/imported/bomb.gltf-84fe900af5aba203689c496bee0a5cf0.scn"
+uid="uid://ckgajq8xdkarf"
+path="res://.godot/imported/cart.gltf-16394110489396f0484f97bd73d2b2e0.scn"
 
 [deps]
 
-source_file="res://models/bomb.gltf"
-dest_files=["res://.godot/imported/bomb.gltf-84fe900af5aba203689c496bee0a5cf0.scn"]
+source_file="res://models/cart/cart.gltf"
+dest_files=["res://.godot/imported/cart.gltf-16394110489396f0484f97bd73d2b2e0.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.02
+nodes/root_scale=0.05
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=false
@@ -24,7 +24,7 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
-skins/use_named_skins=false
+skins/use_named_skins=true
 animation/import=false
 animation/fps=30
 animation/trimming=false
@@ -33,9 +33,18 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"bomb_mesh": {
+"cart_mesh": {
 "generate/lightmap_uv": 1,
-"generate/lods": 2,
+"generate/lods": 0,
+"generate/shadow_meshes": 1,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": false,
+"save_to_file/path": ""
+},
+"cart_mesh2": {
+"generate/lightmap_uv": 1,
+"generate/lods": 0,
 "generate/shadow_meshes": 1,
 "lods/normal_merge_angle": 60.0,
 "lods/normal_split_angle": 25.0,

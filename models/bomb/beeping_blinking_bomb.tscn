@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://m3tshjos4pqh"]
+
+[ext_resource type="AudioStream" uid="uid://g3wn2jt3o3fj" path="res://sfx/beep.wav" id="1_tgm6k"]
+[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="2_65gmc"]
+[ext_resource type="Script" path="res://models/bomb/blinking_light.gd" id="3_bvt33"]
+[ext_resource type="PackedScene" uid="uid://th66yoypu5mp" path="res://models/bomb/bomb.gltf" id="4_k3tk2"]
+
+[node name="BeepingBlinkingBomb" type="Node3D"]
+transform = Transform3D(0.416741, 0, -0.909025, 0, 1, 0, 0.909025, 0, 0.416741, 2.05906, 0.517729, 3.78991)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0, 0)
+stream = ExtResource("1_tgm6k")
+unit_size = 2.0
+autoplay = true
+max_distance = 4.0
+
+[node name="BlinkingLight" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -0.0677872, 0.12215, 0.0553766)
+visible = false
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_65gmc")
+script = ExtResource("3_bvt33")
+
+[node name="Timer" type="Timer" parent="BlinkingLight"]
+wait_time = 1.5
+autostart = true
+
+[node name="Bomb" parent="." instance=ExtResource("4_k3tk2")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+
+[connection signal="timeout" from="BlinkingLight/Timer" to="BlinkingLight" method="_on_timer_timeout"]

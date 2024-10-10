@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b0rdlcokbj6xb"]
 
-[ext_resource type="Script" path="res://change_level_interaction.gd" id="1_0c6of"]
+[ext_resource type="Script" path="res://models/level_interactions/change_level_interaction.gd" id="1_0c6of"]
 
 [node name="ChangeLevel" type="Node3D"]
 script = ExtResource("1_0c6of")

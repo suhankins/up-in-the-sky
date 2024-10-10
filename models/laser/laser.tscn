@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://p2a30sbpu4pr"]
+
+[ext_resource type="Shader" path="res://models/laser/laser.gdshader" id="1_ikao8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2h0w"]
+render_priority = 0
+shader = ExtResource("1_ikao8")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ex4f3"]
+material = SubResource("ShaderMaterial_o2h0w")
+size = Vector2(0.05, 1)
+
+[node name="Laser" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.557657, -0.320348)
+
+[node name="LaserMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_ex4f3")
+skeleton = NodePath("../..")

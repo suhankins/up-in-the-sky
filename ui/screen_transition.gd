@@ -1,4 +1,4 @@
-class_name FadeBox extends TextureRect
+class_name ScreenTransition extends TextureRect
 
 signal fade_finished
 

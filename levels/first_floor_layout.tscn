@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dxltfftdocrvc" path="res://models/architecture/shutter_open.gltf" id="15_1wr6f"]
 [ext_resource type="PackedScene" uid="uid://ccqn6133fruhy" path="res://models/architecture/luggage/guitar_0.gltf" id="16_pupvl"]
 [ext_resource type="PackedScene" uid="uid://cxop12rusmtiq" path="res://models/architecture/staircase.gltf" id="17_0nedl"]
-[ext_resource type="PackedScene" uid="uid://bvam1xh7k65vn" path="res://models/cart.tscn" id="18_25dhr"]
+[ext_resource type="PackedScene" uid="uid://bvam1xh7k65vn" path="res://models/cart/cart.tscn" id="18_25dhr"]
 [ext_resource type="PackedScene" uid="uid://cmh7i01d22sts" path="res://models/architecture/painting/painting_car.tscn" id="20_j44d8"]
 [ext_resource type="PackedScene" uid="uid://cgjhnlgprd3d2" path="res://models/architecture/painting/painting_mountain.tscn" id="21_4pm5s"]
 [ext_resource type="PackedScene" uid="uid://dc5hf6qx6tix8" path="res://models/architecture/industrial_light.tscn" id="22_mkvcc"]

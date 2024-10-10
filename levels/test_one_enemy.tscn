@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6yvtqr8dwlx7"]
 
-[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="1_87tfb"]
+[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://camera/smooth_camera.tscn" id="1_87tfb"]
 [ext_resource type="PackedScene" uid="uid://hmdwvwo0x1ch" path="res://models/placeholders/crate.glb" id="1_7384l"]
-[ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="2_kn6qr"]
+[ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://npc/terrorist_npc.tscn" id="2_kn6qr"]
 [ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_ko0rh"]
-[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="2_vqsno"]
+[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player/player.tscn" id="2_vqsno"]
 [ext_resource type="Script" path="res://btree/NPCBlackboard.gd" id="6_t4wnh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4koxm"]

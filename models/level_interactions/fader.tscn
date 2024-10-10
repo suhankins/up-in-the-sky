@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://opftpaw6s0ce"]
 
-[ext_resource type="Script" path="res://fader.gd" id="1_j81jh"]
+[ext_resource type="Script" path="res://models/level_interactions/fader.gd" id="1_j81jh"]
 
 [node name="Fader" type="Area3D"]
 collision_layer = 0

@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bvam1xh7k65vn"]
 
-[ext_resource type="PackedScene" uid="uid://ckgajq8xdkarf" path="res://models/cart.gltf" id="1_3ikog"]
-[ext_resource type="Script" path="res://models/cart.gd" id="1_tj38k"]
+[ext_resource type="PackedScene" uid="uid://ckgajq8xdkarf" path="res://models/cart/cart.gltf" id="1_3ikog"]
+[ext_resource type="Script" path="res://models/cart/cart.gd" id="1_tj38k"]
 [ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="2_b1jne"]
-[ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://interactable.tscn" id="4_l5s8a"]
+[ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://models/level_interactions/interactable.tscn" id="4_l5s8a"]
 [ext_resource type="AudioStream" uid="uid://cquxsw3e3hx5b" path="res://sfx/cart.wav" id="5_8lmdj"]
 [ext_resource type="AudioStream" uid="uid://deaaa7gqod534" path="res://sfx/metal_hit.wav" id="6_dcof8"]
 

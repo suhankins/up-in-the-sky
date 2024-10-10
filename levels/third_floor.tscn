@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://b85uagylcjfgu"]
+[gd_scene load_steps=51 format=3 uid="uid://b85uagylcjfgu"]
 
 [ext_resource type="PackedScene" uid="uid://tbdbqhkh8ypf" path="res://models/effects/clouds/cloud_particles.tscn" id="1_bt37j"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_p840t"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://buf27nhgsyhrg" path="res://models/architecture/emergency_door_wall.tscn" id="7_2ratb"]
 [ext_resource type="PackedScene" uid="uid://cxop12rusmtiq" path="res://models/architecture/staircase.gltf" id="9_3h47j"]
 [ext_resource type="PackedScene" uid="uid://imxa5lf8mfxt" path="res://models/architecture/dark_cube.tscn" id="9_qw0js"]
-[ext_resource type="PackedScene" uid="uid://bvam1xh7k65vn" path="res://models/cart.tscn" id="12_76tro"]
+[ext_resource type="PackedScene" uid="uid://bvam1xh7k65vn" path="res://models/cart/cart.tscn" id="12_76tro"]
 [ext_resource type="PackedScene" uid="uid://sftwkmf7y78s" path="res://models/architecture/short_wall.gltf" id="12_f1yas"]
 [ext_resource type="PackedScene" uid="uid://2hq1s1045c1s" path="res://models/architecture/bar_wall.gltf" id="12_y1uiv"]
 [ext_resource type="PackedScene" uid="uid://b6vyepcqo51js" path="res://ai_points/pull_out_cart.tscn" id="13_b3nsr"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://0e1w707febfn" path="res://ai_points/full_body_cover.tscn" id="14_sxfqv"]
 [ext_resource type="LightmapGIData" uid="uid://cn75njeeyekpl" path="res://levels/third_floor.lmbake" id="18_1cvqe"]
 [ext_resource type="PackedScene" uid="uid://bcvoadxu3cauw" path="res://models/architecture/pillar.gltf" id="18_ed87r"]
-[ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://terrorist_npc.tscn" id="18_ubt8f"]
+[ext_resource type="PackedScene" uid="uid://8ei7aro1m5v4" path="res://npc/terrorist_npc.tscn" id="18_ubt8f"]
 [ext_resource type="PackedScene" uid="uid://cmh7i01d22sts" path="res://models/architecture/painting/painting_car.tscn" id="20_ura3p"]
 [ext_resource type="PackedScene" uid="uid://haj2nimcdqtb" path="res://models/architecture/painting/painting_italy.tscn" id="21_uduyk"]
 [ext_resource type="PackedScene" uid="uid://cgjhnlgprd3d2" path="res://models/architecture/painting/painting_mountain.tscn" id="22_uutl6"]
@@ -33,16 +33,13 @@
 [ext_resource type="PackedScene" uid="uid://d2njjlocxvmeo" path="res://models/architecture/bar_stool.gltf" id="29_2br6c"]
 [ext_resource type="PackedScene" uid="uid://cru1p2queh6vo" path="res://ai_points/duck_cover.tscn" id="30_keqch"]
 [ext_resource type="PackedScene" uid="uid://c41wgxmsuyh5m" path="res://models/architecture/wall_with_chair_and_phone.tscn" id="32_8h2x5"]
-[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://smooth_camera.tscn" id="33_pka0p"]
-[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player.tscn" id="34_s611d"]
+[ext_resource type="PackedScene" uid="uid://bkj0os4paghqg" path="res://camera/smooth_camera.tscn" id="33_pka0p"]
+[ext_resource type="PackedScene" uid="uid://d00lh5qnb33ry" path="res://player/player.tscn" id="34_s611d"]
 [ext_resource type="AudioStream" uid="uid://ruu25w3g3fmc" path="res://sfx/ambient.wav" id="34_ybc6q"]
 [ext_resource type="PackedScene" uid="uid://dkv7sab2yllwb" path="res://models/architecture/wall_doohikey.gltf" id="36_hwvkd"]
-[ext_resource type="PackedScene" uid="uid://th66yoypu5mp" path="res://models/bomb.gltf" id="38_6h5mu"]
-[ext_resource type="AudioStream" uid="uid://g3wn2jt3o3fj" path="res://sfx/beep.wav" id="39_kfy2q"]
-[ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://interactable.tscn" id="39_kp5ce"]
-[ext_resource type="PackedScene" uid="uid://b0rdlcokbj6xb" path="res://change_level.tscn" id="40_xn58u"]
-[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="40_yc6vu"]
-[ext_resource type="Script" path="res://levels/blinking_light.gd" id="41_bxgpb"]
+[ext_resource type="PackedScene" uid="uid://m3tshjos4pqh" path="res://models/bomb/beeping_blinking_bomb.tscn" id="38_8m32w"]
+[ext_resource type="PackedScene" uid="uid://dg3g1jr7l1s5q" path="res://models/level_interactions/interactable.tscn" id="39_kp5ce"]
+[ext_resource type="PackedScene" uid="uid://b0rdlcokbj6xb" path="res://models/level_interactions/change_level.tscn" id="40_xn58u"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jv8up"]
 vertices = PackedVector3Array(1.45, 0.617604, -10.6987, 1.45, 0.617604, -10.5987, 1.65, 0.617604, -10.6987, 1.7, 0.0676039, 0.351297, 1.45, 0.0676039, 0.651298, 1.6, 0.0676039, 0.501297, 1.4, 0.0676039, -0.348702, 1.55, 0.0676039, -0.448703, 1.45, 0.0676039, -0.548703, 1.9, 0.0676039, 0.351297, 2.15, 0.0676039, 0.501297, 1.55, 0.0676039, 4.1013, 1.4, 0.0676039, 3.9513, 0.4, 0.0676039, 3.7513, -0.25, 0.0676039, 5.2013, 0.95, 0.0676039, -2.0987, 0.95, 0.0676039, -2.2487, 0.7, 0.0676039, -2.3987, 0.55, 0.0676039, -1.6987, 0.65, 0.0676039, 0.201297, 0.5, 0.0676039, 0.301297, 0.5, 0.0676039, 0.601297, 2.85, 0.0676039, -1.9987, 2.45, 0.0676039, -2.0487, 2.4, 0.0676039, -1.9487, 2.15, 0.0676039, -1.2487, 2.3, 0.0676039, -1.0987, 2.8, 0.0676039, -0.548703, 2.95, 0.0676039, -0.648703, 2.95, 0.0676039, -0.998703, 2.8, 0.0676039, -1.0987, 0.65, 0.0676039, 0.701297, 1.4, 0.0676039, -0.0487032, 0.7, 0.0676039, -3.7987, 0.4, 0.0676039, -3.6987, 0.65, 0.0676039, -3.2987, 0.85, 0.0676039, -3.9487, 0.45, 0.0676039, -4.2487, -0.15, 0.0676039, -3.5987, 2.75, 0.0676039, 0.701297, 2.9, 0.0676039, 0.601297, 2.1, 0.0676039, -1.9487, 2.05, 0.0676039, -2.0487, 1.5, 0.0676039, -2.0487, 1.45, 0.0676039, -1.9487, 1.6, 0.0676039, -1.2487, 0.3, 0.0676039, -4.3987, 0.3, 0.0676039, -4.6487, -0.35, 0.0676039, -5.3987, -0.35, 0.0676039, -3.4487, 2.5, 0.0676039, -0.0487032, 4.25, 0.0676039, -3.5987, 3.75, 0.0676039, -4.3987, 3.6, 0.0676039, -4.2487, 2.3, 0.0676039, 0.651298, 1.45, 0.0676039, -1.0987, 0.7, 0.0676039, -1.0987, 0.55, 0.0676039, -0.998703, 0.5, 0.0676039, 1.3513, -0.2, 0.0676039, 1.3513, -0.25, 0.0676039, 1.5013, 0.25, 0.0676039, 2.3513, 0.4, 0.0676039, 2.2013, 0.65, 0.0676039, -2.9987, 0.25, 0.0676039, 3.6013, 0.4, 0.0676039, -2.7987, 2.95, 0.0676039, -1.6987, 3.6, 0.0676039, -1.6987, 3.75, 0.0676039, -1.9487, 3.2, 0.0676039, -2.3987, 2.3, 0.0676039, -0.548703, 2.5, 0.0676039, -0.248703, 2.8, 0.0676039, -1.5487, -0.15, 0.0676039, -2.6987, -0.2, 0.0676039, -1.6987, 2.9, 0.0676039, 1.3513, 2.75, 0.0676039, 1.2013, 2.3, 0.0676039, 1.2013, 2.15, 0.0676039, 1.3513, 3.65, 0.0676039, 2.2013, 2.45, 0.0676039, 4.1013, 4.25, 0.0676039, 5.2013, 1.45, 0.0676039, 1.2013, 0.65, 0.0676039, 1.2013, 2.45, 0.0676039, -3.9487, 3.05, 0.0676039, -3.9487, 3.8, 0.0676039, 3.6013, 3.65, 0.0676039, 3.7513, 1.6, 0.0676039, 1.3513, -0.35, 0.0676039, -2.9487, 1.4, 0.0676039, 3.7513, 1.55, 0.0676039, -3.7987, 1.55, 0.0676039, -3.0987, 2.3, 0.0676039, -3.0987, 2.3, 0.0676039, -3.7987, 1.4, 0.0676039, -3.9487, 3.2, 0.0676039, -3.7987, 2.6, 0.0676039, 3.9513, 2.6, 0.0676039, 3.7513, 3.8, 0.0676039, 2.3513, 4.25, 0.0676039, 1.3513, 0.7, 0.0676039, -1.5487, 1.1, 0.0676039, -1.9487, 0.45, 0.0676039, -4.7987, 1.35, 0.0676039, -4.7987, 1.35, 0.0676039, -5.3987, 2.65, 0.0676039, -5.3987, 2.65, 0.0676039, -4.7987, 3.6, 0.0676039, -4.7987, 4.35, 0.0676039, -5.3987, 3.75, 0.0676039, -4.6487, 4.25, 0.0676039, -1.9487, 4.35, 0.0676039, -3.6487, 1.15, 0.537604, -2.8487, 1.1, 0.537604, -3.5487, 1.1, 0.537604, -2.6487, 1.3, 0.537604, -2.6987, 2.8, 0.537604, -3.5487, 2.7, 0.537604, -3.5487, 2.7, 0.537604, -2.8487, 2.8, 0.537604, -2.6487, 2.55, 0.537604, -2.6987, 4, 1.4676, -1.5487, 4, 1.4676, 0.951297, 4.4, 1.4676, 0.951297, 4.4, 1.4676, -1.5487, 4.25, 0.0676039, -1.4987, 4.15, 0.0676039, -1.4987, 4.1, 0.0676039, -1.0987, 4.1, 0.0676039, 0.901298, 4.25, 0.0676039, 0.901298, 1.85, 0.617604, -0.198703, 1.85, 0.617604, -0.0987024, 2.05, 0.617604, -0.198703, 0.75, 0.0676039, 2.7513, 0.75, 0.0676039, 3.2013, 3.25, 0.0676039, 3.2013, 3.25, 0.0676039, 2.7513)
@@ -1194,28 +1191,7 @@ environment = SubResource("Environment_lediw")
 stream = ExtResource("34_ybc6q")
 autoplay = true
 
-[node name="bomb" parent="." instance=ExtResource("38_6h5mu")]
-transform = Transform3D(0.416741, 0, -0.909025, 0, 1, 0, 0.909025, 0, 0.416741, 2.05906, 0.517729, 3.78991)
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="bomb"]
-stream = ExtResource("39_kfy2q")
-unit_size = 2.0
-autoplay = true
-max_distance = 4.0
-
-[node name="BlinkingLight" type="Sprite3D" parent="bomb"]
-transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, -0.0677872, 0.12215, 0.0553766)
-visible = false
-modulate = Color(1, 0, 0, 1)
-pixel_size = 0.005
-billboard = 1
-texture_filter = 0
-texture = ExtResource("40_yc6vu")
-script = ExtResource("41_bxgpb")
-
-[node name="Timer" type="Timer" parent="bomb/BlinkingLight"]
-wait_time = 1.5
-autostart = true
+[node name="BeepingBlinkingBomb" parent="." instance=ExtResource("38_8m32w")]
 
 [node name="ExitArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6562, 0.05, 4.34497)
@@ -1233,5 +1209,4 @@ collision = NodePath("../ExitArea")
 
 [node name="ChangeLevel" parent="." instance=ExtResource("40_xn58u")]
 
-[connection signal="timeout" from="bomb/BlinkingLight/Timer" to="bomb/BlinkingLight" method="_on_timer_timeout"]
 [connection signal="interacted" from="Interactable" to="ChangeLevel" method="_on_interactable_interacted"]

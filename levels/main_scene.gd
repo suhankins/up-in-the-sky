@@ -2,7 +2,7 @@ extends Node3D
 
 @export var main_menu: PackedScene
 @onready var current_scene: Level = self.get_child(0)
-@onready var fade_box: FadeBox = $FadeBox
+@onready var fade_box: ScreenTransition = $ScreenTransition
 @onready var loading_text: Label = $LoadingText
 
 var packed_current_scene: PackedScene

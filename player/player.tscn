@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://d00lh5qnb33ry"]
+[gd_scene load_steps=13 format=3 uid="uid://d00lh5qnb33ry"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_oeowi"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_oeowi"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="2_4uhfg"]
 [ext_resource type="PackedScene" uid="uid://cnufybkt8f4b0" path="res://models/player_agent/player_agent.tscn" id="2_rwq1e"]
 [ext_resource type="PackedScene" uid="uid://5mf2jfrxtlsr" path="res://models/effects/tracer/tracer.tscn" id="2_x40ji"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://models/effects/bullethole/bullethole.tscn" id="3_t2te4"]
 [ext_resource type="PackedScene" uid="uid://361lrfpepd2u" path="res://models/effects/bullet_softbody_pusher.tscn" id="4_l1dsq"]
 [ext_resource type="PackedScene" uid="uid://dl77xd224bg2" path="res://ui/ui.tscn" id="7_f8nwl"]
-[ext_resource type="Shader" path="res://laser.gdshader" id="9_rbydi"]
+[ext_resource type="PackedScene" uid="uid://p2a30sbpu4pr" path="res://models/laser/laser.tscn" id="9_me6ol"]
 
 [sub_resource type="Resource" id="Resource_xv047"]
 script = ExtResource("2_4uhfg")
@@ -29,14 +29,6 @@ height = 0.7
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qy3o0"]
 radius = 0.191
 height = 0.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2h0w"]
-render_priority = 0
-shader = ExtResource("9_rbydi")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ex4f3"]
-material = SubResource("ShaderMaterial_o2h0w")
-size = Vector2(0.05, 1)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animation_tree") groups=["danger_to_npc", "player"]]
 collision_layer = 37
@@ -110,12 +102,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.444584, 0)
 [node name="UI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_f8nwl")]
 player = NodePath("..")
 
-[node name="Laser" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.557657, -0.320348)
-
-[node name="LaserMesh" type="MeshInstance3D" parent="Laser"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-mesh = SubResource("PlaneMesh_ex4f3")
-skeleton = NodePath("../..")
+[node name="Laser" parent="." instance=ExtResource("9_me6ol")]
 
 [connection signal="timeout" from="ReloadCooldown" to="." method="_on_reload_cooldown_timeout"]

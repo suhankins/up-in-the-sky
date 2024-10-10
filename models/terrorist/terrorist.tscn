@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://jvy2bok6mmpo" path="res://models/terrorist/shirt.tres" id="1_5yia2"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_2mfnx"]
-[ext_resource type="Texture2D" uid="uid://qpnigvcuxecn" path="res://muzzle.png" id="4_apnce"]
+[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="4_apnce"]
 [ext_resource type="PackedScene" uid="uid://dlvvgeooujy0f" path="res://models/terrorist/rifle.gltf" id="4_fgqdh"]
 [ext_resource type="PackedScene" uid="uid://ntqsfvhiek4y" path="res://models/terrorist/beanie.gltf" id="5_ema88"]
 [ext_resource type="PackedScene" uid="uid://qqknv0euyrcq" path="res://models/terrorist/bandana.gltf" id="6_gyf8f"]

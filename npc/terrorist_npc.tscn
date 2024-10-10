@@ -1,7 +1,7 @@
 [gd_scene load_steps=50 format=3 uid="uid://8ei7aro1m5v4"]
 
 [ext_resource type="PackedScene" uid="uid://cacsynjusl76n" path="res://models/terrorist/terrorist.tscn" id="1_584io"]
-[ext_resource type="Script" path="res://enemy_npc.gd" id="1_pgwwp"]
+[ext_resource type="Script" path="res://npc/enemy_npc.gd" id="1_pgwwp"]
 [ext_resource type="PackedScene" uid="uid://br8bvepdmca2q" path="res://models/effects/bullethole/bullethole.tscn" id="2_dn7nm"]
 [ext_resource type="Script" path="res://scripts/weapon.gd" id="3_1d61s"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_77uw5"]

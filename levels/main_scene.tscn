@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://clme7n1b515du"]
 
-[ext_resource type="Script" path="res://main_scene.gd" id="1_ytn7w"]
+[ext_resource type="Script" path="res://levels/main_scene.gd" id="1_ytn7w"]
 [ext_resource type="PackedScene" uid="uid://30syc4wxqb0r" path="res://levels/main_menu.tscn" id="2_olyen"]
-[ext_resource type="Texture2D" uid="uid://csxqdkkulik6v" path="res://black_pixel.png" id="3_k0cqe"]
-[ext_resource type="Script" path="res://fade_box.gd" id="3_xi25q"]
+[ext_resource type="Texture2D" uid="uid://csxqdkkulik6v" path="res://ui/black_pixel.png" id="3_k0cqe"]
+[ext_resource type="Script" path="res://ui/screen_transition.gd" id="3_xi25q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y50kd"]
 font_size = 32
@@ -14,7 +14,7 @@ main_menu = ExtResource("2_olyen")
 
 [node name="Main Menu" parent="." instance=ExtResource("2_olyen")]
 
-[node name="FadeBox" type="TextureRect" parent="."]
+[node name="ScreenTransition" type="TextureRect" parent="."]
 z_index = 999
 anchors_preset = 15
 anchor_right = 1.0
