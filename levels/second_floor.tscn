@@ -99,13 +99,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 
 size = Vector3(5, 0.1, 27.3224)
 
 [node name="Basement" type="Node3D" parent="."]
-process_mode = 4
 
 [node name="curved_wall_connector3" parent="Basement" instance=ExtResource("34_fpfi0")]
-transform = Transform3D(-4.80825e-08, 0, 1.1, 0, 1, 0, -1, 0, -4.37114e-08, 4.31421, -1.39997, 5.44473)
+transform = Transform3D(-4.80825e-08, 0, 1.1, 0, 1, 0, -1, 0, -4.37114e-08, 4.314, -1.4, 5.449)
 
 [node name="curved_wall_connector4" parent="Basement" instance=ExtResource("34_fpfi0")]
-transform = Transform3D(1.31174e-08, 0, -1.1, 0, 1, 0, 1, 0, 1.19249e-08, -0.400467, -1.39997, 5.45)
+transform = Transform3D(1.31174e-08, 0, -1.1, 0, 1, 0, 1, 0, 1.19249e-08, -0.3, -1.4, 5.449)
 
 [node name="PlainWall2" parent="Basement" instance=ExtResource("6_r2lgq")]
 transform = Transform3D(1.32, 0, 0, 0, 1, 0, 0, 0, 1, 0.311326, -1.39997, 4.94848)
@@ -136,6 +135,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.325,
 
 [node name="plane_curved_walls6" parent="Basement" instance=ExtResource("34_3n6dc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.325, -1.4, 5)
+
+[node name="plane_curved_walls19" parent="Basement" instance=ExtResource("34_3n6dc")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -0.305, -1.4, 5)
 
 [node name="plane_curved_walls7" parent="Basement" instance=ExtResource("34_3n6dc")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.325, -1.4, -6)
