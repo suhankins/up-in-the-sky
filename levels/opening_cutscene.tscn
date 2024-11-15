@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dshd5tpyrin3s"]
+[gd_scene load_steps=28 format=4 uid="uid://dshd5tpyrin3s"]
 
 [ext_resource type="PackedScene" uid="uid://o4ugj25iyg1n" path="res://levels/first_floor_layout.tscn" id="1_2q4yg"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_us523"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bytpfcn0c7hx4" path="res://sfx/loud_thud.wav" id="7_sicy6"]
 [ext_resource type="PackedScene" uid="uid://uhda5in05pr2" path="res://levels/first_floor.tscn" id="9_8veh5"]
 [ext_resource type="Script" path="res://scripts/autostart_animation.gd" id="10_r5sg0"]
+[ext_resource type="Script" path="res://levels/skip_button.gd" id="12_mqgum"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j848i"]
 resource_name = "Material.1"
@@ -312,6 +313,24 @@ script = ExtResource("1_us523")
 
 [node name="FirstFloorLayout" parent="." instance=ExtResource("1_2q4yg")]
 
+[node name="skip_button" type="Button" parent="." node_paths=PackedStringArray("current_level_root")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -65.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Skip"
+script = ExtResource("12_mqgum")
+current_level_root = NodePath("..")
+next_level = ExtResource("9_8veh5")
+
 [node name="OpeningAnimation" type="Node3D" parent="."]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.85905, 0, 0.465645)
 
@@ -415,5 +434,7 @@ environment_custom_color = Color(0.226707, 0.226707, 0.226707, 1)
 environment_custom_energy = 0.0
 generate_probes_subdiv = 3
 light_data = ExtResource("7_7a7vt")
+
+[connection signal="pressed" from="skip_button" to="skip_button" method="_on_pressed"]
 
 [editable path="OpeningAnimation/PlayerAgent"]
