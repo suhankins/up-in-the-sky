@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d4fst0noa1cil"]
+
+[ext_resource type="Material" uid="uid://bkqbrskkvfy4s" path="res://models/player_agent/show_through_walls_player.tres" id="1_tnfrm"]
+
+[resource]
+render_priority = 1
+next_pass = ExtResource("1_tnfrm")
+transparency = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true

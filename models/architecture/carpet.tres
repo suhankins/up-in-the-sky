@@ -10,6 +10,7 @@ as_normal_map = true
 noise = SubResource("FastNoiseLite_h64wv")
 
 [resource]
+transparency = 4
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_xooj2")
 normal_texture = SubResource("NoiseTexture2D_1mkid")

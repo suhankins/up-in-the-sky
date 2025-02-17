@@ -1,11 +1,12 @@
-[gd_scene load_steps=34 format=3 uid="uid://dklhuniy1ca5y"]
+[gd_scene load_steps=35 format=3 uid="uid://dklhuniy1ca5y"]
 
 [ext_resource type="Material" uid="uid://dvg88q8hor4ei" path="res://models/player_agent/jacket.tres" id="1_fqmbk"]
+[ext_resource type="Material" uid="uid://c6ummi5r4y70y" path="res://models/player_agent/shirt.tres" id="1_g3pms"]
 [ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_qdcti"]
-[ext_resource type="ArrayMesh" uid="uid://8lprjqn2pu1b" path="res://models/player_agent/pistol.obj" id="3_lqian"]
-[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="4_qwsg6"]
-[ext_resource type="ArrayMesh" uid="uid://cqg8r4q804qvg" path="res://models/player_agent/sunglasses.obj" id="5_pxtpx"]
+[ext_resource type="PackedScene" uid="uid://bxu4ubbewvbvy" path="res://models/player_agent/pistol.gltf" id="4_0miu1"]
+[ext_resource type="Texture2D" uid="uid://qpnigvcuxecn" path="res://models/player_agent/muzzle.png" id="4_qwsg6"]
 [ext_resource type="PackedScene" uid="uid://u41n1vsbsu2y" path="res://models/player_agent/tie.gltf" id="6_7f2qs"]
+[ext_resource type="PackedScene" uid="uid://do6lr0gt1hppm" path="res://models/player_agent/glasses.gltf" id="6_g1efg"]
 [ext_resource type="Material" uid="uid://d1fdvf7a4g3ol" path="res://models/player_agent/pants.tres" id="7_figv3"]
 [ext_resource type="Animation" uid="uid://b4n4qdm8qfaah" path="res://animations/footsteps.res" id="8_6jbvc"]
 [ext_resource type="AudioStream" uid="uid://davqpefhllypk" path="res://sfx/pistol/pulling_mag/pulling_mag.wav" id="9_253hc"]
@@ -22,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://bmf4bpd2oc0jm" path="res://sfx/pistol/shot/shot.mp3" id="20_3204f"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_x7nqx"]
+material = ExtResource("1_g3pms")
 size = Vector3(0.1, 0.25, 0.09)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dqbs8"]
@@ -490,12 +492,11 @@ mesh = SubResource("BoxMesh_hmtm0")
 [node name="Gun" type="Node3D" parent="Torso/LeftArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237227, 0)
 
-[node name="GunMesh" type="MeshInstance3D" parent="Torso/LeftArm/Gun"]
-transform = Transform3D(0.13, 0, 0, 0, -5.68248e-09, 0.13, 0, -0.13, -5.68248e-09, 0, -0.00469092, 0.0787565)
-mesh = ExtResource("3_lqian")
+[node name="GunMesh" parent="Torso/LeftArm/Gun" instance=ExtResource("4_0miu1")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.00469092, 0.0787565)
 
 [node name="BarrelEnd" type="Node3D" parent="Torso/LeftArm/Gun/GunMesh"]
-transform = Transform3D(7.69231, 0, 0, 0, 7.69231, 0, 0, 0, 7.69231, 0.00540568, 1.08251, -0.899449)
+transform = Transform3D(1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0.0163184, 0.140726, -0.140965)
 
 [node name="MuzzleflashSprite" type="Sprite3D" parent="Torso/LeftArm/Gun/GunMesh/BarrelEnd"]
 visible = false
@@ -526,13 +527,12 @@ mesh = SubResource("BoxMesh_hmtm0")
 [node name="Head" type="Node3D" parent="Torso"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
+[node name="GlassesMesh" parent="Torso/Head" instance=ExtResource("6_g1efg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0165639, 0.0656506, -0.0335236)
+
 [node name="HeadMesh" type="MeshInstance3D" parent="Torso/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, 0)
 mesh = SubResource("BoxMesh_7tem4")
-
-[node name="GlassesMesh" type="MeshInstance3D" parent="Torso/Head"]
-transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.00957336, -0.0406234, -0.0145807)
-mesh = ExtResource("5_pxtpx")
 
 [node name="tie" parent="Torso" instance=ExtResource("6_7f2qs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.027, -0.021)

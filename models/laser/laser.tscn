@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://models/laser/laser.gdshader" id="1_ikao8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o2h0w"]
-render_priority = 0
+render_priority = 2
 shader = ExtResource("1_ikao8")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ex4f3"]

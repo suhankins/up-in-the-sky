@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://dshd5tpyrin3s"]
+[gd_scene load_steps=29 format=4 uid="uid://dshd5tpyrin3s"]
 
 [ext_resource type="PackedScene" uid="uid://o4ugj25iyg1n" path="res://levels/first_floor_layout.tscn" id="1_2q4yg"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_us523"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bv077r2cebsl6" path="res://fonts/VT323/VT323-Regular.ttf" id="3_fay0e"]
 [ext_resource type="Script" path="res://scripts/animate_text.gd" id="4_kho43"]
 [ext_resource type="AudioStream" uid="uid://dtp10bmq2qpyj" path="res://sfx/typewriter/typewriter_random.tres" id="5_f462r"]
+[ext_resource type="Material" uid="uid://deoxpnhq7xbsc" path="res://models/hide_silhouette.tres" id="5_g36xb"]
 [ext_resource type="AudioStream" uid="uid://bbe86ujxwghas" path="res://sfx/squeek.wav" id="6_dtxa5"]
 [ext_resource type="LightmapGIData" uid="uid://c1gueba6qtjn7" path="res://levels/opening_cutscene.lmbake" id="7_7a7vt"]
 [ext_resource type="Texture2D" uid="uid://by8pbh1lkrfj2" path="res://models/effects/whitePuff.png" id="7_88jrt"]
@@ -343,6 +344,7 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
 [node name="Layer_1" type="MeshInstance3D" parent="OpeningAnimation/crate/Node"]
 mesh = SubResource("ArrayMesh_scest")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_g36xb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="OpeningAnimation/crate/Node/Layer_1"]
 collision_layer = 69
@@ -353,6 +355,7 @@ shape = SubResource("ConvexPolygonShape3D_27drb")
 [node name="Layer_2" type="MeshInstance3D" parent="OpeningAnimation/crate/Node"]
 mesh = SubResource("ArrayMesh_lrl22")
 skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_g36xb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="OpeningAnimation/crate/Node/Layer_2"]
 collision_layer = 69
@@ -362,6 +365,9 @@ shape = SubResource("ConvexPolygonShape3D_13b2a")
 
 [node name="PlayerAgent" parent="OpeningAnimation" instance=ExtResource("2_1sc0p")]
 transform = Transform3D(-0.873449, 0, 0.486915, 0, 1, 0, -0.486915, 0, -0.873449, 3.51496, 0.02782, -7.50374)
+
+[node name="GunMesh" parent="OpeningAnimation/PlayerAgent/Torso/LeftArm/Gun" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Label" type="Label" parent="OpeningAnimation" node_paths=PackedStringArray("typewriter_player")]
 anchors_preset = 2

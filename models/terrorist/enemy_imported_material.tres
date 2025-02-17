@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dsoargfrlqhak"]
+
+[ext_resource type="Material" uid="uid://b570l4jp8llw0" path="res://models/terrorist/show_through_walls_enemy.tres" id="1_cuu3c"]
+
+[resource]
+render_priority = 1
+next_pass = ExtResource("1_cuu3c")
+transparency = 1
+depth_draw_mode = 1
+vertex_color_use_as_albedo = true

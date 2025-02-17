@@ -1,15 +1,17 @@
-[gd_scene load_steps=80 format=3 uid="uid://cacsynjusl76n"]
+[gd_scene load_steps=81 format=3 uid="uid://cacsynjusl76n"]
 
 [ext_resource type="Material" uid="uid://jvy2bok6mmpo" path="res://models/terrorist/shirt.tres" id="1_5yia2"]
-[ext_resource type="Material" uid="uid://c5urfavyvt10i" path="res://models/player_agent/skin.tres" id="2_2mfnx"]
-[ext_resource type="Texture2D" uid="uid://428nlson6r1b" path="res://models/player_agent/muzzle.png" id="4_apnce"]
+[ext_resource type="Texture2D" uid="uid://qpnigvcuxecn" path="res://models/player_agent/muzzle.png" id="4_apnce"]
+[ext_resource type="Material" uid="uid://b570l4jp8llw0" path="res://models/terrorist/show_through_walls_enemy.tres" id="4_f31q0"]
 [ext_resource type="PackedScene" uid="uid://dlvvgeooujy0f" path="res://models/terrorist/rifle.gltf" id="4_fgqdh"]
+[ext_resource type="Material" uid="uid://cdi86ng5dg5m2" path="res://models/terrorist/terrorist_skin.tres" id="5_b12r5"]
 [ext_resource type="PackedScene" uid="uid://ntqsfvhiek4y" path="res://models/terrorist/beanie.gltf" id="5_ema88"]
 [ext_resource type="PackedScene" uid="uid://qqknv0euyrcq" path="res://models/terrorist/bandana.gltf" id="6_gyf8f"]
 [ext_resource type="PackedScene" uid="uid://dxygjyd2ksps" path="res://models/terrorist/vest.gltf" id="7_bkvih"]
 [ext_resource type="AudioStream" uid="uid://d3ehwk35lk4mx" path="res://sfx/rifle/shot/shot.wav" id="8_e2f03"]
 [ext_resource type="AudioStream" uid="uid://brici4v1j1254" path="res://sfx/rifle/pulling_mag/pulling_mag.wav" id="8_kw0qn"]
 [ext_resource type="AudioStream" uid="uid://kw1magvy6rc8" path="res://sfx/rifle/inserting_mag/inserting_mag.wav" id="9_dj3qn"]
+[ext_resource type="Material" uid="uid://b25pbvuk0hukn" path="res://models/terrorist/terrorist_pants.tres" id="9_gvg7l"]
 [ext_resource type="Animation" uid="uid://b4n4qdm8qfaah" path="res://animations/footsteps.res" id="10_togte"]
 [ext_resource type="Animation" uid="uid://b7m8nlix1ofu7" path="res://animations/no_footsteps.res" id="11_rla0a"]
 [ext_resource type="Animation" uid="uid://bbvok3sryjn5j" path="res://animations/walk_crouch_forward.res" id="12_kxqyo"]
@@ -33,27 +35,27 @@ material = SubResource("StandardMaterial3D_4p1r7")
 size = Vector3(0.08, 0.24, 0.09)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hmtm0"]
-material = ExtResource("2_2mfnx")
+material = ExtResource("5_b12r5")
 size = Vector3(0.07, 0.06, 0.07)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utl8f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbl0o"]
+render_priority = 1
+next_pass = ExtResource("4_f31q0")
+transparency = 1
+depth_draw_mode = 1
 albedo_color = Color(0.103744, 0.103744, 0.103744, 1)
 metallic = 0.5
 
 [sub_resource type="BoxMesh" id="BoxMesh_qr0mv"]
-material = SubResource("StandardMaterial3D_utl8f")
+material = SubResource("StandardMaterial3D_bbl0o")
 size = Vector3(0.02, 0.02, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7tem4"]
-material = ExtResource("2_2mfnx")
+material = ExtResource("5_b12r5")
 size = Vector3(0.15, 0.15, 0.15)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ramav"]
-albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
-metallic_specular = 0.0
-
 [sub_resource type="BoxMesh" id="BoxMesh_uiysm"]
-material = SubResource("StandardMaterial3D_ramav")
+material = ExtResource("9_gvg7l")
 size = Vector3(0.1, 0.3, 0.1)
 
 [sub_resource type="Animation" id="Animation_f0bf8"]

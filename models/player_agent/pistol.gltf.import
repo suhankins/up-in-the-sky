@@ -3,39 +3,39 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qqknv0euyrcq"
-path="res://.godot/imported/bandana.gltf-a1545d7c86fb3f45562a32c395529575.scn"
+uid="uid://bxu4ubbewvbvy"
+path="res://.godot/imported/pistol.gltf-3f2c156e701b9bbfa91b68a6257b32d6.scn"
 
 [deps]
 
-source_file="res://models/terrorist/bandana.gltf"
-dest_files=["res://.godot/imported/bandana.gltf-a1545d7c86fb3f45562a32c395529575.scn"]
+source_file="res://models/player_agent/pistol.gltf"
+dest_files=["res://.godot/imported/pistol.gltf-3f2c156e701b9bbfa91b68a6257b32d6.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.026
+nodes/root_scale=0.018
 nodes/import_as_skeleton_bones=false
-meshes/ensure_tangents=true
+meshes/ensure_tangents=false
 meshes/generate_lods=false
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=true
+animation/import=false
 animation/fps=30
 animation/trimming=false
-animation/remove_immutable_tracks=true
+animation/remove_immutable_tracks=false
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
 "Material.1": {
 "use_external/enabled": true,
-"use_external/path": "res://models/terrorist/enemy_imported_material.tres"
+"use_external/path": "res://models/player_agent/imported_model_player.tres"
 }
 }
 }
