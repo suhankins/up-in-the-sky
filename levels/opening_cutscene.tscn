@@ -291,6 +291,7 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtkd4"]
+render_priority = 2
 transparency = 1
 albedo_texture = ExtResource("7_88jrt")
 texture_filter = 0
@@ -367,7 +368,7 @@ shape = SubResource("ConvexPolygonShape3D_13b2a")
 transform = Transform3D(-0.873449, 0, 0.486915, 0, 1, 0, -0.486915, 0, -0.873449, 3.51496, 0.02782, -7.50374)
 
 [node name="GunMesh" parent="OpeningAnimation/PlayerAgent/Torso/LeftArm/Gun" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(0.999774, 0.015044, 0.0150423, -0.015044, -4.37114e-08, 0.999887, 0.0150423, -0.999887, 0.000226278, -0.00125647, 0, 0.083519)
 
 [node name="Label" type="Label" parent="OpeningAnimation" node_paths=PackedStringArray("typewriter_player")]
 anchors_preset = 2
@@ -407,7 +408,7 @@ emitting = false
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-visibility_aabb = AABB(-0.906773, -0.27559, -0.793854, 1.89739, 1.20794, 1.0173)
+visibility_aabb = AABB(-0.569908, -0.265562, -0.883472, 0.986879, 1.2578, 1.71609)
 draw_order = 2
 mesh = SubResource("PlaneMesh_8l4yw")
 emission_shape = 3
