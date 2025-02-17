@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Agent Up In The Skies"
-config/version="1.1"
+config/version="1.2"
 run/main_scene="res://levels/main_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/image="res://ui/splash.png"
 config/icon="res://icon.svg"
 
 [autoload]
